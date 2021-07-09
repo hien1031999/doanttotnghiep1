@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNhaSanXuatTable extends Migration
+class CreateDanhGiaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateNhaSanXuatTable extends Migration
      */
     public function up()
     {
-        Schema::create('nha_san_xuat', function (Blueprint $table) {
+        Schema::create('danh_gia', function (Blueprint $table) {
             $table->id();
-            $table->string('ten');
-            // $table->string('diachi');
+            $table->foreignId('chi_tiet_sp_id');
+            $table->integer('diem');
             $table->timestamps();
-            $table->softDeletes();
-        }); 
+        });
     }
 
     /**
@@ -29,6 +28,6 @@ class CreateNhaSanXuatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nha_san_xuat');
+        Schema::dropIfExists('danh_gia');
     }
 }

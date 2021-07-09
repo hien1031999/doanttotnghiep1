@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ChiTietSP;
 use App\Models\GioHang;
+use App\Models\SanPham;
 use Illuminate\Support\Facades\Session;
 
 
@@ -36,7 +37,8 @@ class GioHangController extends Controller
     public function index(Request $req)
     {
         $chitietsanpham = ChiTietSP::where('id',$req->id)->first();
-        return view('user.page.gio-hang.giohang');
+        $hinhanhsp = SanPham::all();
+        return view('user.page.gio-hang.giohang',compact('chitietsanpham','hinhanhsp'));
     }
 
     public function updateCartQty(Request $req, $id) {

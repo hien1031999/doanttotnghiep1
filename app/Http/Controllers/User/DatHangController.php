@@ -10,11 +10,13 @@ use App\Models\GioHang;
 use App\Models\ChiTietHoaDon;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\User\datetime;
+use App\Models\SanPham;
 
 class DatHangController extends Controller
 {
     public function index(){
-        return view('user.page.dat-hang.dathang');
+        $hinhanhsp = SanPham::all();
+        return view('user.page.dat-hang.dathang',compact('hinhanhsp'));
     }
 
     public function datHang(Request $req) {

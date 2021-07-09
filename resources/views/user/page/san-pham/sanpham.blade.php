@@ -68,78 +68,80 @@
 <section class="products-view products-view-grid collection_reponsive">
     <div class="row">
         @foreach($sanpham as $sp)
-        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
-            <div class="item saler_item">
-                                
-                <div class="product-box">															
-                    <div class="product-thumbnail">
-                        @if($sp->giam_gia>0)
-                        <span class="sale_count">
-                            <span class="bf_">- {{$sp->giam_gia}}% </span>
-                        </span>
-                        @endif
-                        <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="assetsUser/images/{{$sp->hinh_anh}}"  title="{{$sp->ten_sp}}">
-                            <img class="img-responsive lazyload" src="assetsUser/images/{{$sp->hinh_anh}}" data-src="assetsUser/images/{{$sp->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
-                        </a>
+            @foreach($hinhanhsp as $hinhanh)
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
+                <div class="item saler_item">
+                                    
+                    <div class="product-box">															
+                        <div class="product-thumbnail">
+                            @if($sp->giam_gia>0)
+                            <span class="sale_count">
+                                <span class="bf_">- {{$sp->giam_gia}}% </span>
+                            </span>
+                            @endif
+                            <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$hinhanh->hinh_anh}}"  title="{{$sp->ten_sp}}">
+                                <img class="img-responsive lazyload" src="anh_sp/{{$hinhanh->hinh_anh}}" data-src="anh_sp/{{$hinhanh->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
+                            </a>
 
-                        <div class="product-action-grid clearfix">
-                            <form  class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
-                                <div>
-                                    <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                        <span class="tooltips qv"><span>Xem nhanh</span></span>
-                                    </a>
-                                </div>
-                            </form>
+                            <div class="product-action-grid clearfix">
+                                <form  class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
+                                    <div>
+                                        <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
+                                            <span class="tooltips qv"><span>Xem nhanh</span></span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+
+                        <div class="product-info">
+        
+                            <div class="reviews-product-list grid_reviews">
+                                <div class="bizweb-product-reviews-badge" data-id="9746938"></div>
+                            </div>
+        
+                            <h3 class="product-name"><a class="text2line" href="{{route('chitietsanpham',$sp->id)}}" title="{{$sp->ten_sp}}">{{$sp->ten_sp}}</a></h3>
+
+                            @if($sp->giam_gia>0)
+                                <div class="price-box clearfix">			
+                                    <span class="price product-price-old">
+                                        
+                                        
+                                        
+                                        
+                                        {{number_format($sp->gia,0,",",".")}} đ		
+                                    </span>		
+                                    <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100),0,",",".")}} đ</span>
+                                </div>
+                            @else
+                                <div class="price-box clearfix">
+                                    <span class="price product-price">{{number_format($sp->gia,0,",",".")}} đ</span>
+                                </div>
+                            @endif
+
+        
+        
+                            <div class="action__">
+        
+                                <form action="{{route('cart-add',$sp->id)}}" method="GET">
+                                    <div>
+                                        <input type="hidden"/>
+                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                            <span>
+                                                <span class="fa fa-shopping-basket"></span>
+                                            </span>
+                                                Giỏ hàng
+                                        </button>
+                                    </div>
+                                </form>
+
+                        </div>
+
                     </div>
-
-                    <div class="product-info">
-    
-                        <div class="reviews-product-list grid_reviews">
-                            <div class="bizweb-product-reviews-badge" data-id="9746938"></div>
-                        </div>
-    
-                        <h3 class="product-name"><a class="text2line" href="{{route('chitietsanpham',$sp->id)}}" title="{{$sp->ten_sp}}">{{$sp->ten_sp}}</a></h3>
-
-                        @if($sp->giam_gia>0)
-                            <div class="price-box clearfix">			
-                                <span class="price product-price-old">
-                                    
-                                    
-                                    
-                                    
-                                    {{number_format($sp->gia,0,",",".")}} đ		
-                                </span>		
-                                <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100),0,",",".")}} đ</span>
-                            </div>
-                        @else
-                            <div class="price-box clearfix">
-                                <span class="price product-price">{{number_format($sp->gia,0,",",".")}} đ</span>
-                            </div>
-                        @endif
-
-    
-    
-                        <div class="action__">
-    
-                            <form action="{{route('cart-add',$sp->id)}}" method="GET">
-                                <div>
-                                    <input type="hidden"/>
-                                    <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                        <span>
-                                            <span class="fa fa-shopping-basket"></span>
-                                        </span>
-                                            Giỏ hàng
-                                    </button>
-                                </div>
-                            </form>
-
-</div>
-
-                </div>
-            </div>			
-        </div>  
-    </div>
+                </div>			
+            </div>  
+        </div>
+        @endforeach
     @endforeach
 <!--End 1 sp  -->
 

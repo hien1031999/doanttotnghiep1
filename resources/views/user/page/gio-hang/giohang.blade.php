@@ -57,71 +57,73 @@
 
                                     <!-- Ảnh và màu sắc -->
                                     @foreach($product_cart as $product)
-                                        <div class="item-cart">
-                                            <div style="width: 10%" class="image">
-                                                <a class="product-image" title="{{$product['item']['ten_sp']}}" href="{{route('chitietsanpham',$product['item']['id'])}}">
-                                                    <img width="75" height="auto" alt="{{$product['item']['ten_sp']}}" src="assetsUser/images/{{$product['item']['hinh_anh']}}"></a>
-                                            </div>
-                                            <div style="width: 35%" class="a-left">
-                                                <h3 class="product-name"> 
-                                                    <a class="text2line" href="{{route('chitietsanpham',$product['item']['id'])}}">{{$product['item']['ten_sp']}}</a> 
-                                                </h3>
-                                                <span class="variant-title">{{$product['item']['mau_sac']}}</span>
-                                                
-                                                <a class="remove-itemx remove-item-cart" title="Xóa"  href="{{route('cart-del',$product['item']['id'])}}">
-                                                    <span>
-                                                        <i class="fa fa-times"></i> Xoá
-                                                    </span>
-                                                </a>
-                                            </div>
+                                        @foreach($hinhanhsp as $hinh)
+                                            <div class="item-cart">
+                                                <div style="width: 10%" class="image">
+                                                    <a class="product-image" title="{{$product['item']['ten_sp']}}" href="{{route('chitietsanpham',$product['item']['id'])}}">
+                                                        <img width="75" height="auto" alt="{{$product['item']['ten_sp']}}" src="anh_sp/{{$hinh->hinh_anh}}"></a>
+                                                </div>
+                                                <div style="width: 35%" class="a-left">
+                                                    <h3 class="product-name"> 
+                                                        <a class="text2line" href="{{route('chitietsanpham',$product['item']['id'])}}">{{$product['item']['ten_sp']}}</a> 
+                                                    </h3>
+                                                    <span class="variant-title">{{$product['item']['mau_sac']}}</span>
+                                                    
+                                                    <a class="remove-itemx remove-item-cart" title="Xóa"  href="{{route('cart-del',$product['item']['id'])}}">
+                                                        <span>
+                                                            <i class="fa fa-times"></i> Xoá
+                                                        </span>
+                                                    </a>
+                                                </div>
 
 
-                                            <!-- Giá -->
-                                            <div style="width: 26%" class="a-center">
+                                                <!-- Giá -->
+                                                <div style="width: 26%" class="a-center">
+                                                    @if($product['item']['giam_gia']>0)
+                                                        
+                                                            <span class="price product-price-old">{{number_format($product['item']['gia'],0,",",".")}} đ</span>
+                                                        
+                                                        
+                                                            <span class="price product-price" style="color: #000ed0;font-size:20px;font-weight:bold;">{{number_format($product['item']['gia']*((100-$product['item']['giam_gia'])/100),0,",",".")}} đ</span>
+                                                        
+                                                    @else
+                                                        
+                                                            <span class="price product-price" style="color: #000ed0;font-size:20px;font-weight:bold;">{{number_format($product['item']['gia'],0,",",".")}} đ</span>
+                                                        
+                                                    @endif
+                                                </div>
+
+                                        
+                                                <!-- Số lượng -->
+                                                <div style="width: 14%" class="a-center">
+                                                    <form action="{{route('update-cart-qty',$product['item']['id'])}}" method="GET">
+                                                        <input style="text-align: center;font-weight:bold;font-size: 16px;" class="cart_quantity_input" type="number" name="quantity" value="{{$product['so_luong']}}" required="" maxlength="2" min="1">
+                                                        <input style="color:blue;font-weight:bold;font-size: 16px;" type="submit" value="Cập nhập" name="update_qty" class="btn btn-default btn-sm">
+                                                    </form>
+                                                </div>
+
+                                                <!-- Tổng tiền -->
                                                 @if($product['item']['giam_gia']>0)
-                                                    
-                                                        <span class="price product-price-old">{{number_format($product['item']['gia'],0,",",".")}} đ</span>
-                                                    
-                                                    
-                                                        <span class="price product-price" style="color: #000ed0;font-size:20px;font-weight:bold;">{{number_format($product['item']['gia']*((100-$product['item']['giam_gia'])/100),0,",",".")}} đ</span>
-                                                    
+                                                    <div style="width: 15%; font-size:19px; font-weight:bold;color:#000000" class="a-right">
+                                                        <span class="cart-price"> 
+                                                            <span style="font-size:20px; font-weight:bold;color:#000ed0" class="price">
+                                                                {{number_format($product['so_luong']*$product['item']['gia']*((100-$product['item']['giam_gia'])/100),0,",",".")}} đ
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <div style="width: 5%" class="a-center"></div>
                                                 @else
-                                                    
-                                                        <span class="price product-price" style="color: #000ed0;font-size:20px;font-weight:bold;">{{number_format($product['item']['gia'],0,",",".")}} đ</span>
-                                                    
+                                                    <div style="width: 15%; font-size:19px; font-weight:bold;color:#000000" class="a-right">
+                                                        <span class="cart-price"> 
+                                                            <span style="font-size:20px; font-weight:bold;color:#000ed0" class="price">
+                                                                {{number_format($product['so_luong']*$product['item']['gia'],0,",",".")}} đ
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <div style="width: 5%" class="a-center"></div>
                                                 @endif
                                             </div>
-
-                                    
-                                            <!-- Số lượng -->
-                                            <div style="width: 14%" class="a-center">
-                                                <form action="{{route('update-cart-qty',$product['item']['id'])}}" method="GET">
-                                                    <input style="text-align: center;font-weight:bold;font-size: 16px;" class="cart_quantity_input" type="number" name="quantity" value="{{$product['so_luong']}}" required="" maxlength="2" min="1">
-                                                    <input style="color:blue;font-weight:bold;font-size: 16px;" type="submit" value="Cập nhập" name="update_qty" class="btn btn-default btn-sm">
-                                                </form>
-                                            </div>
-
-                                            <!-- Tổng tiền -->
-                                            @if($product['item']['giam_gia']>0)
-                                                <div style="width: 15%; font-size:19px; font-weight:bold;color:#000000" class="a-right">
-                                                    <span class="cart-price"> 
-                                                        <span style="font-size:20px; font-weight:bold;color:#000ed0" class="price">
-                                                            {{number_format($product['so_luong']*$product['item']['gia']*((100-$product['item']['giam_gia'])/100),0,",",".")}} đ
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                                <div style="width: 5%" class="a-center"></div>
-                                            @else
-                                                <div style="width: 15%; font-size:19px; font-weight:bold;color:#000000" class="a-right">
-                                                    <span class="cart-price"> 
-                                                        <span style="font-size:20px; font-weight:bold;color:#000ed0" class="price">
-                                                            {{number_format($product['so_luong']*$product['item']['gia'],0,",",".")}} đ
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                                <div style="width: 5%" class="a-center"></div>
-                                            @endif
-                                        </div>
+                                        @endforeach
                                     @endforeach
                                   
                             </div>

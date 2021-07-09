@@ -300,38 +300,40 @@
                                                     </thead> -->
                                                     <tbody>
                                                         @foreach($product_cart as $product)
-                                                            <tr class="product">
-                                                                <td class="product__image">
-                                                                    <div class="product-thumbnail">
-                                                                        <div class="product-thumbnail__wrapper" data-tg-static="">
+                                                            @foreach($hinhanhsp as $hinh)
+                                                                <tr class="product">
+                                                                    <td class="product__image">
+                                                                        <div class="product-thumbnail">
+                                                                            <div class="product-thumbnail__wrapper" data-tg-static="">
 
-                                                                            <img src="assetsUser/images/{{$product['item']['hinh_anh']}}" alt="" class="product-thumbnail__image">
+                                                                                <img src="anh_sp/{{$hinh->hinh_anh}}" alt="" class="product-thumbnail__image">
 
+                                                                            </div>
+                                                                            <span class="product-thumbnail__quantity">{{$product['so_luong']}}</span>
                                                                         </div>
-                                                                        <span class="product-thumbnail__quantity">{{$product['so_luong']}}</span>
-                                                                    </div>
-                                                                </td>
-                                                                <th class="product__description">
-                                                                    <span class="product__description__name">
-                                                                        {{$product['item']['ten_sp']}}
-                                                                    </span>
-
-                                                                    <span class="product__description__property">
-                                                                        {{$product['item']['mau_sac']}}
-                                                                    </span>
-
-
-                                                                </th>
-                                                                @if($product['item']['giam_gia']>0)
-                                                                    <td class="product__price">
-                                                                        {{number_format($product['so_luong']*($product['item']['gia']*((100-$product['item']['giam_gia'])/100)))}}đ
                                                                     </td>
-                                                                @else
-                                                                    <td class="product__price">
-                                                                        {{number_format($product['so_luong']*$product['item']['gia'])}}đ
-                                                                    </td>
-                                                                @endif
-                                                            </tr>
+                                                                    <th class="product__description">
+                                                                        <span class="product__description__name">
+                                                                            {{$product['item']['ten_sp']}}
+                                                                        </span>
+
+                                                                        <span class="product__description__property">
+                                                                            {{$product['item']['mau_sac']}}
+                                                                        </span>
+
+
+                                                                    </th>
+                                                                    @if($product['item']['giam_gia']>0)
+                                                                        <td class="product__price">
+                                                                            {{number_format($product['so_luong']*($product['item']['gia']*((100-$product['item']['giam_gia'])/100)))}}đ
+                                                                        </td>
+                                                                    @else
+                                                                        <td class="product__price">
+                                                                            {{number_format($product['so_luong']*$product['item']['gia'])}}đ
+                                                                        </td>
+                                                                    @endif
+                                                                </tr>
+                                                            @endforeach
                                                         @endforeach
                                                     </tbody>
                                                 </table>

@@ -35,11 +35,15 @@ class GioHang extends Model
 			   $gia = $item->gia;
 		}
 		$giohang = ['so_luong'=>0, 'gia' => $gia, 'item' => $item];
+
 		if($this->items) {
 			   if(array_key_exists($id, $this->items)){
 					  $giohang = $this->items[$id];
 			   }
 		}
+
+		
+
 		if($qty > 1 && $giohang['so_luong'] > 0) {
 			$giohang['so_luong'] += $qty;
 			$giohang['gia'] = $gia * $giohang['so_luong'];
@@ -49,6 +53,18 @@ class GioHang extends Model
 
 			$this->items[$id] = $giohang;
 		}
+
+		elseif($qty = 1 && $giohang['so_luong'] > 0) {
+		
+			$giohang['so_luong'] += $qty;
+			$giohang['gia'] = $gia * $giohang['so_luong'];
+
+			$this->tongSL += $qty;
+			$this->tongTien += ($giohang['gia'] - $this->items[$id]['gia']);
+
+			$this->items[$id] = $giohang;
+		}
+		
 		elseif($qty > 1 && $giohang['so_luong'] == 0) {
 		
 			$giohang['so_luong'] += $qty;
@@ -59,6 +75,7 @@ class GioHang extends Model
 
 			$this->items[$id] = $giohang;
 		}
+
 		else {
 			$giohang['so_luong']++;
 			$giohang['gia'] = $gia * $giohang['so_luong'];
@@ -77,8 +94,8 @@ class GioHang extends Model
 	public function removeItem($id) {
 		$this->tongSL -= $this->items[$id]['so_luong'];
 		$this->tongTien -= $this->items[$id]['gia'];
-		// $this->tongSL = 0;
-		// $this->tongTien = 0;
+		$this->tongSL = 0;
+		$this->tongTien = 0;
 		unset($this->items[$id]);
 	}
 

@@ -7,22 +7,25 @@ use Illuminate\Http\Request;
 use App\Models\ChiTietSP;
 use App\Models\LoaiSP;
 use App\Models\DanhGia;
+use App\Models\SanPham;
 
 class CTSPController extends Controller
 {
     public function index(Request $req,$type) {
         $chitietsanpham = ChiTietSP::where('id',$req->id)->first();
 
+        $hinhanhsp = SanPham::all();
+
         $loai_sp = LoaiSP::where('id',$type)->first();
 
-        $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->paginate(6);
+        $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang',0)->paginate(6);
 
-        $sanphamtuongtu = ChiTietSP::where('loai_sp_id',$chitietsanpham->loai_sp_id)->get();
+        $sanphamtuongtu = ChiTietSP::where('loai_sp_id',$chitietsanpham->loai_sp_id)->where('tinh_trang',0)->get();
 
         $rating = DanhGia::where('chi_tiet_sp_id',$chitietsanpham->id)->avg('diem');
         $rating = round($rating);
 
-        return view('user.page.san-pham.chitietsanpham',compact('chitietsanpham','sanphamtuongtu','loai_sp','sanphamsale','rating'));
+        return view('user.page.san-pham.chitietsanpham',compact('chitietsanpham','sanphamtuongtu','loai_sp','sanphamsale','rating','hinhanhsp'));
     }
 
     public function insert_rating(Request $req) {

@@ -47,34 +47,36 @@
 
                                     <div class="item">
                                     @foreach($sanphamsale as $sps)
-                                        <div class="hot_sale_product">
-                                            <div class="item-img-horizontal">
-                                                
-                                                <a href="{{route('chitietsanpham',$sps->id)}}" class="product-image" title="">
-                                                    <img src="assetsUser/images/{{$sps->hinh_anh}}" alt="{{$sps->ten_sp}}">
-                                                </a>
-                                                
-                                            </div>
-                                            <div class="item-info-horizontal">
-                                                <h3 class="item-name text2line">
-                                                    <a href="{{route('chitietsanpham',$sps->id)}}" title="{{$sps->ten_sp}}">
-                                                        {{$sps->ten_sp}}
-                                                    </a>
-                                                </h3>
-                                                
-                                                
-                                                <div class="price-box clearfix">			
+                                        @foreach($hinhanhsp as $hinhanhsp)
+                                            <div class="hot_sale_product">
+                                                <div class="item-img-horizontal">
                                                     
-                                                    <span class="price product-price-old">
-                                                        {{number_format($sps->gia,0,",",".")}} đ			
-                                                    </span>		
+                                                    <a href="{{route('chitietsanpham',$sps->id)}}" class="product-image" title="">
+                                                        <img src="anh_sp/{{$hinhanhsp->hinh_anh}}" alt="{{$sps->ten_sp}}">
+                                                    </a>
+                                                    
+                                                </div>
+                                                <div class="item-info-horizontal">
+                                                    <h3 class="item-name text2line">
+                                                        <a href="{{route('chitietsanpham',$sps->id)}}" title="{{$sps->ten_sp}}">
+                                                            {{$sps->ten_sp}}
+                                                        </a>
+                                                    </h3>
+                                                    
+                                                    
+                                                    <div class="price-box clearfix">			
                                                         
-                                                    <span class="price product-price">{{number_format($sps->gia*((100-$sps->giam_gia)/100),0,",",".")}} đ</span>
-                                                </div>		
-                                                
-                                                
+                                                        <span class="price product-price-old">
+                                                            {{number_format($sps->gia,0,",",".")}} đ			
+                                                        </span>		
+                                                            
+                                                        <span class="price product-price">{{number_format($sps->gia*((100-$sps->giam_gia)/100),0,",",".")}} đ</span>
+                                                    </div>		
+                                                    
+                                                    
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     @endforeach
                                     </div>
                                     
@@ -88,93 +90,94 @@
                 <div class="details">
                     <div class="rows">
                         <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            @foreach($hinhanhsp as $hinhanh)
+                                <div class="row">
+                                    <div class="col_large_default large-image">
+                                        @if($chitietsanpham->phan_tram_giam>0)
+                                            <span class="sale_count details__"><span class="bf_ sale___">
+                                            - {{$chitietsanpham->phan_tram_giam}}%
+                                                </span></span>
+                                        @endif
 
-                            <div class="row">
-                                <div class="col_large_default large-image">
-                                    @if($chitietsanpham->phan_tram_giam>0)
-                                        <span class="sale_count details__"><span class="bf_ sale___">
-                                        - {{$chitietsanpham->phan_tram_giam}}%
-                                            </span></span>
-                                    @endif
 
+                                        <a href="anh_sp/{{$hinhanh->hinh_anh}}" class="large_image_url checkurl"  data-rel="prettyPhoto[product-gallery]" >
+                                            
+                                            <img id="img_01" class="img-responsive" alt="{{$chitietsanpham->ten_sp}}" src="anh_sp/{{$hinhanh->hinh_anh}}" data-zoom-image="anh_sp/{{$hinhanh->hinh_anh}}"/>
+                                        </a>
 
-                                    <a href="assetsUser/images/{{$chitietsanpham->hinh_anh}}" class="large_image_url checkurl"  data-rel="prettyPhoto[product-gallery]" >
-                                        
-                                        <img id="img_01" class="img-responsive" alt="{{$chitietsanpham->ten_sp}}" src="assetsUser/images/{{$chitietsanpham->hinh_anh}}" data-zoom-image="assetsUser/images/{{$chitietsanpham->hinh_anh}}"/>
-                                    </a>
+                                        <div class="hidden">
+                                            
+                                            <div class="item">
+                                                <a href="anh_sp/{{$hinhanh->hinh_anh}}" data-image="anh_sp/{{$hinhanh->hinh_anh}}" data-zoom-image="anh_sp/{{$hinhanh->hinh_anh}}" data-rel="prettyPhoto[product-gallery]">										
+                                                </a>
+                                            </div>	
+                                            
+                                            
+                                            
+                                            
+                                            <!-- <div class="item">
+                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                                </a>
+                                            </div>	
+                                            
+                                            
+                                            
+                                            
+                                            <div class="item">
+                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                                </a>
+                                            </div>	
+                                            
+                                            
+                                            
+                                            
+                                            <div class="item">
+                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                                </a>
+                                            </div>	
+                                            
+                                            
+                                            
+                                            
+                                            <div class="item">
+                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                                </a>
+                                            </div>	 -->
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="gallery_02" class="col-sm-12 col-xs-12 col-lg-5 col-md-5 owl_width no-padding owl-carousel owl-theme thumbnail-product thumb_product_details not-dqowl" data-loop="false" data-lg-item="3" data-md-items="3" data-sm-items="3" data-xs-items="3" data-margin="10">
 
-                                    <div class="hidden">
-                                        
-                                        <div class="item">
-                                            <a href="assetsUser/images/{{$chitietsanpham->hinh_anh}}" data-image="assetsUser/images/{{$chitietsanpham->hinh_anh}}" data-zoom-image="assetsUser/images/{{$chitietsanpham->hinh_anh}}" data-rel="prettyPhoto[product-gallery]">										
-                                            </a>
-                                        </div>	
-                                        
-                                        
                                         
                                         
                                         <!-- <div class="item">
-                                            <a href="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/2-3.jpg?v=1517327927920">
+                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/2-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/2-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
                                             </a>
-                                        </div>	
-                                        
-                                        
-                                        
+                                        </div>
                                         
                                         <div class="item">
-                                            <a href="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920">
+                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/3-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
                                             </a>
-                                        </div>	
-                                        
-                                        
-                                        
+                                        </div>
                                         
                                         <div class="item">
-                                            <a href="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/4-2.jpg?v=1517327927920">
+                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/4-2.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/4-2.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
                                             </a>
-                                        </div>	
-                                        
-                                        
-                                        
+                                        </div>
                                         
                                         <div class="item">
-                                            <a href="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
+                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920">
+                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/5.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
                                             </a>
-                                        </div>	 -->
+                                        </div> -->
                                         
-                                    </div>
+                                    </div> 
                                 </div>
-                                
-                                <div id="gallery_02" class="col-sm-12 col-xs-12 col-lg-5 col-md-5 owl_width no-padding owl-carousel owl-theme thumbnail-product thumb_product_details not-dqowl" data-loop="false" data-lg-item="3" data-md-items="3" data-sm-items="3" data-xs-items="3" data-margin="10">
-
-                                    
-                                    
-                                    <!-- <div class="item">
-                                        <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/2-3.jpg?v=1517327927920">
-                                            <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/2-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/2-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="item">
-                                        <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920">
-                                            <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/3-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="item">
-                                        <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/4-2.jpg?v=1517327927920">
-                                            <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/4-2.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/4-2.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="item">
-                                        <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920">
-                                            <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/5.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                        </a>
-                                    </div> -->
-                                    
-                                </div> 
-                            </div>
+                            @endforeach
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 details-pro">
@@ -214,7 +217,7 @@
 
 
 
-                                @if($chitietsanpham->so_luong>0)
+                                @if($chitietsanpham->tinh_trang == 0)
                                     <div class="taxable">
                                         <span class="valibled">Tình trạng:</span>
                                         <span style="color:green;">
@@ -257,7 +260,7 @@
                             </div>
                             
                             <div class="form-product col-sm-12 form-border">
-                            @if($chitietsanpham->tinh_trang==1)
+                            @if($chitietsanpham->tinh_trang == 0)
                                 <form action="{{route('cart-add',$chitietsanpham->id)}}" method="GET">
                                     
                                     <div class="form-group form_button_details ">
@@ -398,74 +401,76 @@
                                 </h2>
                             </div>
 
-                            <section class="products-view products-view-grid collection_reponsive">        
+                            <section class="products-view products-view-grid collection_reponsive">
                                 @foreach($sanphamtuongtu as $sp)
-                                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
-                                        <div class="item saler_item">
-                                                            
-                                            <div class="product-box">															
-                                                <div class="product-thumbnail">
-                                                    @if($sp->phan_tram_giam>0)
-                                                    <span class="sale_count">
-                                                        <span class="bf_">- {{$sp->phan_tram_giam}}% </span>
-                                                    </span>
-                                                    @endif
-                                                    <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="assetsUser/images/{{$sp->hinh_anh}}"  title="{{$sp->ten_sp}}">
-                                                        <img class="img-responsive lazyload" src="assetsUser/images/{{$sp->hinh_anh}}" data-src="assetsUser/images/{{$sp->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
-                                                    </a>
+                                    @foreach($hinhanhsp as $hinh)   
+                                        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
+                                            <div class="item saler_item">
+                                                                
+                                                <div class="product-box">															
+                                                    <div class="product-thumbnail">
+                                                        @if($sp->phan_tram_giam>0)
+                                                        <span class="sale_count">
+                                                            <span class="bf_">- {{$sp->phan_tram_giam}}% </span>
+                                                        </span>
+                                                        @endif
+                                                        <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$hinh->hinh_anh}}"  title="{{$sp->ten_sp}}">
+                                                            <img class="img-responsive lazyload" src="anh_sp/{{$hinh->hinh_anh}}" data-src="anh_sp/{{$hinh->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
+                                                        </a>
 
-                                                    <div class="product-action-grid clearfix">
-                                                        <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
-                                                            <div>
-                                                                <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" data-handle="giay-converse-star-collar-break" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                                    <span class="tooltips qv"><span>Xem nhanh</span></span>
-                                                                </a>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product-info">
-                                
-                                                    <div class="reviews-product-list grid_reviews">
-                                                        <div class="bizweb-product-reviews-badge" data-id="9746938"></div>
-                                                    </div>
-                                
-                                                    <h3 class="product-name"><a class="text2line" href="{{route('chitietsanpham',$sp->id)}}" title="{{$sp->ten_sp}}">{{$sp->ten_sp}}</a></h3>
-
-                                                    @if($sp->giam_gia>0)
-                                                    <div class="price-box clearfix">			
-                                                        <span class="price product-price-old">
-                                                        {{number_format($sp->gia,0,",",".")}} đ		
-                                                        </span>		
-                                                        <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100),0,",",".")}} đ</span>
-                                                    </div>
-                                                    @else
-                                                    <span class="price product-price">{{number_format($sp->gia,0,",",".")}} đ</span>
-                                                    @endif
-
-                                
-                                
-                                                    <div class="action__">
-    
-                                                        <form action="{{route('cart-add',$sp->id)}}" method="GET">
-                                                            <div>
-                                                                <input type="hidden"/>
-                                                                <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                                                    <span>
-                                                                        <span class="fa fa-shopping-basket"></span>
-                                                                    </span>
-                                                                    Giỏ hàng
-                                                                </button>
-                                                            </div>
-                                                        </form>
-
+                                                        <div class="product-action-grid clearfix">
+                                                            <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
+                                                                <div>
+                                                                    <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" data-handle="giay-converse-star-collar-break" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
+                                                                        <span class="tooltips qv"><span>Xem nhanh</span></span>
+                                                                    </a>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
 
-                                                </div>
-                                            </div>			
-                                        </div>  
-                                    </div>
+                                                    <div class="product-info">
+                                    
+                                                        <div class="reviews-product-list grid_reviews">
+                                                            <div class="bizweb-product-reviews-badge" data-id="9746938"></div>
+                                                        </div>
+                                    
+                                                        <h3 class="product-name"><a class="text2line" href="{{route('chitietsanpham',$sp->id)}}" title="{{$sp->ten_sp}}">{{$sp->ten_sp}}</a></h3>
+
+                                                        @if($sp->giam_gia>0)
+                                                        <div class="price-box clearfix">			
+                                                            <span class="price product-price-old">
+                                                            {{number_format($sp->gia,0,",",".")}} đ		
+                                                            </span>		
+                                                            <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100),0,",",".")}} đ</span>
+                                                        </div>
+                                                        @else
+                                                        <span class="price product-price">{{number_format($sp->gia,0,",",".")}} đ</span>
+                                                        @endif
+
+                                    
+                                    
+                                                        <div class="action__">
+        
+                                                            <form action="{{route('cart-add',$sp->id)}}" method="GET">
+                                                                <div>
+                                                                    <input type="hidden"/>
+                                                                    <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                        <span>
+                                                                            <span class="fa fa-shopping-basket"></span>
+                                                                        </span>
+                                                                        Giỏ hàng
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>			
+                                            </div>  
+                                        </div>
+                                        @endforeach
                                     @endforeach
                             </section>
                         </div>
