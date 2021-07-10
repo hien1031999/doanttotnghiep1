@@ -59,9 +59,9 @@
 
 
                                 <div class="taxable">
-                                    <span class="valibled">Email: </span>
+                                    <span class="valibled" style="font-weight: bold;font-size: 18px;">Email: </span>
                                     
-                                        <span>
+                                        <span style="font-size: 18px;">
                                             
                                         {{$user->email}}
                                             
@@ -69,9 +69,9 @@
                                 
                                 </div>
                                 <div class="taxable">
-                                    <span class="valibled">SDT: </span>
+                                    <span class="valibled" style="font-weight: bold;font-size: 18px;">SDT: </span>
                                     
-                                        <span>
+                                        <span style="font-size: 18px;">
                                             
                                         {{$user->sdt}}
                                             
@@ -79,9 +79,9 @@
                                 
                                 </div>
                                 <div class="taxable">
-                                    <span class="valibled">Địa Chỉ: </span>
+                                    <span class="valibled" style="font-weight: bold;font-size: 18px;">Địa Chỉ: </span>
                                     
-                                        <span>
+                                        <span style="font-size: 18px;">
                                             
                                         {{$user->dia_chi}}
                                             
@@ -89,9 +89,9 @@
                                 
                                 </div>
                                 <div class="taxable">
-                                    <span class="valibled">Giới tính: </span>
+                                    <span class="valibled" style="font-weight: bold;font-size: 18px;">Giới tính: </span>
                                     
-                                        <span>
+                                        <span style="font-size: 18px;"> 
                                             
                                         {{$user->gioi_tinh}}
                                             
@@ -101,9 +101,9 @@
                                 </div>
                                 <div class="results">
                             	@if(Session::get('message'))
-                                <div class="alert alert-danger">
+                                    <div class="alert alert-danger" style="font-size: 18px; font-weight: bold;">
                                 {{ Session::get('message') }}
-                                </div>
+                                    </div> 
                                 @endif   
                             </div>
                             <div class="form-product col-sm-12 form-border margin-bottom-10">
@@ -115,10 +115,10 @@
                                     </div>
                                     <div class="form-group form_button_details ">                           
                                         <button type="submit" class="btn btn-lg button_cart_buy_enable add_to_cart" onclick="edit_khachhang({{ $user->id }})">
-                                            <i class="fa fa-shopping-basket hidden"></i>&nbsp;&nbsp;<span>Cập nhật Thông Tin</span>
+                                            <i class="fa fa-shopping-basket hidden"></i>&nbsp;&nbsp;<span style="font-size: 18px; font-weight: bold;">Cập nhật Thông Tin</span>
                                         </button>									
                                    
-                                        <button type="submit" class="btn btn-lg button_cart_buy_enable add_to_cart " data-toggle="modal" data-target="#Doi-Password">
+                                        <button type="submit" class="btn btn-lg button_cart_buy_enable add_to_cart " data-toggle="modal" data-target="#Doi-Password" style="font-size: 18px; font-weight: bold;">
                                         Đổi Mật Khẩu
                                         </button>
 

@@ -15,8 +15,7 @@ use App\Models\SanPham;
 class DatHangController extends Controller
 {
     public function index(){
-        $hinhanhsp = SanPham::all();
-        return view('user.page.dat-hang.dathang',compact('hinhanhsp'));
+        return view('user.page.dat-hang.dathang');
     }
 
     public function datHang(Request $req) {

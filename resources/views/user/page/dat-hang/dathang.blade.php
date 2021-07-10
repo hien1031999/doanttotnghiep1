@@ -105,7 +105,7 @@
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.name}">
                                                         <div class="field__input-wrapper">
                                                             <label for="billingName" class="field__label">Họ và tên người nhận hàng</label>
-                                                            <input name="hoten" id="billingName" type="text" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->ho_ten}}" @endif>
+                                                            <input name="hoten" id="billingName" type="text" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->ten}}" @endif>
                                                         </div>
 
                                                     </div>
@@ -300,13 +300,13 @@
                                                     </thead> -->
                                                     <tbody>
                                                         @foreach($product_cart as $product)
-                                                            @foreach($hinhanhsp as $hinh)
+                                                            
                                                                 <tr class="product">
                                                                     <td class="product__image">
                                                                         <div class="product-thumbnail">
                                                                             <div class="product-thumbnail__wrapper" data-tg-static="">
 
-                                                                                <img src="anh_sp/{{$hinh->hinh_anh}}" alt="" class="product-thumbnail__image">
+                                                                                <img src="$chitietsanpham->san_pham->hinhanh" alt="" class="product-thumbnail__image">
 
                                                                             </div>
                                                                             <span class="product-thumbnail__quantity">{{$product['so_luong']}}</span>
@@ -333,7 +333,7 @@
                                                                         </td>
                                                                     @endif
                                                                 </tr>
-                                                            @endforeach
+                                                            
                                                         @endforeach
                                                     </tbody>
                                                 </table>

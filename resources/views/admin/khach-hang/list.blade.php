@@ -50,7 +50,7 @@
                     <table class="table">
                         <thead class="thead-default">
                             <tr>
-                                <th scope="col">@sortablelink('ten_tai_khoan', 'Tên Tài Khoản', '', ['style' => 'color: black'])</th>
+                                <!-- <th scope="col">@sortablelink('ten_tai_khoan', 'Tên Tài Khoản', '', ['style' => 'color: black'])</th> -->
                                 <th scope="col">@sortablelink('ten', 'Tên', '', ['style' => 'color: black'])</th>
                                 <th scope="col">@sortablelink('email', 'Email', '', ['style' => 'color: black'])</th>
                                 <th scope="col">@sortablelink('sdt', 'Số điện thoại', '', ['style' => 'color: black'])</th>
@@ -62,7 +62,7 @@
                             @if (count($customers) > 0)
                                 @foreach ($customers as $customer)
                                 <tr>
-                                    <td>{{ $customer->ten_tai_khoan }}</td>
+                                    <!-- <td>{{ $customer->ten_tai_khoan }}</td> -->
                                     <td>{{ $customer->ten }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->sdt }}</td>

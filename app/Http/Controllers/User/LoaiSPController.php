@@ -12,7 +12,6 @@ class LoaiSPController extends Controller
 {
     public function index($type) {
         $loaisp = LoaiSP::where('id',$type)->first();
-        $hinhanhsp = SanPham::all();
         $sp_theoloai = ChiTietSP::where('loai_sp_id',$type)->where('tinh_trang','0')->get();
 
         if(isset($_GET['sort_by'])) {
@@ -69,6 +68,6 @@ class LoaiSPController extends Controller
 
         }
         
-        return view('user.page.loai-san-pham.loai_sp',compact('sp_theoloai','loaisp','hinhanhsp'));
+        return view('user.page.loai-san-pham.loai_sp',compact('sp_theoloai','loaisp'));
     }
 }

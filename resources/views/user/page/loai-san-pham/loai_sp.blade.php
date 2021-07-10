@@ -69,7 +69,7 @@
 <section class="products-view products-view-grid collection_reponsive">
     <div class="row">
         @foreach($sp_theoloai as $sp)
-            @foreach($hinhanhsp as $hinh)
+            
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
                     <div class="item saler_item">
                                         
@@ -80,8 +80,8 @@
                                     <span class="bf_">- {{$sp->giam_gia}}% </span>
                                 </span>
                                 @endif
-                                <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$hinh->hinh_anh}}"  title="{{$sp->ten_sp}}">
-                                    <img class="img-responsive lazyload" src="anh_sp/{{$hinh->hinh_anh}}" data-src="anh_sp/{{$hinh->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
+                                <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$sp->san_pham->hinh_anh}}"  title="{{$sp->ten_sp}}">
+                                    <img class="img-responsive lazyload" src="anh_sp/{{$sp->san_pham->hinh_anh}}" data-src="anh_sp/{{$sp->san_pham->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
                                 </a>
 
                                 <div class="product-action-grid clearfix">
@@ -138,7 +138,7 @@
                     </div>			
                 </div>  
             </div>
-        @endforeach
+        
     @endforeach
 <!--End 1 sp  -->
 

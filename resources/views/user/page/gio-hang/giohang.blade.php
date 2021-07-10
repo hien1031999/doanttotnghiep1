@@ -57,11 +57,11 @@
 
                                     <!-- Ảnh và màu sắc -->
                                     @foreach($product_cart as $product)
-                                        @foreach($hinhanhsp as $hinh)
+                                        
                                             <div class="item-cart">
                                                 <div style="width: 10%" class="image">
                                                     <a class="product-image" title="{{$product['item']['ten_sp']}}" href="{{route('chitietsanpham',$product['item']['id'])}}">
-                                                        <img width="75" height="auto" alt="{{$product['item']['ten_sp']}}" src="anh_sp/{{$hinh->hinh_anh}}"></a>
+                                                        <img width="75" height="auto" alt="{{$product['item']['ten_sp']}}" src="{{$product['item']['ten_sp']}}"></a>
                                                 </div>
                                                 <div style="width: 35%" class="a-left">
                                                     <h3 class="product-name"> 
@@ -123,7 +123,7 @@
                                                     <div style="width: 5%" class="a-center"></div>
                                                 @endif
                                             </div>
-                                        @endforeach
+                                        
                                     @endforeach
                                   
                             </div>

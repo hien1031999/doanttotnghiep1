@@ -47,12 +47,12 @@
 
                                     <div class="item">
                                     @foreach($sanphamsale as $sps)
-                                        @foreach($hinhanhsp as $hinhanhsp)
+
                                             <div class="hot_sale_product">
                                                 <div class="item-img-horizontal">
                                                     
                                                     <a href="{{route('chitietsanpham',$sps->id)}}" class="product-image" title="">
-                                                        <img src="anh_sp/{{$hinhanhsp->hinh_anh}}" alt="{{$sps->ten_sp}}">
+                                                        <img src="anh_sp/{{$sps->san_pham->hinh_anh}}" alt="{{$sps->ten_sp}}">
                                                     </a>
                                                     
                                                 </div>
@@ -77,7 +77,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                    @endforeach
+
                                     </div>
                                     
                                 </div>
@@ -90,7 +90,7 @@
                 <div class="details">
                     <div class="rows">
                         <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            @foreach($hinhanhsp as $hinhanh)
+
                                 <div class="row">
                                     <div class="col_large_default large-image">
                                         @if($chitietsanpham->phan_tram_giam>0)
@@ -100,22 +100,22 @@
                                         @endif
 
 
-                                        <a href="anh_sp/{{$hinhanh->hinh_anh}}" class="large_image_url checkurl"  data-rel="prettyPhoto[product-gallery]" >
+                                        <a href="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" class="large_image_url checkurl"  data-rel="prettyPhoto[product-gallery]" >
                                             
-                                            <img id="img_01" class="img-responsive" alt="{{$chitietsanpham->ten_sp}}" src="anh_sp/{{$hinhanh->hinh_anh}}" data-zoom-image="anh_sp/{{$hinhanh->hinh_anh}}"/>
+                                            <img id="img_01" class="img-responsive" alt="{{$chitietsanpham->ten_sp}}" src="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-zoom-image="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}"/>
                                         </a>
 
                                         <div class="hidden">
                                             
                                             <div class="item">
-                                                <a href="anh_sp/{{$hinhanh->hinh_anh}}" data-image="anh_sp/{{$hinhanh->hinh_anh}}" data-zoom-image="anh_sp/{{$hinhanh->hinh_anh}}" data-rel="prettyPhoto[product-gallery]">										
+                                                <a href="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-image="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-zoom-image="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-rel="prettyPhoto[product-gallery]">										
                                                 </a>
                                             </div>	
                                             
                                             
                                             
                                             
-                                            <!-- <div class="item">
+                                            <div class="item">
                                                 <a href="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
                                                 </a>
                                             </div>	
@@ -142,22 +142,23 @@
                                             <div class="item">
                                                 <a href="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
                                                 </a>
-                                            </div>	 -->
+                                            </div>	
                                             
                                         </div>
                                     </div>
                                     
                                     <div id="gallery_02" class="col-sm-12 col-xs-12 col-lg-5 col-md-5 owl_width no-padding owl-carousel owl-theme thumbnail-product thumb_product_details not-dqowl" data-loop="false" data-lg-item="3" data-md-items="3" data-sm-items="3" data-xs-items="3" data-margin="10">
 
-                                        
+                                    
+                                        @foreach ($chitietsanpham->anh_chi_tiet_sp as $image)
+                                            <div class="item">
+                                                <a data-image="{{ $image }}" data-zoom-image="{{ $image }}">
+                                                    <img data-img="{{ $image }}" src="{{ $image }}" alt="{{$chitietsanpham->ten_sp}}">
+                                                </a>
+                                            </div>
+                                        @endforeach
                                         
                                         <!-- <div class="item">
-                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/2-3.jpg?v=1517327927920">
-                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/2-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/2-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="item">
                                             <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920">
                                                 <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/3-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
                                             </a>
@@ -173,11 +174,11 @@
                                             <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920">
                                                 <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/5.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
                                             </a>
-                                        </div> -->
-                                        
+                                        </div>
+                                         -->
                                     </div> 
                                 </div>
-                            @endforeach
+
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 details-pro">
@@ -335,9 +336,11 @@
                                         <p style="text-align: center;">&nbsp;</p>
                                         <p style="text-align: center;">&nbsp;</p>
                                         <iframe width="810" height="480" src="https://www.youtube.com/embed/Gv5a70e6FDk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        <p style="text-align: center;">
                                         
-                                        <img alt="{{$chitietsanpham->ten_sp}}" data-thumb="original" original-height="800" original-width="800" src="assetsUser/images/{{$chitietsanpham->hinh_anh}}" /></p>                                 
+                                        @foreach ($chitietsanpham->anh_chi_tiet_sp as $img)
+                                            <p style="text-align: center;">
+                                            <img alt="{{$chitietsanpham->ten_sp}}" data-thumb="original" original-height="800" original-width="800" src="{{ $img }}"/></p>
+                                        @endforeach                                
                                     </div>	
                                 </div>	
                                 
@@ -403,7 +406,7 @@
 
                             <section class="products-view products-view-grid collection_reponsive">
                                 @foreach($sanphamtuongtu as $sp)
-                                    @foreach($hinhanhsp as $hinh)   
+ 
                                         <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
                                             <div class="item saler_item">
                                                                 
@@ -414,8 +417,8 @@
                                                             <span class="bf_">- {{$sp->phan_tram_giam}}% </span>
                                                         </span>
                                                         @endif
-                                                        <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$hinh->hinh_anh}}"  title="{{$sp->ten_sp}}">
-                                                            <img class="img-responsive lazyload" src="anh_sp/{{$hinh->hinh_anh}}" data-src="anh_sp/{{$hinh->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
+                                                        <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$sp->san_pham->hinh_anh}}"  title="{{$sp->ten_sp}}">
+                                                            <img class="img-responsive lazyload" src="anh_sp/{{$sp->san_pham->hinh_anh}}" data-src="anh_sp/{{$sp->san_pham->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
                                                         </a>
 
                                                         <div class="product-action-grid clearfix">
@@ -471,7 +474,7 @@
                                             </div>  
                                         </div>
                                         @endforeach
-                                    @endforeach
+
                             </section>
                         </div>
                     </section>

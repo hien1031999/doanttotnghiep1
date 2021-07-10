@@ -14,8 +14,6 @@ class CTSPController extends Controller
     public function index(Request $req,$type) {
         $chitietsanpham = ChiTietSP::where('id',$req->id)->first();
 
-        $hinhanhsp = SanPham::all();
-
         $loai_sp = LoaiSP::where('id',$type)->first();
 
         $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang',0)->paginate(6);
@@ -25,7 +23,7 @@ class CTSPController extends Controller
         $rating = DanhGia::where('chi_tiet_sp_id',$chitietsanpham->id)->avg('diem');
         $rating = round($rating);
 
-        return view('user.page.san-pham.chitietsanpham',compact('chitietsanpham','sanphamtuongtu','loai_sp','sanphamsale','rating','hinhanhsp'));
+        return view('user.page.san-pham.chitietsanpham',compact('chitietsanpham','sanphamtuongtu','loai_sp','sanphamsale','rating'));
     }
 
     public function insert_rating(Request $req) {

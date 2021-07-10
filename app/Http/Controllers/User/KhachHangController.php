@@ -21,13 +21,13 @@ class KhachHangController extends Controller
         $pass = $request->Password;
         if(Hash::check($pass,$user->password))
             { 
-                if($request->Repassword==$request->Newpassword)
+                if($request->Repassword == $request->Newpassword && $request->Password != $request->Newpassword)
                 {
                     $user->password = Hash::make($request->Newpassword);
                     $user->save();
                     Session::flash('message', 'Đổi mật khẩu thành công!');
                 }
-                if($request->Password==$request->Newpassword)
+                elseif($request->Password == $request->Newpassword)
                 {
                     Session::flash('message', 'Mật khẩu mới phải khác với mật khẩu cũ!');
                 }
@@ -52,7 +52,7 @@ class KhachHangController extends Controller
                     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ]);
                 $imageName = time().'.'.$request->image->extension();
-                $request->image->move(public_path('assets/images'), $imageName);
+                $request->image->move(public_path('assetsUser/images'), $imageName);
                 $user->hinh_dai_dien=$imageName;
             }
         }

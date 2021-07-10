@@ -21,6 +21,7 @@ class CreateKhachHangTable extends Migration
             $table->string('ten', 50);
             $table->string('sdt', 10)->nullable();
             $table->string('dia_chi', 100)->nullable();
+            $table->string('gioi_tinh', 100)->nullable();
             $table->string('hinh_dai_dien')->nullable();
             $table->boolean('bi_khoa')->nullable()->default(false); // just admin, customer not have
             $table->timestamps();

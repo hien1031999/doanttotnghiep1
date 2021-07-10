@@ -11,7 +11,7 @@ class SanPhamController extends Controller
     public function index() {
         // $sanpham = ChiTietSP::All();
         $sanpham = ChiTietSP::where('tinh_trang','0')->get();
-        $hinhanhsp = SanPham::all();
+
 
         if(isset($_GET['sort_by'])) {
             $sort_by = $_GET['sort_by'];
@@ -67,7 +67,7 @@ class SanPhamController extends Controller
 
         }
 
-        return view('user.page.san-pham.sanpham',compact('sanpham','hinhanhsp'));
+        return view('user.page.san-pham.sanpham',compact('sanpham'));
     }
     public function new() {
         $sanpham = ChiTietSP::where('new',1)->get();
@@ -128,7 +128,7 @@ class SanPhamController extends Controller
 
         }
   
-        return view('user.page.san-pham.sanpham',compact('sanpham','hinhanhsp'));
+        return view('user.page.san-pham.sanpham',compact('sanpham'));
     }
 
     public function sale() {
@@ -189,7 +189,7 @@ class SanPhamController extends Controller
 
         }
 
-        return view('user.page.san-pham.sanpham',compact('sanpham','hinhanhsp'));
+        return view('user.page.san-pham.sanpham',compact('sanpham'));
 
     }
 

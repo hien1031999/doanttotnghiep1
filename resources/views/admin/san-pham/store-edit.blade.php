@@ -101,7 +101,7 @@
 
                         <div class="col-2 form-group">
                             <label>Ngăn laptop<span class="text-secondary font-12">(inch)</span> @if (!isset($product_detail)) <span style="color: red">*</span> @endif </label>
-                            <input type="text" name="ngan_lap" id="ngan_lap" class="form-control" required maxlength="2" placeholder="Nhập ngăn laptop" @isset($product_detail) value="{{ $product_detail->ngan_lap }}" @endisset/>
+                            <input type="text" name="ngan_lap" id="ngan_lap" class="form-control" required maxlength="5" placeholder="Nhập ngăn laptop" @isset($product_detail) value="{{ $product_detail->ngan_lap }}" @endisset/>
                         </div>
 
                         <div class="col-2 form-group">

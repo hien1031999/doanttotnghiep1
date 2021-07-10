@@ -29,6 +29,11 @@ class SanPham extends Model
         );
     }
 
+    public function chi_tiet_sp()
+    {
+        return $this->hasOne(ChiTietSanPham::class, 'san_pham_id', 'id');
+    }
+
     public function getAnhSpAttribute() {
         if (empty($this->hinh_anh)) {
             return null;
