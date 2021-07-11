@@ -14,7 +14,7 @@
             $('#sort').on('change',function() {
 
                 var url = $(this).val();
-                // alert(url);
+
                 if(url) {
                     window.location = url;
                 }
@@ -26,7 +26,7 @@
             $('#sort-price').on('change',function() {
 
                 var url = $(this).val();
-                // alert(url);
+
                 if(url) {
                     window.location = url;
                 }

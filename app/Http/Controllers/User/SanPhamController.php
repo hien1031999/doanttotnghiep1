@@ -12,26 +12,25 @@ class SanPhamController extends Controller
         // $sanpham = ChiTietSP::All();
         $sanpham = ChiTietSP::where('tinh_trang','0')->get();
 
-
         if(isset($_GET['sort_by'])) {
             $sort_by = $_GET['sort_by'];
 
-            if($sort_by=='tang-dan') {
+            if($sort_by == 'tang-dan') {
                 $sanpham = ChiTietSP::where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
-            elseif($sort_by=='giam-dan') {
+            elseif($sort_by == 'giam-dan') {
                 $sanpham = ChiTietSP::where('tinh_trang','0')->orderby('gia','DESC')->get();
             }
-            elseif($sort_by=='moi-cu') {
+            elseif($sort_by == 'moi-cu') {
                 $sanpham = ChiTietSP::where('tinh_trang','0')->orderby('created_at','DESC')->get();
             }
-            elseif($sort_by=='cu-moi') {
+            elseif($sort_by == 'cu-moi') {
                 $sanpham = ChiTietSP::where('tinh_trang','0')->orderby('created_at','ASC')->get();
             }
-            elseif($sort_by=='A-Z') {
+            elseif($sort_by == 'A-Z') {
                 $sanpham = ChiTietSP::where('tinh_trang','0')->orderby('ten_sp','ASC')->get();
             }
-            elseif($sort_by=='Z-A') {
+            elseif($sort_by == 'Z-A') {
                 $sanpham = ChiTietSP::where('tinh_trang','0')->orderby('ten_sp','DESC')->get();
             }
 
@@ -40,7 +39,7 @@ class SanPhamController extends Controller
         if(isset($_GET['price'])) {
             $price = $_GET['price'];
 
-            if($price=='0') {
+            if($price=='1') {
                 $sanpham = ChiTietSP::where('gia','<',300000)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='2') {
