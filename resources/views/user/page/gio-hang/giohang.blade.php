@@ -61,7 +61,7 @@
                                             <div class="item-cart">
                                                 <div style="width: 10%" class="image">
                                                     <a class="product-image" title="{{$product['item']['ten_sp']}}" href="{{route('chitietsanpham',$product['item']['id'])}}">
-                                                        <img width="75" height="auto" alt="{{$product['item']['ten_sp']}}" src="{{$product['item']['ten_sp']}}"></a>
+                                                        <img width="75" height="auto" alt="{{$product['item']['ten_sp']}}" src="anh_sp/{{$product['hinh_anh']}}"></a>
                                                 </div>
                                                 <div style="width: 35%" class="a-left">
                                                     <h3 class="product-name"> 

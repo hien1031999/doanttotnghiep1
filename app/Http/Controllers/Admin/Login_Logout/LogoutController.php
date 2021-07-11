@@ -10,6 +10,6 @@ class LogoutController extends Controller
 {
     public function logout() {
         Auth::logout();
-        return redirect('login')->with('status', 'success')->with('message', 'Đăng xuất thành công');
+        return redirect('Admin/login')->with('status', 'success')->with('message', 'Đăng xuất thành công');
     }
 }

@@ -15,26 +15,29 @@ class GioHang extends Model
     protected $table = "gio_hang";
 
 	public $items = null;
+	public $hinhanh = null;
 	public $tongSL = 0;
 	public $tongTien = 0;
 
 	public function __construct($oldCart) {
 		if($oldCart) {
 			$this->items = $oldCart->items;
+			$this->hinhanh = $oldCart->hinhanh;
 			$this->tongSL = $oldCart->tongSL;
 			$this->tongTien = $oldCart->tongTien;
 		}
 	}
 
-	public function add($item,$qty, $id) {
+	public function add($item,$hinhanh,$qty, $id) {
 		$gia = 0;
-		
+		$hinh_anh = NULL;
+		$hinh_anh = $hinhanh->hinh_anh;
 		if($item->giam_gia!=0) {
 			   $gia = $item->gia*((100-$item->giam_gia)/100);
 		}else {
 			   $gia = $item->gia;
 		}
-		$giohang = ['so_luong'=>0, 'gia' => $gia, 'item' => $item];
+		$giohang = ['so_luong'=>0, 'gia' => $gia, 'item' => $item, 'hinh_anh' => $hinh_anh];
 
 		if($this->items) {
 			   if(array_key_exists($id, $this->items)){
@@ -94,8 +97,8 @@ class GioHang extends Model
 	public function removeItem($id) {
 		$this->tongSL -= $this->items[$id]['so_luong'];
 		$this->tongTien -= $this->items[$id]['gia'];
-		$this->tongSL = 0;
-		$this->tongTien = 0;
+		// $this->tongSL = 0;
+		// $this->tongTien = 0;
 		unset($this->items[$id]);
 	}
 

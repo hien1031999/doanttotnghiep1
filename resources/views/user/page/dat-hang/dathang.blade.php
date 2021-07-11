@@ -306,7 +306,7 @@
                                                                         <div class="product-thumbnail">
                                                                             <div class="product-thumbnail__wrapper" data-tg-static="">
 
-                                                                                <img src="$chitietsanpham->san_pham->hinhanh" alt="" class="product-thumbnail__image">
+                                                                                <img src="anh_sp/{{$product['hinh_anh']}}" alt="" class="product-thumbnail__image">
 
                                                                             </div>
                                                                             <span class="product-thumbnail__quantity">{{$product['so_luong']}}</span>

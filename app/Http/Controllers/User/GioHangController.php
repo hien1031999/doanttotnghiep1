@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Session;
 class GioHangController extends Controller
 {
     public function cartAdd(Request $req, $id) {
+        
         $sanpham = ChiTietSP::find($id);
+        $hinhanh = SanPham::find($id);
+
         $oldCart = Session('cart')?Session::get('cart'):null;
         $cart = new GioHang($oldCart);
         $quantity = $req->quantity;
-        $cart->add($sanpham,$quantity, $id);
+        $cart->add($sanpham,$hinhanh,$quantity, $id);
         $req->session()->put('cart',$cart);
 
         // $giohang = new GioHang;
