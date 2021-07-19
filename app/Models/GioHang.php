@@ -57,6 +57,17 @@ class GioHang extends Model
 			$this->items[$id] = $giohang;
 		}
 
+		elseif($qty > 1 && $giohang['so_luong'] == 0) {
+		
+			$giohang['so_luong'] += $qty;
+			$giohang['gia'] = $gia * $giohang['so_luong'];
+
+			$this->tongSL += $qty;
+			$this->tongTien += $giohang['gia'];
+
+			$this->items[$id] = $giohang;
+		}
+
 		elseif($qty = 1 && $giohang['so_luong'] > 0) {
 		
 			$giohang['so_luong'] += $qty;
@@ -68,16 +79,6 @@ class GioHang extends Model
 			$this->items[$id] = $giohang;
 		}
 		
-		elseif($qty > 1 && $giohang['so_luong'] == 0) {
-		
-			$giohang['so_luong'] += $qty;
-			$giohang['gia'] = $gia * $giohang['so_luong'];
-
-			$this->tongSL += $qty;
-			$this->tongTien += $giohang['gia'];
-
-			$this->items[$id] = $giohang;
-		}
 
 		else {
 			$giohang['so_luong']++;

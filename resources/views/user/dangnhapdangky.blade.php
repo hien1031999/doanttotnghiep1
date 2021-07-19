@@ -26,7 +26,7 @@
 <!-- Body -->
 <body>
 
-	<h1>Đăng Nhập Tài Khoản</h1>
+	<h1>ĐĂNG NHẬP TÀI KHOẢN</h1>
 
 	<div class="w3layoutscontaineragileits">
 	<h2></h2>
@@ -45,13 +45,13 @@
 				<input type="email" name="email" placeholder="EMAIL" value="{{ old ('email')}}"> <br>
 				<span class="text-danger">@error('password') {{ $message }} @enderror</span>
 				<input type="password" name="password" placeholder="MẬT KHẨU" >
-				<ul class="agileinfotickwthree">
+				<!-- <ul class="agileinfotickwthree">
 					<li>
 						<input type="checkbox" name="remember_me" value="remember_me">
 						<label for="remember_me"><span></span>Nhớ Mật Khẩu</label>
 						<a href="#">Quên Mật Khẩu?</a>
 					</li>
-				</ul>
+				</ul> -->
 				<div class="aitssendbuttonw3ls">
 					<input type="submit" value="ĐĂNG NHẬP">
 					<p> Đăng Ký Tài Khoản Mới <span>→</span> <a class="w3_play_icon1" href="#small-dialog1"> Click Vào Đây</a></p>
@@ -64,7 +64,7 @@
 	<div id="small-dialog1" class="mfp-hide">
 		<div class="contact-form1">
 			<div class="contact-w3-agileits">
-				<h3>Form Đăng Ký</h3>
+				<h3>ĐĂNG KÝ</h3>
 				<form action="{{ route('dangky') }}" method="post" id="form">
 					{{ csrf_field() }}
 					@if(Session::get('message'))

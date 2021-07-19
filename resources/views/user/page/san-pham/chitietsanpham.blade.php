@@ -249,10 +249,11 @@
                                 <ul>
                                     <li>
                                         <span>Thương hiệu:</span> 
-                                        <span style="font-size: 16px; font-weight: bold;  color:green;" >{{$chitietsanpham->thuong_hieu}}</span>
+                                        <span style="font-size: 18px; font-weight: bold;  color:green;" >{{$chitietsanpham->nha_san_xuat->ten}}</span>
                                     </li>
-                                    <li><span>Giảm giá 10% cho hoá đơn trên 500k</span></li>
-                                    <li><span>Miễn phí giao hàng trong bán kính 5km</span></li>
+                                    <li><span>Miễn phí vận chuyển cho tất cả các đơn hàng</span></li>
+                                    <li><span>Cam kết 100% hàng chính hãng</span></li>
+                                    <li><span>Hoàn tiền 200% khi phát hiện hàng giả, hàng nhái</span></li>
                                     <li>
                                         <span>Bảo hành:</span> 
                                         <span class="bold" style="font-size: 16px; font-weight: bold;  color:green;">Trọn đời</span>
@@ -317,8 +318,11 @@
                                     </li>																	 
                                     
                                     <li class="tab-link" data-tab="tab-2">
-                                        <h3><span>Đánh giá(APP)</span></h3>
-                                    </li>																	
+                                        <h3><span>Đánh giá</span></h3>
+                                    </li>
+                                    <li class="tab-link" data-tab="tab-3">
+                                        <h3><span>Bình luận</span></h3>
+                                    </li>																
                                     
                                 </ul>																									
 
@@ -335,7 +339,10 @@
                                             - Ngăn laptop: &nbsp;{{$chitietsanpham->ngan_lap}} inch</p>
                                         <p style="text-align: center;">&nbsp;</p>
                                         <p style="text-align: center;">&nbsp;</p>
-                                        <iframe width="810" height="480" src="https://www.youtube.com/embed/Gv5a70e6FDk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        
+                                        @if($chitietsanpham->link_youtube != NULL)
+                                        <iframe width="810" height="480" src="https://www.youtube.com/embed/{{$chitietsanpham->link_youtube}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        @endif
                                         
                                         @foreach ($chitietsanpham->anh_chi_tiet_sp as $img)
                                             <p style="text-align: center;">
@@ -385,7 +392,16 @@
                                         </ul>
 
                                     </div>
-                                </div>	
+                                </div>
+
+                                <div id="tab-3" class="tab-content">
+                                    <div class="rte">
+                                    <div id="fb-root"></div>
+                                        
+                                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=958736781539672&autoLogAppEvents=1" nonce="KDCixEhi"></script>
+                                        <div class="fb-comments" data-href="{{$url}}" data-width="800" data-numposts="7"></div>
+                                    </div>	
+                                </div>
                                 
                             </div>
                         </div>

@@ -19,10 +19,10 @@ class TrangChuController extends Controller
 
         $sanpham = ChiTietSP::where('tinh_trang',0)->get();
 
-        // $sanphammoi = ChiTietSP::where('new',1)->get();
+        $sanphammoi = ChiTietSP::where('new',0)->where('tinh_trang','0')->get();
         $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang',0)->get();
         
-        return view('user.page.trang-chu.trangchu',compact('slide','sup_slide','sanpham','sanphamsale'));
+        return view('user.page.trang-chu.trangchu',compact('slide','sup_slide','sanpham','sanphamsale','sanphammoi'));
     }
 
     public function search(Request $req) {
@@ -39,5 +39,11 @@ class TrangChuController extends Controller
     }
     public function chinhsachdoitrabaohanh(){
         return view('user.page.chinh-sach.chinhsachdoitrabaohanh');
+    }
+    public function chinhsachfreeship(){
+        return view('user.page.chinh-sach.chinhsachfreeship');
+    }
+    public function chinhsachhanghieu(){
+        return view('user.page.chinh-sach.chinhsachhanghieu');
     }
 }

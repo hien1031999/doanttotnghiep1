@@ -46,7 +46,8 @@ class DangNhapDangKyController extends Controller
                 
             ]
             );
-
+        
+     
         $user = new khachhang;
         $user->ten = $request->txtname;
         $user->email = $request->txtemail;
@@ -54,7 +55,7 @@ class DangNhapDangKyController extends Controller
         $user->password = Hash::make($request->txtpassword);
         $user->vai_tro_id = 1;
         $user->save();
-        return back()->with('message','Đăng ký thành công !');          
+        return back()->with('message','Đăng ký thành công !');
     }
 
 
@@ -80,7 +81,7 @@ class DangNhapDangKyController extends Controller
         ];
 
         if(Auth::attempt($credentials)) {
-            return redirect()->route('trangchu');
+            return redirect()->route('trangchu')->with('message','Đăng nhập thành công!');
         } else{
             return back()->with('message','Email hoặc mật khẩu chưa chính xác!');
         }
@@ -88,7 +89,7 @@ class DangNhapDangKyController extends Controller
 
     public function dangxuat() {
         Auth::logout();
-        return back();
+        return back()->with('message','Đăng xuất thành công!');
     }
 
   

@@ -33,9 +33,10 @@
         <div class="site-footer">
             <div class="container">
                 <div class="footer-inner">
-                    <div class="row">
+                    <div class="row" style="margin-right: -450px;">
                         <div class="col-xs-12 col-sm-6 col-lg-2 col-md-2">
                             <div class="footer-widget">
+                                
                                 <h4 class="cliked hasclick"><span>Thông tin</span></h4>
                                 <ul class="list-menu toggle-mn" style="display:none;">
     
@@ -53,6 +54,10 @@
                                 <h4 class="cliked hasclick"><span>Chính sách</span></h4>
                                 <ul class="list-menu toggle-mn" style="display:none;">
       
+                                    <li class="li_effect"><a href="chinhsachfreeship">Chính sách FreeShip</a></li>
+    
+                                    <li class="li_effect"><a href="chinhsachhanghieu">Chính sách chính hãng 100%</a></li>
+
                                     <li class="li_effect"><a href="chinhsachthanhtoan">Chính sách thanh toán</a></li>
     
                                     <li class="li_effect"><a href="chinhsachdoitrabaohanh">Chính sách đổi trả, bảo hành</a></li>
@@ -80,18 +85,33 @@
                                     <a href="https://www.facebook.com/Quyet76"><i class="fa fa-facebook"></i></a>
                                     <a href="https://www.youtube.com/channel/UCQqRWkSbrajmeIJbS0r_B_g"><i class="fa fa-youtube"></i></a>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            <div class="container">
+            <div class="copyright clearfix" style="background-color: black;">
+            <div class="container" >
+                <div class="inner clearfix">
+                    <div class="row tablet">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fot_copyright a-center">
+                            <span class="wsp"><span class="mobile">2021 Bản quyền thuộc về <b>SMARKET</b></span><span class="hidden-xs"> | </span><span class="mobile">Cung cấp bởi
     
-                <a href="#" id="back-to-top" class="backtop" title="Lên đầu trang">
-                    <i class="fa fa-angle-double-up"></i>
-                </a>
+                                    <a rel="nofollow" title="Hiền Quyết" target="_blank">Hiền Quyết</a>
+    
+                                </span></span>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <a href="#" id="back-to-top" class="backtop" title="Lên đầu trang"><i class="fa fa-angle-double-up"></i></a>
+    
+    
                 <a class="hidden-lg phone_backtotop left_bottom" title="Gọi ngay" href="tel:0902068068"><i class="fa fa-phone"></i></a>
     
             </div>
+        </div>
+        </div>
     </footer>

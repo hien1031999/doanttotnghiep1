@@ -13,15 +13,14 @@
                     </li>
                     <li><strong ><span >{{$loaisp->ten}}</span></strong></li>
                     
-
-                    @if(Session::get('message'))
-                        <div class="alert alert-success" style='text-align: center;'>
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
                 </ul>
             </div>
         </div>
+        @if(Session::get('message'))
+            <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
+                {{ Session::get('message') }}
+            </div>
+        @endif
     </div>
 </section>  
 
@@ -87,8 +86,8 @@
                                 <div class="product-action-grid clearfix">
                                     <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
                                         <div>
-                                            <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" data-handle="{{$sp->ten_sp}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                <span class="tooltips qv"><span>Xem nhanh</span></span>
+                                            <a title="Xem chi tiết" href="{{route('chitietsanpham',$sp->id)}}" data-handle="{{$sp->ten_sp}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
+                                                <span class="tooltips qv"><span>Xem chi tiết</span></span>
                                             </a>
                                         </div>
                                     </form>

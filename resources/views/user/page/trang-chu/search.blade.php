@@ -85,8 +85,8 @@
                                 <div class="product-action-grid clearfix">
                                     <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
                                         <div>
-                                            <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}"  class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                <span class="tooltips qv"><span>Xem nhanh</span></span>
+                                            <a title="Xem chi tiết" href="{{route('chitietsanpham',$sp->id)}}"  class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
+                                                <span class="tooltips qv"><span>Xem chi tiết</span></span>
                                             </a>
                                         </div>
                                     </form>
@@ -108,13 +108,13 @@
                                             
                                             
                                             
-                                            {{number_format($sp->gia)}}đ		
+                                            {{number_format($sp->gia,0,",",".")}} đ		
                                         </span>		
-                                        <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100))}}đ</span>
+                                        <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100),0,",",".")}} đ</span>
                                     </div>
                                 @else
                                     <div class="price-box clearfix">
-                                        <span class="price product-price">{{number_format($sp->gia)}}đ</span>
+                                        <span class="price product-price">{{number_format($sp->gia,0,",",".")}} đ</span>
                                     </div>
                                 @endif
 

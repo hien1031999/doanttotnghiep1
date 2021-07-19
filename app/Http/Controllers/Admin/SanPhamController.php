@@ -75,6 +75,8 @@ class SanPhamController extends Controller
             'kich_thuoc'    => $req->kich_thuoc,
             'tai_trong'     => $req->tai_trong,
             'ngan_lap'      => $req->ngan_lap,
+            'link_youtube'  => $req->link_youtube,
+            'new'           => $req->new,
             'tinh_trang'    => $req->tinh_trang
         ]);
 
@@ -148,6 +150,8 @@ class SanPhamController extends Controller
                     'kich_thuoc'    => $valid['kich_thuoc'],
                     'tai_trong'     => $valid['tai_trong'],
                     'ngan_lap'      => $valid['ngan_lap'],
+                    'link_youtube'  => $valid['link_youtube'],
+                    'new'           => $valid['new'],
                     'tinh_trang'    => $valid['tinh_trang']
                 ]);
 

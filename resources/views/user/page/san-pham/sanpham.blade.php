@@ -1,6 +1,35 @@
 @extends('user.master')
 @section('content')
-
+ <!-- Modal quickview -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title product_quickview_title" id="">
+                    <span id="product_quickview_title"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        Hình ảnh
+                        <!-- <span id="product_quickview_hinhanh"></span> -->
+                    </div>
+                    <div class="col-md-7">
+                        Mô tả sản phẩm
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+</div>
 <section class="bread-crumb clearfix">
     <span class="crumb-border"></span>
     <div class="container">
@@ -14,17 +43,17 @@
                     
                     
                     <li><strong ><span >Tất cả sản phẩm</span></strong></li>
-
-                    @if(Session::get('message'))
-                        <div class="alert alert-success" style='text-align: center;'>
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
-                            
+                 
                 </ul>
             </div>
         </div>
+        @if(Session::get('message'))
+            <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
+                {{ Session::get('message') }}
+            </div>
+        @endif
     </div>
+    
 </section>  
 
 <div class="container margin-bottom-15 bg_white">
@@ -65,12 +94,15 @@
 </div>
 
 
+
 <section class="products-view products-view-grid collection_reponsive">
     <div class="row">
         @foreach($sanpham as $sp)
             
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
                 <div class="item saler_item">
+
+                        
                                     
                     <div class="product-box">															
                         <div class="product-thumbnail">
@@ -84,13 +116,17 @@
                             </a>
 
                             <div class="product-action-grid clearfix">
-                                <form  class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
+                                <form enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <div>
-                                        <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                            <span class="tooltips qv"><span>Xem nhanh</span></span>
+                                        <a title="Xem chi tiết" href="{{route('chitietsanpham',$sp->id)}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
+                                            <span class="tooltips qv"><span>Xem chi tiết</span></span>
                                         </a>
+                                        <!-- <input type="button" value="Xem nhanh" data-toggle="model" data-target="#xem" data-id_product="{{$sp->id}}" class="button_wh_40 btn_view right-to xemnhanh">
+                                        </input> -->
                                     </div>
                                 </form>
+                                
                             </div>
                         </div>
 
@@ -138,25 +174,34 @@
                         </div>
 
                     </div>
+                    
                 </div>			
-            </div>  
-        </div>
+            </div>
+            </div>
         
-    @endforeach
-<!--End 1 sp  -->
+        @endforeach
+    </div>
+        
 
-<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
-<!-- <div class="item saler_item"> -->
-    <div class="product-box">															
-        <div class="product-thumbnail">
-        </div>
-    </div>			
-</div>
+
+    <!--End 1 sp  -->
     
-</section>		
-                
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
+    <!-- <div class="item saler_item"> -->
+        <div class="product-box">															
+            <div class="product-thumbnail">
+            </div>
+        </div>			
+    </div>
+
+</section>
+
+
+
+       
 </div>
 </section>
+
         
         <aside class="dqdt-sidebar sidebar left left-content col-xs-12 col-lg-3 col-md-3 col-sm-12  col-lg-pull-9 col-md-pull-9">
             
@@ -213,8 +258,12 @@
         
     </div>
 </div>
+
 </div>
+
 </body>
+
 </html>
+
 @endsection
 

@@ -12,6 +12,7 @@ use App\Models\SanPham;
 class CTSPController extends Controller
 {
     public function index(Request $req,$type) {
+        $url = $req->url();
         $chitietsanpham = ChiTietSP::where('id',$req->id)->first();
 
         $loai_sp = LoaiSP::where('id',$type)->first();
@@ -23,7 +24,7 @@ class CTSPController extends Controller
         $rating = DanhGia::where('chi_tiet_sp_id',$chitietsanpham->id)->avg('diem');
         $rating = round($rating);
 
-        return view('user.page.san-pham.chitietsanpham',compact('chitietsanpham','sanphamtuongtu','loai_sp','sanphamsale','rating'));
+        return view('user.page.san-pham.chitietsanpham',compact('chitietsanpham','sanphamtuongtu','loai_sp','sanphamsale','rating','url'));
     }
 
     public function insert_rating(Request $req) {

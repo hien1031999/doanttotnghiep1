@@ -73,7 +73,7 @@
 
                                                 <ul>
                                                     @if(Auth::check())
-                                                        <li><a class="text-color">{{Auth::user()->ho_ten}}</a>
+                                                        <li><a class="text-color">{{Auth::user()->ten}}</a>
                                                         <li><a class="text-color" href="dangxuat" title="Đăng xuất">Đăng Xuất</a>
                                                     @else
                                                         <li><a class="text-color" href="dangnhapdangky" title="Đăng nhập">Đăng nhập hoặc Đăng ký</a>
@@ -91,10 +91,11 @@
                                                     <div class="field " data-bind-class="{'field--show-floating-label': email}">
                                                         <div class="field__input-wrapper">
                                                             <label for="email" class="field__label">
-                                                                Email
+                                                                Email<span style="color: red">*</span><br>
+                                                                <span style="color: red; font-size: 15px">@error('email') {{ $message }} @enderror</span>
                                                             </label>
                                                             
-                                                            <input name="email" id="email" type="email" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->email}}" @endif>
+                                                            <input @if(Auth::check()) name="email2" @else name="email" @endif  id="email" type="email" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->email}}" @endif>
                                                             
                                                         </div>
 
@@ -104,7 +105,7 @@
 
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.name}">
                                                         <div class="field__input-wrapper">
-                                                            <label for="billingName" class="field__label">Họ và tên người nhận hàng</label>
+                                                            <label for="billingName" class="field__label">Họ và tên người nhận hàng<span style="color: red">*</label>
                                                             <input name="hoten" id="billingName" type="text" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->ten}}" @endif>
                                                         </div>
 
@@ -112,7 +113,7 @@
 
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.gender}">
                                                         <div class="field__input-wrapper">
-                                                            <label for="billingGender" class="field__label">Giới tính</label>
+                                                            <label for="billingGender" class="field__label">Giới tính<span style="color: red">*</label>
                                                             @if(Auth::check())
                                                                 @if(Auth::user()->gioi_tinh=="Nam")
                                                                     <input type="radio" name="gioitinh" value="Nam" id="nam" checked required=""> Nam
@@ -136,9 +137,10 @@
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.phone}">
                                                         <div class="field__input-wrapper">
                                                             <label for="billingPhone" class="field__label">
-                                                                Số điện thoại người nhận
+                                                                Số điện thoại người nhận<span style="color: red">*
                                                             </label>
-                                                                <span style="color:red;">@error('phone') {{ $message }} @enderror</span>
+                                                                <span style="color:red;"></span>
+                                                                <span style="color: red; font-size: 15px">@error('phone') {{ $message }} @enderror</span>
                                                             <input name="phone" id="billingPhone" type="tel" class="field__input" required="" maxlength="10" @if(Auth::check()) value="{{Auth::user()->sdt}}" @endif>
                                                         </div>
 
@@ -149,9 +151,11 @@
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.address}">
                                                         <div class="field__input-wrapper">
                                                             <label for="billingAddress" class="field__label">
-                                                                Địa chỉ người nhận (Ghi rõ ràng)
+                                                                Địa chỉ người nhận<span style="color: red">*</span > <span style="font-size: 15px">(Đường/Hẻm, Phường/Xã, Quận/Huyện, Tỉnh/TP)</span >
+                                                                <span style="color: red"></span ><br>
+                                                                <span style="color: red; font-size: 15px">@error('diachi') {{ $message }} @enderror</span>
                                                             </label>
-                                                            <input name="diachi" id="billingAddress" type="text" class="field__input" required="">
+                                                            <textarea name="diachi" id="billingAddress" type="text" class="field__input" required=""></textarea>
                                                         </div>
 
                                                     </div>
@@ -175,7 +179,7 @@
 
                                 </div>
                                 <div class="col col--two">
-
+<!-- 
                                     <section class="section">
                                         <div class="section__header">
                                             <div class="layout-flex">
@@ -202,7 +206,7 @@
                                                 Vui lòng nhập thông tin giao hàng
                                             </div>
                                         </div>
-                                    </section>
+                                    </section> -->
 
                                     <section class="section">
                                         <div class="section__header">
@@ -233,7 +237,7 @@
                                                     </div>
 
                                                     <div class="content-box__row__desc" data-bind-show="paymentMethod == 293126">
-                                                        <p>cod</p>
+                                                        <p>COD</p>
 
                                                     </div>
 
@@ -273,7 +277,7 @@
                             <aside class="sidebar">
                                 <div class="sidebar__header">
                                     <h2 class="sidebar__title">
-                                        Đơn hàng ({{Session('cart')->tongSL}} sản phẩm)
+                                        Tổng số lượng ({{Session('cart')->tongSL}} sản phẩm)
                                     </h2>
                                 </div>
                                 <div class="sidebar__content">
@@ -325,11 +329,11 @@
                                                                     </th>
                                                                     @if($product['item']['giam_gia']>0)
                                                                         <td class="product__price">
-                                                                            {{number_format($product['so_luong']*($product['item']['gia']*((100-$product['item']['giam_gia'])/100)))}}đ
+                                                                            {{number_format($product['so_luong']*($product['item']['gia']*((100-$product['item']['giam_gia'])/100)),0,",",".")}} đ
                                                                         </td>
                                                                     @else
                                                                         <td class="product__price">
-                                                                            {{number_format($product['so_luong']*$product['item']['gia'])}}đ
+                                                                            {{number_format($product['so_luong']*$product['item']['gia'],0,",",".")}} đ
                                                                         </td>
                                                                     @endif
                                                                 </tr>
@@ -377,7 +381,7 @@
                                                                 <th class="total-line__name">
                                                                     Tạm tính
                                                                 </th>
-                                                                <td class="total-line__price">{{number_format(Session('cart')->tongTien)}}đ</td>
+                                                                <td class="total-line__price">{{number_format(Session('cart')->tongTien,0,",",".")}} đ</td>
                                                             </tr>
 
                                                             <!-- <tr class="total-line total-line--shipping-fee">
@@ -396,7 +400,7 @@
                                                                     </span>
                                                                 </th>
                                                                 <td class="total-line__price">
-                                                                    <span class="payment-due__price">{{number_format(Session('cart')->tongTien)}}đ</span>
+                                                                    <span class="payment-due__price">{{number_format(Session('cart')->tongTien,0,",",".")}} đ</span>
                                                                 </td>
                                                             </tr>
                                                         </tfoot>

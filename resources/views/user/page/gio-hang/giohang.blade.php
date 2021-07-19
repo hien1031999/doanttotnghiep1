@@ -38,7 +38,7 @@
                 @if(Session::has('cart'))  
                     @if(count($cart->items)>0)
                         @if(Session::get('message'))
-                            <div class="alert alert-success" style='text-align: center;'>
+                            <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
                                 {{ Session::get('message') }}
                             </div>				
                         @endif
@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div style="width: 14%" class="a-center">Số lượng</div>
-                                    <div style="width: 16%" class="a-right">Tổng tiền</div>
+                                    <div style="width: 16%" class="a-right">Thành tiền</div>
                             </div>
 
                             <div class="cart-tbody">
@@ -127,7 +127,13 @@
                                     @endforeach
                                   
                             </div>
-        
+                            <div style="font-size: 20px; color: black; margin-left: 790px; font-weight: bold; ">Tổng tiền phải thanh toán: 
+                                <span class="cart-price"> 
+                                    <span style="font-size:20px; font-weight:bold;color:#000ed0" class="price">
+                                        {{number_format(Session('cart')->tongTien,0,",",".")}} đ
+                                    </span>
+                                </span>
+                            </div>
                             <button class="btn btn-primary button btn-proceed-checkout f-right" title="Tiến hành đặt hàng" type="button" onclick="window.location.href='dathang'"> 
                                 <span>Tiến hành đặt hàng</span>
                             </button>

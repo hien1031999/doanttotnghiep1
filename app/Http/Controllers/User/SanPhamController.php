@@ -69,30 +69,28 @@ class SanPhamController extends Controller
         return view('user.page.san-pham.sanpham',compact('sanpham'));
     }
     public function new() {
-        $sanpham = ChiTietSP::where('new',1)->get();
-        $hinhanhsp = SanPham::all();
-        
+        $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->get();     
 
         if(isset($_GET['sort_by'])) {
             $sort_by = $_GET['sort_by'];
 
             if($sort_by=='tang-dan') {
-                $sanpham = ChiTietSP::where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($sort_by=='giam-dan') {
-                $sanpham = ChiTietSP::where('new',1)->where('tinh_trang','0')->orderby('gia','DESC')->get();
+                $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->orderby('gia','DESC')->get();
             }
             elseif($sort_by=='moi-cu') {
-                $sanpham = ChiTietSP::where('new',1)->where('tinh_trang','0')->orderby('created_at','DESC')->get();
+                $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->orderby('created_at','DESC')->get();
             }
             elseif($sort_by=='cu-moi') {
-                $sanpham = ChiTietSP::where('new',1)->where('tinh_trang','0')->orderby('created_at','ASC')->get();
+                $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->orderby('created_at','ASC')->get();
             }
             elseif($sort_by=='A-Z') {
-                $sanpham = ChiTietSP::where('new',1)->where('tinh_trang','0')->orderby('ten_sp','ASC')->get();
+                $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->orderby('ten_sp','ASC')->get();
             }
             elseif($sort_by=='Z-A') {
-                $sanpham = ChiTietSP::where('new',1)->where('tinh_trang','0')->orderby('ten_sp','DESC')->get();
+                $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->orderby('ten_sp','DESC')->get();
             }
 
         }
@@ -101,28 +99,28 @@ class SanPhamController extends Controller
             $price = $_GET['price'];
 
             if($price=='1') {
-                $sanpham = ChiTietSP::where('gia','<',300000)->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::where('gia','<',300000)->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='2') {
-                $sanpham = ChiTietSP::whereBetween('gia',[300000, 500000])->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::whereBetween('gia',[300000, 500000])->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='3') {
-                $sanpham = ChiTietSP::whereBetween('gia',[500000, 700000])->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::whereBetween('gia',[500000, 700000])->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='4') {
-                $sanpham = ChiTietSP::whereBetween('gia',[700000, 1000000])->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::whereBetween('gia',[700000, 1000000])->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='5') {
-                $sanpham = ChiTietSP::whereBetween('gia',[1000000, 1200000])->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::whereBetween('gia',[1000000, 1200000])->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='6') {
-                $sanpham = ChiTietSP::whereBetween('gia',[1200000, 1500000])->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::whereBetween('gia',[1200000, 1500000])->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='7') {
-                $sanpham = ChiTietSP::whereBetween('gia',[1500000, 2000000])->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::whereBetween('gia',[1500000, 2000000])->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
             elseif($price=='8') {
-                $sanpham = ChiTietSP::where('gia','>',2000000)->where('new',1)->where('tinh_trang','0')->orderby('gia','ASC')->get();
+                $sanpham = ChiTietSP::where('gia','>',2000000)->where('new',0)->where('tinh_trang','0')->orderby('gia','ASC')->get();
             }
 
         }
@@ -131,8 +129,7 @@ class SanPhamController extends Controller
     }
 
     public function sale() {
-        $sanpham = ChiTietSP::where('giam_gia','<>',0)->get();
-        $hinhanhsp = SanPham::all();
+        $sanpham = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang','0')->get();
 
         if(isset($_GET['sort_by'])) {
             $sort_by = $_GET['sort_by'];
@@ -203,5 +200,18 @@ class SanPhamController extends Controller
     
         return \View::make('vacancies.empty')->with('vacancies', $vacancies); 
     
+    }
+
+    public function quickview(Request $req) {
+        $product_id = $req->product_id;
+
+        $product = ChiTietSP::find($product_id);
+
+        $output['product_name'] = $product->ten_sp;
+        $output['product_id'] = $product->id;
+        $output['product_gia'] = number_format($product->gia,0,",","."). 'đ';
+        $output['product_hinhanh'] = '<p><img width="100%" src="anh_sp/'.$product->san_pham->hinh_anh.'"></p>';
+        echo json_encode($output);
+
     }
 }
