@@ -30,6 +30,8 @@ class ChiTietSP extends Model
         'kich_thuoc',
         'tai_trong',
         'ngan_lap',
+        'link_youtube',
+        'new',
         'tinh_trang'
     ];
 

@@ -14,12 +14,6 @@
                     
                     
                     <li><strong ><span >Tìm kiếm</span></strong></li>
-
-                    @if(Session::get('message'))
-                        <div class="alert alert-success" style='text-align: center;'>
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
                             
                 </ul>
             </div>
@@ -83,13 +77,13 @@
                                 </a>
 
                                 <div class="product-action-grid clearfix">
-                                    <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <div>
-                                            <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}"  class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                <span class="tooltips qv"><span>Xem nhanh</span></span>
-                                            </a>
+                                            <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sp->id}}" data-id_img="{{$sp->san_pham->id}}">
+                                                <i style="color: #fff;"class="fa fa-search"></i>
+                                                <span style="color: white">Xem nhanh</span>
+                                            </button>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
 
@@ -108,20 +102,20 @@
                                             
                                             
                                             
-                                            {{number_format($sp->gia)}}đ		
+                                            {{number_format($sp->gia,0,",",".")}} đ		
                                         </span>		
-                                        <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100))}}đ</span>
+                                        <span class="price product-price">{{number_format($sp->gia*((100-$sp->giam_gia)/100),0,",",".")}} đ</span>
                                     </div>
                                 @else
                                     <div class="price-box clearfix">
-                                        <span class="price product-price">{{number_format($sp->gia)}}đ</span>
+                                        <span class="price product-price">{{number_format($sp->gia,0,",",".")}} đ</span>
                                     </div>
                                 @endif
 
             
             
                                 <div class="action__">
-            
+                                @if($sp->so_luong > 0)
                                     <form action="{{route('cart-add',$sp->id)}}" method="GET">
                                         <div>
                                             <input type="hidden"/>
@@ -133,7 +127,7 @@
                                             </button>
                                         </div>
                                     </form>
-
+                                @endif
                             </div>
 
                         </div>

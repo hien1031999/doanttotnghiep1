@@ -120,10 +120,13 @@ Route::group(['namespace' => 'User'], function() {
     Route::get('/', 'TrangChuController@index')->name('trangchu');
     Route::get('/trangchu', 'TrangChuController@index')->name('trangchu');
 
+    //sản phẩm
     Route::get('/sanpham', 'SanPhamController@index')->name('sanpham');
     Route::get('/sanpham/new', 'SanPhamController@new')->name('sanphamnew');
     Route::get('/sanpham/sale', 'SanPhamController@sale')->name('sanphamsale');
-    
+    Route::post('/quickview','SanPhamController@quickview')->name('quickview');
+   
+    //Chi tiết sản phẩm
     Route::get('/chitietsanpham/{id}', 'CTSPController@index')->name('chitietsanpham');
 
     Route::get('/gioithieu', 'GioiThieuController@index')->name('gioithieu');
@@ -132,20 +135,25 @@ Route::group(['namespace' => 'User'], function() {
 
     Route::get('/loai_sp/{type}', 'LoaiSPController@index')->name('loai_sp');
 
-
+    //Giỏ hàng
     Route::get('/giohang', 'GioHangController@index')->name('giohang');
     Route::get('/cart-add/{id}','GioHangController@cartAdd')->name('cart-add');
     Route::get('/cart-del/{id}','GioHangController@cartDel')->name('cart-del');
+    Route::get('/xoa-het','GioHangController@xoaHet')->name('xoa-het');
     Route::get('/update-cart-qty/{id}','GioHangController@updateCartQty')->name('update-cart-qty');
     
+    //Đặt hàng
     Route::get('/dathang', 'DatHangController@index')->name('dathang');
     Route::post('/dat-hang','DatHangController@datHang')->name('dat-hang');
 
-
+    //Tìm kiếm
     Route::get('/search', 'TrangChuController@search')->name('search');
 
+    //Chính sách
     Route::get('/chinhsachthanhtoan', 'TrangChuController@chinhsachthanhtoan')->name('chinhsachthanhtoan');
     Route::get('/chinhsachdoitrabaohanh', 'TrangChuController@chinhsachdoitrabaohanh')->name('chinhsachdoitrabaohanh');
+    Route::get('/chinhsachfreeship', 'TrangChuController@chinhsachfreeship')->name('chinhsachfreeship');
+    Route::get('/chinhsachhanghieu', 'TrangChuController@chinhsachhanghieu')->name('chinhsachhanghieu');
 
     Route::post('/vacancies/searchcat', 'SanPhamController@searchcat');
 

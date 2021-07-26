@@ -105,6 +105,22 @@
                         </div>
 
                         <div class="col-2 form-group">
+                            <label>Link youtube<span class="text-secondary font-12"></span></label>
+                            <input type="text" name="link_youtube" id="link_youtube" class="form-control" maxlength="100" placeholder="Nhập link youtube" @isset($product_detail) value="{{ $product_detail->link_youtube }}" @endisset/>
+                        </div>
+
+                        <div class="col-2 form-group">
+                            <label>Sản phẩm @if (!isset($product_detail)) <span style="color: red">*</span> @endif </label>
+                            <select name="tinh_trang" id="tinh_trang" class="form-control" required>
+                                @if (!isset($product_detail))
+                                    <option disabled selected>Chọn sản phẩm</option>
+                                @endif
+                                <option @if (isset($product_detail) && $product_detail->new == 0) selected @endif value="0">Sản phẩm mới</option>
+                                <option @if (isset($product_detail) && $product_detail->new == 1) selected @endif value="1">Sản phẩm cũ</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-2 form-group">
                             <label>Tình trạng @if (!isset($product_detail)) <span style="color: red">*</span> @endif </label>
                             <select name="tinh_trang" id="tinh_trang" class="form-control" required>
                                 @if (!isset($product_detail))

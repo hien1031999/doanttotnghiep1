@@ -1,15 +1,10 @@
 @extends('user.master')
 @section('content')
 
-@if(Session::get('message'))
-	<div class="alert alert-success" style='text-align: center;'>
- 		{{ Session::get('message') }}
-	</div>
-@endif
+
 
 
     <section class="awe-section-1">
-        
         <section class="section_slider_banner">
             
             <div class="container">
@@ -58,7 +53,7 @@
                             <div class="wrap_ser">
                                 <span class="font_icon"><span class="fa fa-paper-plane"></span></span>
                                 <div class="content_ser">
-                                    <p class="large_">FREE VẬN CHUYỂN</p>
+                                <a href="chinhsachfreeship"><p class="large_">FREE VẬN CHUYỂN</p></a>
                                     <span class="des_ser">Cho mọi đơn hàng</span>
                                 </div>
                             </div>
@@ -67,8 +62,8 @@
                             <div class="wrap_ser">
                                 <span class="font_icon"><span class="fa fa-map-marker"></span></span>
                                 <div class="content_ser">
-                                    <p class="large_">HOÀN TIỀN</p>
-                                    <span class="des_ser">Khi sản phẩm bị lỗi</span>
+                                <a href="chinhsachhanghieu"><p class="large_">HÀNG HIỆU 100%</p></a>
+                                    <span class="des_ser">Cam kết chính hãng</span>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +71,8 @@
                             <div class="wrap_ser">
                                 <span class="font_icon"><span class="fa fa-tag"></span></span>
                                 <div class="content_ser">
-                                    <p class="large_">SUPPORT 24/7</p>
-                                    <span class="des_ser">Liên hệ với chúng tôi</span>
+                                <a href="chinhsachdoitrabaohanh"><p class="large_">BẢO HÀNH TỐT</p></a>
+                                    <span class="des_ser">Trọn đời miễn phí</span>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +80,7 @@
                             <div class="wrap_ser">
                                 <span class="font_icon"><span class="fa fa-life-ring"></span></span>
                                 <div class="content_ser">
-                                    <p class="large_">THANH TOÁN </p>
+                                <a href="chinhsachthanhtoan"><p class="large_">THANH TOÁN </p></a>
                                     <span class="des_ser">Thanh toán nhanh gọn.</span>
                                 </div>
                             </div>
@@ -132,16 +127,14 @@
 
                                                 </a>
                                                 <div class="product-action-grid clearfix">
-                                                    <form action="{{route('cart-add',$sps->id)}}" method="GET" class="variants form-nut-grid" enctype="multipart/form-data">
+                                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                         <div>
-                                                            <a title="xem nhanh" href="{{route('chitietsanpham',$sps->id)}}" data-handle="{{$sps->ten_sp}}" class="button_wh_40 btn_view right-to quick-view">
-                                                                <i class="fa fa-search"></i>
-                                                                <span class="tooltips qv">
-                                                                    <span>Xem chi tiết</span>
-                                                                </span>
-                                                            </a>
+                                                            <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sps->id}}" data-id_img="{{$sps->san_pham->id}}">
+                                                                <i style="color: #fff;"class="fa fa-search"></i>
+                                                                <span style="color: white">Xem nhanh</span>
+                                                            </button>
                                                         </div>
-                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="product-info">
@@ -165,19 +158,19 @@
         
         
                                                 <div class="action__">
-        
-                                                    <form action="{{route('cart-add',$sps->id)}}" method="GET">
-                                                        <div>
-                                                            <input type="hidden"/>
-                                                            <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                                                <span>
-                                                                    <span class="fa fa-shopping-basket"></span>
-                                                                </span>
-                                                                Giỏ hàng
-                                                            </button>
-                                                        </div>
-                                                    </form>
-        
+                                                    @if($sps->so_luong > 0)
+                                                        <form action="{{route('cart-add',$sps->id)}}" method="GET">
+                                                            <div>
+                                                                <input type="hidden"/>
+                                                                <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                    <span>
+                                                                        <span class="fa fa-shopping-basket"></span>
+                                                                    </span>
+                                                                    Giỏ hàng
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                                 
         
@@ -196,9 +189,113 @@
             </div>
         </section>
     </section>
+
+    <!-- Sản phẩm mới -->
+    <section class="awe-section-3">
+        <h3 class="hidden">&nbsp;</h3>
+        <link rel="preload" as="script" href="//bizweb.dktcdn.net/100/286/794/themes/637857/assets/jquery-cycle22.js?1618737291739" />
+        <script src="//bizweb.dktcdn.net/100/286/794/themes/637857/assets/jquery-cycle22.js?1618737291739" type="text/javascript"></script>
+        <section class="section_product_loopp loop_two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 dear_title">
+                        <h2 class="title_head_ border_content">
+                            <a href="{{route('sanphamnew')}}" title="Sản phẩm Mới" >Sản Phẩm Mới</a>
+                        </h2>
+                         
+                        <div class="loop_two_ctrl visible-xs">
+                            <span id="loop_two_prev">&lt;</span>
+                            <span id="loop_two_next">&gt;</span>
+                        </div>
     
+                    </div>
+                    
+                    <div class="tab-content">
+                      
+                        <div role="tabpanel" class="tab-pane active" id="tab21">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 wrap_owl_product_">
+                                <div class="owl_product_ owl-carousel" data-nav="true" data-lg-items="5" data-md-items="4" data-height="false" data-xs-items="2" data-sm-items="3" data-margin="0">
+                                    @foreach($sanphammoi as $spm)
+                                        <div class="item saler_item first">
+                                            <div class="owl_item_product">
 
+                                                <div class="product-box">
+                                                    <div class="product-thumbnail">
+                                                        @if($spm->giam_gia>0)
+                                                        <span class="sale_count"><span class="bf_">-
+                                                        {{$spm->giam_gia}}%
+                                                        </span></span>
+                                                        @endif
+            
+                                                        <a href="{{route('chitietsanpham',$spm->id)}}" class="image_link display_flex" data-images="anh_sp/{{$spm->san_pham->hinh_anh}}" title="{{$spm->ten_sp}}">
+                
+                
+                                                            <img style="width: 500px; height: 500px;" class="img-responsive lazyload" src="anh_sp/{{$spm->san_pham->hinh_anh}}" data-src="anh_sp/{{$spm->san_pham->hinh_anh}}" alt="{{$spm->ten_sp}}"/>
 
+                                                        </a>
+                                                        <div class="product-action-grid clearfix">
+                                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                                <div>
+                                                                    <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$spm->id}}" data-id_img="{{$spm->san_pham->id}}">
+                                                                        <i style="color: #fff;"class="fa fa-search"></i>
+                                                                        <span style="color: white">Xem nhanh</span>
+                                                                    </button>
+                                                                </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-info">
+                
+                                                        <div class="reviews-product-list grid_reviews">
+                                                            <div class="bizweb-product-reviews-badge" data-id="9725087"></div>
+                                                        </div>
+                
+                                                        <h3 class="product-name"><a class="text2line" href="{{route('chitietsanpham',$spm->id)}}" title="{{$spm->ten_sp}}">{{$spm->ten_sp}}</a></h3>
+                
+                
+                
+                                                        <div class="price-box clearfix">
+                                                            <span class="price product-price-old">
+                                                                {{number_format($spm->gia)}}đ
+                                                            </span>
+                                                            <span class="price product-price">{{number_format($spm->gia*((100-$spm->giam_gia)/100))}}đ</span>
+                                                        </div>
+                
+                
+                                                        <div class="action__">
+                                                            @if($spm->so_luong > 0)
+                                                                <form action="{{route('cart-add',$spm->id)}}" method="GET">
+                                                                    <div>
+                                                                        <input type="hidden"/>
+                                                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                            <span>
+                                                                                <span class="fa fa-shopping-basket"></span>
+                                                                            </span>
+                                                                            Giỏ hàng
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            @endif
+                                                        </div>
+                
+                                                    </div>
+                                                </div>
+            
+                                                <div class="clockdiv" data-countdown="2018/09/20 15:00"></div>
+                                            </div>
+                                        </div>
+                                    @endforeach 
+    
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Tất cả sản phẩm -->
     <section class="awe-section-6">
         <h3 class="hidden">&nbsp;</h3>
         <link rel="preload" as="script" href="//bizweb.dktcdn.net/100/286/794/themes/637857/assets/jquery-cycle22.js?1618737291739" />
@@ -241,13 +338,13 @@
 
                                                             </a>
                                                             <div class="product-action-grid clearfix">
-                                                                <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9725087" enctype="multipart/form-data">
-                                                                    <div>
-                                                                        <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" data-handle="{{$sp->ten_sp}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                                            <span class="tooltips qv"><span>Xem chi tiết</span></span>
-                                                                        </a>
-                                                                    </div>
-                                                                </form>
+                                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                                <div>
+                                                                    <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sp->id}}" data-id_img="{{$sp->san_pham->id}}">
+                                                                        <i style="color: #fff;"class="fa fa-search"></i>
+                                                                        <span style="color: white">Xem nhanh</span>
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="product-info">
@@ -274,19 +371,19 @@
                     
                     
                                                             <div class="action__">
-                    
-                                                                <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9725087" enctype="multipart/form-data">
+                                                                @if($sp->so_luong > 0)
+                                                                <form action="{{route('cart-add',$sp->id)}}" method="GET">
                                                                     <div>
-                    
-                                                                        <input type="hidden" name="variantId" value="15530193" />
-                                                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Cho vào giỏ hàng">
-                                                                            <span><span class="fa fa-shopping-basket"></span></span>
+                                                                        <input type="hidden"/>
+                                                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                            <span>
+                                                                                <span class="fa fa-shopping-basket"></span>
+                                                                            </span>
                                                                             Giỏ hàng
                                                                         </button>
-                    
                                                                     </div>
                                                                 </form>
-                    
+                                                                @endif
                                                             </div>
                     
                                                         </div>

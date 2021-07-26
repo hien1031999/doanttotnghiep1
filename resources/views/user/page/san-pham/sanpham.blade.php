@@ -14,17 +14,12 @@
                     
                     
                     <li><strong ><span >Tất cả sản phẩm</span></strong></li>
-
-                    @if(Session::get('message'))
-                        <div class="alert alert-success" style='text-align: center;'>
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
-                            
+                 
                 </ul>
             </div>
         </div>
     </div>
+    
 </section>  
 
 <div class="container margin-bottom-15 bg_white">
@@ -65,12 +60,15 @@
 </div>
 
 
+
 <section class="products-view products-view-grid collection_reponsive">
     <div class="row">
         @foreach($sanpham as $sp)
             
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
                 <div class="item saler_item">
+
+                        
                                     
                     <div class="product-box">															
                         <div class="product-thumbnail">
@@ -84,13 +82,15 @@
                             </a>
 
                             <div class="product-action-grid clearfix">
-                                <form  class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
-                                    <div>
-                                        <a title="xem nhanh" href="{{route('chitietsanpham',$sp->id)}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                            <span class="tooltips qv"><span>Xem nhanh</span></span>
-                                        </a>
-                                    </div>
-                                </form>
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <div>
+                                    <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sp->id}}" data-id_img="{{$sp->san_pham->id}}">
+                                        <i style="color: #fff;"class="fa fa-search"></i>
+                                        <span style="color: white">Xem nhanh</span>
+                                    </button>
+                                </div>
+
+                                
                             </div>
                         </div>
 
@@ -122,41 +122,50 @@
         
         
                             <div class="action__">
-        
-                                <form action="{{route('cart-add',$sp->id)}}" method="GET">
-                                    <div>
-                                        <input type="hidden"/>
-                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                            <span>
-                                                <span class="fa fa-shopping-basket"></span>
-                                            </span>
-                                                Giỏ hàng
-                                        </button>
-                                    </div>
-                                </form>
-
+                                @if($sp->so_luong > 0)
+                                    <form action="{{route('cart-add',$sp->id)}}" method="GET">
+                                        <div>
+                                            <input type="hidden"/>
+                                            <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                <span>
+                                                    <span class="fa fa-shopping-basket"></span>
+                                                </span>
+                                                    Giỏ hàng
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endif
                         </div>
 
                     </div>
+                    
                 </div>			
-            </div>  
-        </div>
+            </div>
+            </div>
         
-    @endforeach
-<!--End 1 sp  -->
+        @endforeach
+    </div>
+        
 
-<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
-<!-- <div class="item saler_item"> -->
-    <div class="product-box">															
-        <div class="product-thumbnail">
-        </div>
-    </div>			
-</div>
+
+    <!--End 1 sp  -->
     
-</section>		
-                
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 product-col">
+    <!-- <div class="item saler_item"> -->
+        <div class="product-box">															
+            <div class="product-thumbnail">
+            </div>
+        </div>			
+    </div>
+
+</section>
+
+
+
+       
 </div>
 </section>
+
         
         <aside class="dqdt-sidebar sidebar left left-content col-xs-12 col-lg-3 col-md-3 col-sm-12  col-lg-pull-9 col-md-pull-9">
             
@@ -176,8 +185,6 @@
 <div class="aside-title-filter">
     <h2><span>Tìm theo</span></h2>
 </div>
-
-
 
 <aside class="aside-item filter-price">
     <div class="aside-title aside-title-fillter">
@@ -213,8 +220,12 @@
         
     </div>
 </div>
+
 </div>
+
 </body>
+
 </html>
+
 @endsection
 

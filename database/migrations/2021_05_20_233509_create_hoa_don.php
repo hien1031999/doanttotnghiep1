@@ -15,9 +15,10 @@ class CreateHoaDon extends Migration
     {
         Schema::create('hoa_don', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('khach_dat_hang_id');
+            $table->foreignId('khach_hang_id');
             $table->double('tong_tien');
             $table->datetime('ngay_dat');
+            $table->string('dia_chi_nhan', 255);
             $table->string('ghi_chu', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();

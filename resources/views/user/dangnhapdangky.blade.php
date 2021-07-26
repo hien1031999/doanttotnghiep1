@@ -7,6 +7,7 @@
 
 <title>Đăng Nhập Và Đăng Ký</title>
 <!-- Meta-Tags -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -26,32 +27,35 @@
 <!-- Body -->
 <body>
 
-	<h1>Đăng Nhập Tài Khoản</h1>
-
+	<h1>ĐĂNG NHẬP TÀI KHOẢN</h1>
+ 	@if(count($errors)>0)
+ 		<div class= "alert alert-danger">
+			 <ul>
+				 @foreach ($errors->all() as $error)
+				 <li> {{$error}} </li>
+				 @endforeach
+			</ul>
+		</div>
+	@endif
 	<div class="w3layoutscontaineragileits">
 	<h2></h2>
 		<form action="{{ route('dangnhap') }}" method="POST">
 
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 			<div class="results">
- 				@if(Session::get('message'))
-				 <div class="alert alert-danger">
- 					{{ Session::get('message') }}
-				 </div>
-				@endif
 				<br>
 			</div>
-				<span class="text-danger">@error('email') {{ $message }} @enderror</span>
+				<span class="text-danger"></span>
 				<input type="email" name="email" placeholder="EMAIL" value="{{ old ('email')}}"> <br>
-				<span class="text-danger">@error('password') {{ $message }} @enderror</span>
+				<span class="text-danger"></span>
 				<input type="password" name="password" placeholder="MẬT KHẨU" >
-				<ul class="agileinfotickwthree">
+				<!-- <ul class="agileinfotickwthree">
 					<li>
 						<input type="checkbox" name="remember_me" value="remember_me">
 						<label for="remember_me"><span></span>Nhớ Mật Khẩu</label>
 						<a href="#">Quên Mật Khẩu?</a>
 					</li>
-				</ul>
+				</ul> -->
 				<div class="aitssendbuttonw3ls">
 					<input type="submit" value="ĐĂNG NHẬP">
 					<p> Đăng Ký Tài Khoản Mới <span>→</span> <a class="w3_play_icon1" href="#small-dialog1"> Click Vào Đây</a></p>
@@ -64,50 +68,39 @@
 	<div id="small-dialog1" class="mfp-hide">
 		<div class="contact-form1">
 			<div class="contact-w3-agileits">
-				<h3>Form Đăng Ký</h3>
+				<h3>ĐĂNG KÝ</h3>
 				<form action="{{ route('dangky') }}" method="post" id="form">
 					{{ csrf_field() }}
-					@if(Session::get('message'))
-						<div class="alert alert-success">
-							{{ Session::get('message') }}
-						</div>
-					@endif
-					<!-- @if(count($errors)>0)
- 						<div class="alert alert-danger">
- 							@foreach($errors->all() as $err)
- 								{{$err}}
-							@endforeach
-					@endif -->
 						<div class="form-sub-w3ls">
-							<span class="text-danger">@error('txtname') {{ $message }} @enderror</span>
+							<span class="text-danger"></span>
 							<input placeholder="Họ Tên"  type="text"  name="txtname" required="">
 							<div class="icon-agile">
 								<i class="fa fa-user" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
-							<span class="text-danger">@error('txtemail') {{ $message }} @enderror</span>
+							<span class="text-danger"></span>
 							<input placeholder="Email" class="mail" type="email"  name="txtemail" required="">
 							<div class="icon-agile">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
-							<span class="text-danger">@error('txtphone') {{ $message }} @enderror</span>
+							<span class="text-danger"></span>
 							<input placeholder="Số điện thoại" class="number" type="text"  name="txtphone" maxlength="10" required="">
 							<div class="icon-agile">
 								<i class="fa fa-user" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
-							<span class="text-danger">@error('txtpassword') {{ $message }} @enderror</span>
+							<span class="text-danger"></span>
 							<input placeholder="Mật Khẩu"  type="password" name="txtpassword" maxlength="20" required="">
 							<div class="icon-agile">
 								<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
-							<span class="text-danger">@error('txtrepassword') {{ $message }} @enderror</span>
+							<span class="text-danger"></span>
 							<input placeholder="Nhập Lại Mật Khẩu"  type="password" name="txtrepassword" required="">
 							<div class="icon-agile">
 								<i class="fa fa-unlock-alt" aria-hidden="true"></i>
@@ -191,7 +184,7 @@
                 });
             });
 	</script>
-
+@include('sweetalert::alert')
 </body>
 <!-- //Body -->
 </html>

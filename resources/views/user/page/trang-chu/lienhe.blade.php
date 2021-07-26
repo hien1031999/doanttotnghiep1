@@ -23,18 +23,29 @@
                 </li>
 
                 <li >
+
+                
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=958736781539672&autoLogAppEvents=1" nonce="UfF4nwNS"></script>
+                <div style="margin-left: 650px;" class="fb-page" data-href="https://www.facebook.com/Quyet76/" data-tabs="timeline" data-width="500" data-height="400" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Quyet76/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Quyet76/">Shop Smarket</a></blockquote></div>
+                 
                     
-                    <ul>             
+                    <ul>
                         <li>
-                            <span class="fa fa-home"></span> <span class="frist_"><span class="b_font"></span>Lầu 2, Chung cư B3, Phường Tân Thuận Đông, Quận 7, TP.HCM, Việt Nam</span><br>
+                            <a href="trangchu" class="logo-wrapper ">
+                                <img src="//bizweb.dktcdn.net/100/286/794/themes/637857/assets/logo.png?1618737291739" alt="logo ">
+                            </a><br><br>
+                        </li>           
+                        <li>
+                            <span class="fa fa-home"></span> <span class="frist_"><span class="b_font"></span>Lầu 2, Chung cư B3, Phường Tân Thuận Đông, Quận 7, TP.HCM, Việt Nam</span><br><br>
                         </li>
 
                         <li>
-                            <span class="fa fa-phone"></span><span class="frist_"><span class="b_font"><a href="tel:0368003626"> 0368003626</a></span></span><br>
+                            <span class="fa fa-phone"></span><span class="frist_"><span class="b_font"><a href="tel:0368003626"> 0368003626</a></span></span><br><br>
                         </li>
 
                         <li>
-                        <span class="fa fa-paper-plane"></span><span class="frist_"><span class="b_font"><a href="mailto:nguynhuan123@gmail.com"> nguynhuan123@gmail.com</a> </span><br></span>
+                        <span class="fa fa-paper-plane"></span><span class="frist_"><span class="b_font"><a href="mailto:nguynhuan123@gmail.com"> nguynhuan123@gmail.com</a> </span><br></span><br>
                         <li>
             
                         <li>                
@@ -47,14 +58,13 @@
                         <li>
                     </ul>
                 </li>
-
+                  
                 <li>
                     <!-- Map -->
-                    <br>
                     <div class="wpb_gmaps_widget wpb_content_element">
                         <div class="wpb_wrapper">
                             <div class="wpb_map_wraper">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.946868287752!2d105.76896261467252!3d10.02124339283661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089f36a08b043%3A0x3c9bdb392fdc8ca1!2zVMO6aSBYw6FjaCBUUuG6pk4gUEjhu6RORw!5e0!3m2!1svi!2s!4v1622261880353!5m2!1svi!2s" width="1150" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>		</div>
+                            <iframe style="margin-top: 200px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.946868287752!2d105.76896261467252!3d10.02124339283661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089f36a08b043%3A0x3c9bdb392fdc8ca1!2zVMO6aSBYw6FjaCBUUuG6pk4gUEjhu6RORw!5e0!3m2!1svi!2s!4v1622261880353!5m2!1svi!2s" width="1150" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>		</div>
                             </div>
                         </div>    
                     </div>
