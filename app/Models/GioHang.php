@@ -96,10 +96,10 @@ class GioHang extends Model
 
 	//xóa cart
 	public function removeItem($id) {
-		// $this->tongSL -= $this->items[$id]['so_luong'];
-		// $this->tongTien -= $this->items[$id]['gia'];
-		$this->tongSL = 0;
-		$this->tongTien = 0;
+		$this->tongSL -= $this->items[$id]['so_luong'];
+		$this->tongTien -= $this->items[$id]['gia'];
+		// $this->tongSL = 0;
+		// $this->tongTien = 0;
 		unset($this->items[$id]);
 	}
 
