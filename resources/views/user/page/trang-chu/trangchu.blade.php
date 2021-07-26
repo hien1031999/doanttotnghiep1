@@ -8,11 +8,6 @@
         <section class="section_slider_banner">
             
             <div class="container">
-                @if(Session::get('message'))
-	                <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
- 		                {{ Session::get('message') }}
-	                </div>
-                @endif
                 
                     <div class="slider-layout-1 col-md-9 col-sm-12 col-xs-12">
                         <div class="owl-carousel" data-nav="true" data-lg-items="1" data-md-items="1" data-height="false" data-xs-items="1" data-sm-items="1" data-margin="0">
@@ -132,16 +127,14 @@
 
                                                 </a>
                                                 <div class="product-action-grid clearfix">
-                                                    <form action="{{route('cart-add',$sps->id)}}" method="GET" class="variants form-nut-grid" enctype="multipart/form-data">
+                                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                         <div>
-                                                            <a title="Xem chi tiết" href="{{route('chitietsanpham',$sps->id)}}" data-handle="{{$sps->ten_sp}}" class="button_wh_40 btn_view right-to quick-view">
-                                                                <i class="fa fa-search"></i>
-                                                                <span class="tooltips qv">
-                                                                    <span>Xem chi tiết</span>
-                                                                </span>
-                                                            </a>
+                                                            <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sps->id}}" data-id_img="{{$sps->san_pham->id}}">
+                                                                <i style="color: #fff;"class="fa fa-search"></i>
+                                                                <span style="color: white">Xem nhanh</span>
+                                                            </button>
                                                         </div>
-                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="product-info">
@@ -165,19 +158,19 @@
         
         
                                                 <div class="action__">
-        
-                                                    <form action="{{route('cart-add',$sps->id)}}" method="GET">
-                                                        <div>
-                                                            <input type="hidden"/>
-                                                            <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                                                <span>
-                                                                    <span class="fa fa-shopping-basket"></span>
-                                                                </span>
-                                                                Giỏ hàng
-                                                            </button>
-                                                        </div>
-                                                    </form>
-        
+                                                    @if($sps->so_luong > 0)
+                                                        <form action="{{route('cart-add',$sps->id)}}" method="GET">
+                                                            <div>
+                                                                <input type="hidden"/>
+                                                                <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                    <span>
+                                                                        <span class="fa fa-shopping-basket"></span>
+                                                                    </span>
+                                                                    Giỏ hàng
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                                 
         
@@ -241,13 +234,14 @@
 
                                                         </a>
                                                         <div class="product-action-grid clearfix">
-                                                            <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9725087" enctype="multipart/form-data">
+                                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                                 <div>
-                                                                    <a title="Xem chi tiết" href="{{route('chitietsanpham',$spm->id)}}" data-handle="{{$spm->ten_sp}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                                        <span class="tooltips qv"><span>Xem chi tiết</span></span>
-                                                                    </a>
+                                                                    <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$spm->id}}" data-id_img="{{$spm->san_pham->id}}">
+                                                                        <i style="color: #fff;"class="fa fa-search"></i>
+                                                                        <span style="color: white">Xem nhanh</span>
+                                                                    </button>
                                                                 </div>
-                                                            </form>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="product-info">
@@ -269,19 +263,19 @@
                 
                 
                                                         <div class="action__">
-                
-                                                            <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9725087" enctype="multipart/form-data">
-                                                                <div>
-                
-                                                        
-                                                                    <button class=" cart_button_style btn-cart left-to add_to_cart" title="Cho vào giỏ hàng">
-                                                                        <span><span class="fa fa-shopping-basket"></span></span>
-                                                                        Giỏ hàng
-                                                                    </button>
-                
-                                                                </div>
-                                                            </form>
-                
+                                                            @if($spm->so_luong > 0)
+                                                                <form action="{{route('cart-add',$spm->id)}}" method="GET">
+                                                                    <div>
+                                                                        <input type="hidden"/>
+                                                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                            <span>
+                                                                                <span class="fa fa-shopping-basket"></span>
+                                                                            </span>
+                                                                            Giỏ hàng
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            @endif
                                                         </div>
                 
                                                     </div>
@@ -344,13 +338,13 @@
 
                                                             </a>
                                                             <div class="product-action-grid clearfix">
-                                                                <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9725087" enctype="multipart/form-data">
-                                                                    <div>
-                                                                        <a title="Xem chi tiết" href="{{route('chitietsanpham',$sp->id)}}" data-handle="{{$sp->ten_sp}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                                            <span class="tooltips qv"><span>Xem chi tiết</span></span>
-                                                                        </a>
-                                                                    </div>
-                                                                </form>
+                                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                                                <div>
+                                                                    <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sp->id}}" data-id_img="{{$sp->san_pham->id}}">
+                                                                        <i style="color: #fff;"class="fa fa-search"></i>
+                                                                        <span style="color: white">Xem nhanh</span>
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="product-info">
@@ -377,19 +371,19 @@
                     
                     
                                                             <div class="action__">
-                    
-                                                                <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9725087" enctype="multipart/form-data">
+                                                                @if($sp->so_luong > 0)
+                                                                <form action="{{route('cart-add',$sp->id)}}" method="GET">
                                                                     <div>
-                    
-                                                                        <input type="hidden" name="variantId" value="15530193" />
-                                                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Cho vào giỏ hàng">
-                                                                            <span><span class="fa fa-shopping-basket"></span></span>
+                                                                        <input type="hidden"/>
+                                                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                                            <span>
+                                                                                <span class="fa fa-shopping-basket"></span>
+                                                                            </span>
                                                                             Giỏ hàng
                                                                         </button>
-                    
                                                                     </div>
                                                                 </form>
-                    
+                                                                @endif
                                                             </div>
                     
                                                         </div>

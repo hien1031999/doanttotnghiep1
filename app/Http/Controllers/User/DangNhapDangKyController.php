@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Models\KhachHang;
 
 class DangNhapDangKyController extends Controller
@@ -20,16 +21,15 @@ class DangNhapDangKyController extends Controller
 
     public function dangky(Request $request) {
 
-        $this->validate($request,
-            [
-                'txtemail'=>'required|email|unique:khach_hang,email',
+        $validator = Validator::make($request->all(), [
+            'txtemail'=>'required|email|unique:khach_hang,email',
                 'txtpassword'=>'required|min:6|',
                 'txtname'=>'required',
                 'txtphone'=>'required|min:10|',
                 'txtrepassword'=>'required|same:txtpassword'
-            ],
-            [
-                'txtemail.required'=>'Vui lòng nhập email!',
+        ],
+        [
+            'txtemail.required'=>'Vui lòng nhập email!',
                 'txtemail.email'=>'Không đúng định dạng email!',
                 'txtemail.unique'=>'Email đã tồn tại!',
 
@@ -43,11 +43,12 @@ class DangNhapDangKyController extends Controller
 
                 'txtrepassword.required'=>'Vui lòng nhập nhập lại mật khẩu!',
                 'txtrepassword.same'=>'Mật khẩu không trùng khớp!',
-                
-            ]
-            );
-        
-     
+        ]);
+        if($validator->fails()) {
+            return back()->with('toast_error',$validator->messages()->all()[0])->withInput();
+        }
+
+
         $user = new khachhang;
         $user->ten = $request->txtname;
         $user->email = $request->txtemail;
@@ -55,16 +56,16 @@ class DangNhapDangKyController extends Controller
         $user->password = Hash::make($request->txtpassword);
         $user->vai_tro_id = 1;
         $user->save();
-        return back()->with('message','Đăng ký thành công !');
+        alert()->success('Đăng ký thành công!');
+        return back();
     }
 
 
     public function kiemTraDangNhap(Request $request){
- 
-        $this->validate($request,
-        [
-           'email'=>'required|email',
-           'password'=>'required|min:6|max:20',
+
+        $validator = Validator::make($request->all(), [
+            'email'=>'required|email',
+            'password'=>'required|min:6|max:20',
         ],
         [
             'email.required'=>'Vui lòng nhập Email',
@@ -74,6 +75,10 @@ class DangNhapDangKyController extends Controller
             'password.max'=>'Mật khẩu không quá 20 ký tự!'
         ]);
         
+        if($validator->fails()) {
+            return back()->with('toast_error',$validator->messages()->all()[0])->withInput();
+        }
+        
         
         $credentials = [
             'email'         => $request->email,
@@ -81,15 +86,18 @@ class DangNhapDangKyController extends Controller
         ];
 
         if(Auth::attempt($credentials)) {
-            return redirect()->route('trangchu')->with('message','Đăng nhập thành công!');
+            alert()->success('Đăng nhập thành công!');
+            return redirect()->route('trangchu');
         } else{
-            return back()->with('message','Email hoặc mật khẩu chưa chính xác!');
+            alert()->error('Email hoặc Pasword chưa chính xác!');
+            return back();
         }
     }
 
     public function dangxuat() {
         Auth::logout();
-        return back()->with('message','Đăng xuất thành công!');
+        alert()->success('Đăng xuất thành công!');
+        return back();
     }
 
   

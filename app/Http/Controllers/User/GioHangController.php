@@ -24,9 +24,8 @@ class GioHangController extends Controller
         $cart->add($sanpham,$hinhanh,$quantity, $id);
         $req->session()->put('cart',$cart);
 
-        // $giohang = new GioHang;
-
-        return redirect()->back()->with('message', 'Thêm vào giỏ hàng thành công !');
+        toast('Thêm sản phẩm vào giỏ hàng thành công!','success');
+        return redirect('giohang');
     }
 
     public function cartDel(Request $req, $id) {
@@ -34,7 +33,17 @@ class GioHangController extends Controller
         $cart = new GioHang($oldCart);
         $cart->removeItem($id);
         Session::put('cart',$cart);
-        return redirect()->back()->with('message', 'Xóa sản phẩm thành công !');
+        toast('Xóa sản phẩm thành công!','success');
+        return redirect('giohang');
+    }
+
+    public function xoaHet() {
+        $oldCart = Session::has('cart')?Session::get('cart'):null;
+        $cart = new GioHang($oldCart);
+        $cart->xoaHet();
+        Session::forget('cart');
+        toast('Xóa giỏ hàng thành công!','success');
+        return redirect('giohang');
     }
 
     public function index(Request $req)
@@ -51,6 +60,7 @@ class GioHangController extends Controller
         $quantity = $req->quantity;
         $cart->updateQty($sanpham,$quantity,$id);
         $req->session()->put('cart',$cart);
-        return redirect()->back()->with('message', 'Cập nhập số lượng thành công! ');
+        toast('Cập nhập số lượng thành công!','success');
+        return redirect()->back();
     }
 }

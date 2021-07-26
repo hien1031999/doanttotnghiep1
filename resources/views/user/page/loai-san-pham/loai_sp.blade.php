@@ -16,11 +16,6 @@
                 </ul>
             </div>
         </div>
-        @if(Session::get('message'))
-            <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
-                {{ Session::get('message') }}
-            </div>
-        @endif
     </div>
 </section>  
 
@@ -84,13 +79,13 @@
                                 </a>
 
                                 <div class="product-action-grid clearfix">
-                                    <form action="/cart/add" method="post" class="variants form-nut-grid" data-id="product-actions-9746938" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <div>
-                                            <a title="Xem chi tiết" href="{{route('chitietsanpham',$sp->id)}}" data-handle="{{$sp->ten_sp}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                                <span class="tooltips qv"><span>Xem chi tiết</span></span>
-                                            </a>
+                                            <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sp->id}}" data-id_img="{{$sp->san_pham->id}}">
+                                                <i style="color: #fff;"class="fa fa-search"></i>
+                                                <span style="color: white">Xem nhanh</span>
+                                            </button>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
 
@@ -118,19 +113,19 @@
             
             
                                 <div class="action__">
-            
-                                    <form action="{{route('cart-add',$sp->id)}}" method="GET">
-                                        <div>
-                                            <input type="hidden"/>
-                                            <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                                <span>
-                                                    <span class="fa fa-shopping-basket"></span>
-                                                </span>
-                                                Giỏ hàng
-                                            </button>
-                                        </div>
-                                    </form>
-
+                                    @if($sp->so_luong > 0)
+                                        <form action="{{route('cart-add',$sp->id)}}" method="GET">
+                                            <div>
+                                                <input type="hidden"/>
+                                                <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                    <span>
+                                                        <span class="fa fa-shopping-basket"></span>
+                                                    </span>
+                                                    Giỏ hàng
+                                                </button>
+                                            </div>
+                                        </form>
+                                @endif
                                 </div>
 
                         </div>

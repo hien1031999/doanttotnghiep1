@@ -100,11 +100,6 @@
                                 </div>
                                 </div>
                                 <div class="results">
-                            	@if(Session::get('message'))
-                                    <div class="alert alert-danger" style="font-size: 18px; font-weight: bold;">
-                                {{ Session::get('message') }}
-                                    </div> 
-                                @endif   
                             </div>
                             <div class="form-product col-sm-12 form-border margin-bottom-10">
                                

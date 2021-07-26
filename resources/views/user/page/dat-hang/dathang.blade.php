@@ -10,18 +10,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
     <script src='assetsUser/js/script2.js'></script>
     <script src='assetsUser/js/script3.js'></script>
+
 </head>
 
-
+@if(count($errors)>0)
+ 		<div class= "alert alert-danger">
+			 <ul>
+				 @foreach ($errors->all() as $error)
+				 <li> {{$error}} </li>
+				 @endforeach
+			</ul>
+		</div>
+@endif
 <body data-no-turbolink="">
 	<header class="banner">
 		<div class="wrap">
 			<div class="logo logo--left ">
 	
                 <h1 class="shop__name">
-                    <a href="trabgchu">
-                        Smarket
-                    </a>
+                    <div class="logo_top col-lg-3 col-md-3">
+        
+                        <a href="trangchu" class="logo-wrapper ">
+                            <img src="//bizweb.dktcdn.net/100/286/794/themes/637857/assets/logo.png?1618737291739" alt="logo ">
+                        </a>
+
+                    </div>
                 </h1>
 	
             </div>
@@ -49,9 +62,13 @@
                             <div class="logo logo--left ">
 
                                 <h1 class="shop__name">
-                                    <a href="trangchu">
-                                        Smarket
-                                    </a>
+                                    <div class="logo_top col-lg-3 col-md-3">
+            
+                                        <a href="trangchu" class="logo-wrapper ">
+                                            <img src="//bizweb.dktcdn.net/100/286/794/themes/637857/assets/logo.png?1618737291739" alt="logo ">
+                                        </a>
+
+                                    </div>
                                 </h1>
 
                             </div>
@@ -84,15 +101,13 @@
                                             </div>
                                         </div>
 
-                                        
-                                        
                                             <div class="section__content">
                                                 <div class="fieldset">
                                                     <div class="field " data-bind-class="{'field--show-floating-label': email}">
                                                         <div class="field__input-wrapper">
                                                             <label for="email" class="field__label">
                                                                 Email<span style="color: red">*</span><br>
-                                                                <span style="color: red; font-size: 15px">@error('email') {{ $message }} @enderror</span>
+                                                                <span style="color: red; font-size: 15px"></span>
                                                             </label>
                                                             
                                                             <input @if(Auth::check()) name="email2" @else name="email" @endif  id="email" type="email" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->email}}" @endif>
@@ -140,7 +155,7 @@
                                                                 Số điện thoại người nhận<span style="color: red">*
                                                             </label>
                                                                 <span style="color:red;"></span>
-                                                                <span style="color: red; font-size: 15px">@error('phone') {{ $message }} @enderror</span>
+                                                                <span style="color: red; font-size: 15px"></span>
                                                             <input name="phone" id="billingPhone" type="tel" class="field__input" required="" maxlength="10" @if(Auth::check()) value="{{Auth::user()->sdt}}" @endif>
                                                         </div>
 
@@ -151,9 +166,9 @@
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.address}">
                                                         <div class="field__input-wrapper">
                                                             <label for="billingAddress" class="field__label">
-                                                                Địa chỉ người nhận<span style="color: red">*</span > <span style="font-size: 15px">(Đường/Hẻm, Phường/Xã, Quận/Huyện, Tỉnh/TP)</span >
+                                                                Địa chỉ nhận hàng<span style="color: red">*</span > <span style="font-size: 15px">(Đường/Hẻm, Phường/Xã, Quận/Huyện, Tỉnh/TP)</span >
                                                                 <span style="color: red"></span ><br>
-                                                                <span style="color: red; font-size: 15px">@error('diachi') {{ $message }} @enderror</span>
+                                                                <span style="color: red; font-size: 15px"></span>
                                                             </label>
                                                             <textarea name="diachi" id="billingAddress" type="text" class="field__input" required=""></textarea>
                                                         </div>
@@ -445,6 +460,6 @@
 		</svg>
 	</div>
 
-
+@include('sweetalert::alert')
 </body>
 </html>

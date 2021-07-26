@@ -25,17 +25,17 @@ class KhachHangController extends Controller
                 {
                     $user->password = Hash::make($request->Newpassword);
                     $user->save();
-                    Session::flash('message', 'Đổi mật khẩu thành công!');
+                    alert()->success('Đổi mật khẩu thành công!');
                 }
                 elseif($request->Password == $request->Newpassword)
                 {
-                    Session::flash('message', 'Mật khẩu mới phải khác với mật khẩu cũ!');
+                    alert()->error('Mật khẩu mới phải khác với mật khẩu cũ!');
                 }
                 else
-                Session::flash('message', 'Nhập lại không trùng khớp!');
+                alert()->error('Nhập lại không trùng khớp');
            }
         else
-            Session::flash('message', 'Mật khẩu không chính xác!');
+            alert()->error('Mật khẩu không chính xác!');
         return back();
          
     }
@@ -57,9 +57,9 @@ class KhachHangController extends Controller
             }
         }
         if($user->save())
-            Session::flash('message', 'Cập nhập hình ảnh thành công!');
+            alert()->success('Cập nhập hình ảnh thành công!');
         else
-            Session::flash('message', 'Cập nhập hình ảnh thất bại!');
+            alert()->error('Cập nhập hình ảnh thất bại!');
         return back(); 
             
     }
@@ -72,8 +72,7 @@ class KhachHangController extends Controller
         $user->dia_chi=$request->lat;
         $user->gioi_tinh= $request->type;
         if( $user->save())
-        Session::flash('message', 'Đổi thông tin thành công!');
-        return view('user.page.nguoi-dung.nguoidung',compact('user'));
+        alert()->success('Đổi thông tin thành công!');
         return back();
     }
 }

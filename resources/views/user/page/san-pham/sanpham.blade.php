@@ -1,35 +1,6 @@
 @extends('user.master')
 @section('content')
- <!-- Modal quickview -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title product_quickview_title" id="">
-                    <span id="product_quickview_title"></span>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-5">
-                        Hình ảnh
-                        <!-- <span id="product_quickview_hinhanh"></span> -->
-                    </div>
-                    <div class="col-md-7">
-                        Mô tả sản phẩm
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
-        </div>
-</div>
+
 <section class="bread-crumb clearfix">
     <span class="crumb-border"></span>
     <div class="container">
@@ -47,11 +18,6 @@
                 </ul>
             </div>
         </div>
-        @if(Session::get('message'))
-            <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
-                {{ Session::get('message') }}
-            </div>
-        @endif
     </div>
     
 </section>  
@@ -116,16 +82,14 @@
                             </a>
 
                             <div class="product-action-grid clearfix">
-                                <form enctype="multipart/form-data">
-                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <div>
-                                        <a title="Xem chi tiết" href="{{route('chitietsanpham',$sp->id)}}" class="button_wh_40 btn_view right-to quick-view"><i class="fa fa-search"></i>
-                                            <span class="tooltips qv"><span>Xem chi tiết</span></span>
-                                        </a>
-                                        <!-- <input type="button" value="Xem nhanh" data-toggle="model" data-target="#xem" data-id_product="{{$sp->id}}" class="button_wh_40 btn_view right-to xemnhanh">
-                                        </input> -->
-                                    </div>
-                                </form>
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <div>
+                                    <button style = "background: #ff8c04;border-radius: 25px " class="button_wh_40 btn_view right-to xemnhanh" data-toggle="modal" data-target="#xemNhanh" data-id_product="{{$sp->id}}" data-id_img="{{$sp->san_pham->id}}">
+                                        <i style="color: #fff;"class="fa fa-search"></i>
+                                        <span style="color: white">Xem nhanh</span>
+                                    </button>
+                                </div>
+
                                 
                             </div>
                         </div>
@@ -158,19 +122,19 @@
         
         
                             <div class="action__">
-        
-                                <form action="{{route('cart-add',$sp->id)}}" method="GET">
-                                    <div>
-                                        <input type="hidden"/>
-                                        <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
-                                            <span>
-                                                <span class="fa fa-shopping-basket"></span>
-                                            </span>
-                                                Giỏ hàng
-                                        </button>
-                                    </div>
-                                </form>
-
+                                @if($sp->so_luong > 0)
+                                    <form action="{{route('cart-add',$sp->id)}}" method="GET">
+                                        <div>
+                                            <input type="hidden"/>
+                                            <button class=" cart_button_style btn-cart left-to add_to_cart" title="Thêm vào giỏ hàng">
+                                                <span>
+                                                    <span class="fa fa-shopping-basket"></span>
+                                                </span>
+                                                    Giỏ hàng
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endif
                         </div>
 
                     </div>
@@ -221,8 +185,6 @@
 <div class="aside-title-filter">
     <h2><span>Tìm theo</span></h2>
 </div>
-
-
 
 <aside class="aside-item filter-price">
     <div class="aside-title aside-title-fillter">

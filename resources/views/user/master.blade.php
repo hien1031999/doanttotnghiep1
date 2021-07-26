@@ -3,6 +3,7 @@
 @include('user.layout.head')
 <body>
 
+    
 
     @include('user.layout.header')
     
@@ -11,7 +12,8 @@
     @include('user.layout.footer')
     
     @include('user.layout.script')
-   
+    
+    @include('sweetalert::alert')
     
 
 </body>

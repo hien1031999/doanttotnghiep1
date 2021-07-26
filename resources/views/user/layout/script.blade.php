@@ -1,6 +1,5 @@
 
 <script type="text/javascript">
-        
 
         $(document).ready(function() {
             $('#sort').on('change',function() {
@@ -11,7 +10,7 @@
                     window.location = url;
                 }
                 return false;
-            })
+            });
         });
 
         $(document).ready(function() {
@@ -23,7 +22,7 @@
                     window.location = url;
                 }
                 return false;
-            })
+            });
         });
 
         
@@ -834,24 +833,90 @@
 
     </script>
 
+        
     <script type='text/javascript'>
-    $('.xemnhanh').click(function() {
-                var product_id = $(this).data('id_product');
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url:"{{url('/quickview')}}",
-                    method:"POST",
-                    dataType:"JSON",
-                    data:{product_id:product_id, _token:_token},
-                    success:function(data) {
-                        $('#product_quickview_title').html(data.product_name);
-                        $('#product_quickview_id').html(data.product_id);
-                        $('#product_quickview_gia').html(data.product_gia);
-                        $('#product_quickview_hinhanh').html(data.product_hinhanh);
-                    }
-                });
-            });
+
+        $('.xemnhanh').click(function() {
+            var product_id = $(this).data('id_product');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/quickview')}}",
+                method:"POST",
+                dataType:"JSON",
+                data:{product_id:product_id, _token:_token},
+                success:function(data) {
+                    $('#product_quickview_title').html(data.product_name);
+                    $('#product_quickview_id').html(data.product_id);
+                    $('#product_quickview_gia').html(data.product_gia);
+                    $('#product_quickview_giamgia').html(data.product_giamgia);
+                    $('#product_quickview_tinhtrang').html(data.product_tinhtrang);
+                    $('#product_quickview_hinhanh').html(data.product_hinhanh);
+                    $('#product_quickview_thuonghieu').html(data.product_thuonghieu);
+                    $('#product_quickview_motachitiet').html(data.product_motachitiet);
+                    $('#product_quickview_buttonGH').html(data.product_buttonGH);
+                }
+            })
+        });
     </script>
+        <!-- Modal quickview -->
+        <div class="modal fade" id="xemNhanh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <span id="product_quickview_title"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <style type="text/css">
+                    span#product_quickview_hinhanh {
+                        width: 100%;
+                    }
+
+                    @media screen and (min-width: 768px) {
+                        .modal-dialog {
+                            width: 700px; /* New width for default modal */
+                        }
+                        .modal-sm {
+                            width: 350px; /* New width for small modal */
+                        }
+                    }
+                    
+                    @media screen and (min-width: 992px) {
+                        .modal-lg {
+                            width: 1100px; /* New width for large modal */
+                        }
+                    }
+                </style>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span id="product_quickview_hinhanh"></span>
+                        </div>
+                        <div class="col-md-7">
+                            <p style = "font-size: 18px">Giá: <span style="color: #ff8c04;font-size: 1.42857em;line-height: 24px;font-weight: 700;" id="product_quickview_gia"></span>
+                                    <span class="price product-price-old" id="product_quickview_giamgia">
+                            </p>
+                            <p style = "font-size: 18px">Tình trạng: <span id="product_quickview_tinhtrang"></span></p>
+                            <p style = "font-size: 18px">Thương hiệu: <span style="font-size: 18px; font-weight: bold;  color:green;" id="product_quickview_thuonghieu"></span></p>
+                            <span style = "font-size: 18px; color: blue; font-weight: bold">Mô tả sản phẩm</span>
+                            <span id="product_quickview_motachitiet"></span>
+                            <span id="product_quickview_buttonGH"></span>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button style = "background-color: red;color: white; border-radius: 8px" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!-- <button style = "background-color: green; color: white; border-radius: 8px" type="button" class="btn btn-default">Save changes</button> -->
+                </div>
+                </div>
+            </div>
+        </div>
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
 
     <script type='text/javascript'>
         function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("footer")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }loadCSS("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");

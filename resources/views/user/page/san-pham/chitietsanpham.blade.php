@@ -105,46 +105,7 @@
                                             <img id="img_01" class="img-responsive" alt="{{$chitietsanpham->ten_sp}}" src="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-zoom-image="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}"/>
                                         </a>
 
-                                        <div class="hidden">
-                                            
-                                            <div class="item">
-                                                <a href="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-image="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-zoom-image="anh_sp/{{$chitietsanpham->san_pham->hinh_anh}}" data-rel="prettyPhoto[product-gallery]">										
-                                                </a>
-                                            </div>	
-                                            
-                                            
-                                            
-                                            
-                                            <div class="item">
-                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/2-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
-                                                </a>
-                                            </div>	
-                                            
-                                            
-                                            
-                                            
-                                            <div class="item">
-                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
-                                                </a>
-                                            </div>	
-                                            
-                                            
-                                            
-                                            
-                                            <div class="item">
-                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
-                                                </a>
-                                            </div>	
-                                            
-                                            
-                                            
-                                            
-                                            <div class="item">
-                                                <a href="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-rel="prettyPhoto[product-gallery]">										
-                                                </a>
-                                            </div>	
-                                            
-                                        </div>
+
                                     </div>
                                     
                                     <div id="gallery_02" class="col-sm-12 col-xs-12 col-lg-5 col-md-5 owl_width no-padding owl-carousel owl-theme thumbnail-product thumb_product_details not-dqowl" data-loop="false" data-lg-item="3" data-md-items="3" data-sm-items="3" data-xs-items="3" data-margin="10">
@@ -158,24 +119,6 @@
                                             </div>
                                         @endforeach
                                         
-                                        <!-- <div class="item">
-                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/3-3.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920">
-                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/3-3.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/3-3.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="item">
-                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/4-2.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/4-2.jpg?v=1517327927920">
-                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/4-2.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/4-2.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="item">
-                                            <a href="#" data-image="https://bizweb.dktcdn.net/100/286/794/products/5.jpg?v=1517327927920" data-zoom-image="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920">
-                                                <img data-img="//bizweb.dktcdn.net/thumb/1024x1024/100/286/794/products/5.jpg?v=1517327927920" src="//bizweb.dktcdn.net/thumb/small/100/286/794/products/5.jpg?v=1517327927920" alt="Balo Mikkor Irvin Charcoal/Orange">
-                                            </a>
-                                        </div>
-                                         -->
                                     </div> 
                                 </div>
 
@@ -218,7 +161,7 @@
 
 
 
-                                @if($chitietsanpham->tinh_trang == 0)
+                                @if($chitietsanpham->so_luong > 0)
                                     <div class="taxable">
                                         <span class="valibled">Tình trạng:</span>
                                         <span style="color:green;">
@@ -241,6 +184,7 @@
                                         </span>
                                     </div>
                                 @endif
+                                
 
                             </div>
 
@@ -262,16 +206,17 @@
                             </div>
                             
                             <div class="form-product col-sm-12 form-border">
-                            @if($chitietsanpham->tinh_trang == 0)
+                            @if($chitietsanpham->so_luong > 0)
                                 <form action="{{route('cart-add',$chitietsanpham->id)}}" method="GET">
                                     
                                     <div class="form-group form_button_details ">
                                         <header style="font-weight:bold;font-size: 18px;" class="not_bg ">Số lượng:</header>
                                         <div class="custom input_number_product custom-btn-number form-control">									
-                                            <input style="text-align: center;font-weight:bold;font-size: 18px;" class="cart_quantity_input" type="number" name="quantity" value="1" required="" maxlength="2" min="1">
+                                            <input style="text-align: center;font-weight:bold;font-size: 18px; width:80px; height: 30px;border: 2px solid #15b21f;border-radius: 10px;" class="cart_quantity_input" type="number" name="quantity" value="1" required="" maxlength="2" min="1" max="{{$chitietsanpham->so_luong}}">
                                         </div>
-                                                                            
-                                        <button type="submit" class="btn btn-lg  btn-cart button_cart_buy_enable add_to_cart btn_buy" title="Cho vào giỏ hàng">
+                                        <span style="margin-right: 100px;font-size: 18px; font-weight: bold;  color:green;">{{$chitietsanpham->so_luong}} sản phẩm có sẵn</span>
+                                        <br><br>                               
+                                        <button style="margin-right: 110px;" type="submit" class="btn btn-lg  btn-cart button_cart_buy_enable add_to_cart btn_buy" title="Cho vào giỏ hàng">
                                             <i class="fa fa-shopping-basket hidden" ></i>
                                             <span style="font-size: 16px; font-weight: bold;"  >THÊM VÀO GIỎ HÀNG</span>
                                         </button>
@@ -337,7 +282,6 @@
                                             - Kích Thước (DàixRộngxCao): &nbsp;{{$chitietsanpham->kich_thuoc}} cm<br />
                                             - Tải Trọng: &nbsp;{{$chitietsanpham->tai_trong}} Kg<br>
                                             - Ngăn laptop: &nbsp;{{$chitietsanpham->ngan_lap}} inch</p>
-                                        <p style="text-align: center;">&nbsp;</p>
                                         <p style="text-align: center;">&nbsp;</p>
                                         
                                         @if($chitietsanpham->link_youtube != NULL)

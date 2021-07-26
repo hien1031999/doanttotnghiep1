@@ -37,11 +37,6 @@
                 <div class="cart page_cart hidden-xs">
                 @if(Session::has('cart'))  
                     @if(count($cart->items)>0)
-                        @if(Session::get('message'))
-                            <div class="alert alert-success" style='text-align: center; font-size: 18px; font-weight: bold; '>
-                                {{ Session::get('message') }}
-                            </div>				
-                        @endif
                             <div class="bg-scroll">
                                 <div class="cart-thead">
                                     <div style="width: 45%" class="a-left">Sản phẩm</div>
@@ -67,11 +62,11 @@
                                                     <h3 class="product-name"> 
                                                         <a class="text2line" href="{{route('chitietsanpham',$product['item']['id'])}}">{{$product['item']['ten_sp']}}</a> 
                                                     </h3>
-                                                    <span class="variant-title">{{$product['item']['mau_sac']}}</span>
+                                                    <span class="variant-title">Màu: {{$product['item']['mau_sac']}}</span>
                                                     
-                                                    <a class="remove-itemx remove-item-cart" title="Xóa"  href="{{route('cart-del',$product['item']['id'])}}">
+                                                    <a class="remove-itemx remove-item-cart" title="Xóa SP"  href="{{route('cart-del',$product['item']['id'])}}">
                                                         <span>
-                                                            <i class="fa fa-times"></i> Xoá
+                                                            <i class="fa fa-times"></i> Xoá SP
                                                         </span>
                                                     </a>
                                                 </div>
@@ -96,9 +91,11 @@
                                         
                                                 <!-- Số lượng -->
                                                 <div style="width: 14%" class="a-center">
+                                                    
                                                     <form action="{{route('update-cart-qty',$product['item']['id'])}}" method="GET">
-                                                        <input style="text-align: center;font-weight:bold;font-size: 16px;" class="cart_quantity_input" type="number" name="quantity" value="{{$product['so_luong']}}" required="" maxlength="2" min="1">
-                                                        <input style="color:blue;font-weight:bold;font-size: 16px;" type="submit" value="Cập nhập" name="update_qty" class="btn btn-default btn-sm">
+                                                        
+                                                        <input style="text-align: center;font-weight:bold;font-size: 16px;border: 1px solid #000000;border-radius: 10px;" class="cart_quantity_input" type="number" name="quantity" value="{{$product['so_luong']}}" required="" max="{{$product['item']['so_luong']}}" min="1">
+                                                        <input style="color:blue;font-weight:bold;font-size: 16px; border: 2px solid #15b21f; margin-top: 5px;border-radius: 25px;" type="submit" value="Cập nhập" name="update_qty" class="btn btn-default btn-sm">
                                                     </form>
                                                 </div>
 
@@ -134,6 +131,15 @@
                                     </span>
                                 </span>
                             </div>
+
+                            <form action="{{route('xoa-het')}}" method="GET">
+                                        <button type="submit" title="Cho vào giỏ hàng">
+                                            <span style="font-size: 16px; font-weight: bold;"  >Xóa hết</span>
+                                        </button>
+                            </form>
+
+
+                            
                             <button class="btn btn-primary button btn-proceed-checkout f-right" title="Tiến hành đặt hàng" type="button" onclick="window.location.href='dathang'"> 
                                 <span>Tiến hành đặt hàng</span>
                             </button>
