@@ -16,8 +16,9 @@ class CreateKhachHangTable extends Migration
         Schema::create('khach_hang', function (Blueprint $table) {
             
             $table->id();
-            $table->string('email', 30)->nullable();
-            $table->string('password');
+            $table->string('email', 30)->unique();
+            $table->string('password')->nullable();
+            $table->string('google_id',30)->nullable();
             $table->string('ten', 50);
             $table->string('sdt', 10)->nullable();
             $table->string('dia_chi', 100)->nullable();

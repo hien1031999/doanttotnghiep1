@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Models\KhachHang;
+use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 class DangNhapDangKyController extends Controller
 {
@@ -49,7 +50,7 @@ class DangNhapDangKyController extends Controller
         }
 
 
-        $user = new khachhang;
+        $user = new User;
         $user->ten = $request->txtname;
         $user->email = $request->txtemail;
         $user->sdt = $request->txtphone;
@@ -100,5 +101,80 @@ class DangNhapDangKyController extends Controller
         return back();
     }
 
+    public function login_google(){
+        return Socialite::driver('google')->redirect();
+        }
+
+    public function callback_google(){
+
+        try {
+  
+            $user = Socialite::driver('google')->user();
+   
+            $finduser = User::where('google_id', $user->id)->first();
+   
+            if($finduser){
+   
+                Auth::login($finduser);
+                alert()->success('Đăng nhập thành công!');
+                return redirect('trangchu');
+   
+            }else{
+                $newUser                = new User;
+                $newUser->email             = $user->email;
+                $newUser->vai_tro_id        = 1;
+                $newUser->google_id         = $user->id;
+                $newUser->ten               = $user->name;
+                $newUser->hinh_dai_dien     = $user->avatar;
+                $newUser->save();
+    
+                Auth::login($newUser);
+                alert()->success('Đăng nhập thành công!');
+                return redirect('trangchu');
+            }
+  
+        } catch (Exception $e) {
+            return redirect('login-google');
+        }
+    
+    }
+
+    public function login_facebook() {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callback_facebook() {
+        try {
+  
+            $user = Socialite::driver('facebook')->user();
+   
+            $finduser = User::where('provider_id', $user->id)->first();
+   
+            if($finduser){
+   
+                Auth::login($finduser);
+                alert()->success('Đăng nhập thành công!');
+                return redirect('trangchu');
+   
+            }else{
+                $newUser                    = new User;
+                $newUser->email             = $user->email;
+                $newUser->vai_tro_id        = 1;
+                $newUser->provider          = 'facebook';
+                $newUser->provider_id       = $user->id;
+                $newUser->ten               = $user->name;
+                $newUser->save();
+    
+                Auth::login($newUser);
+                alert()->success('Đăng nhập thành công!');
+                return redirect('trangchu');
+            }
+  
+        } catch (Exception $e) {
+            return redirect('login-google');
+        }
+    }
+
+    
   
 }

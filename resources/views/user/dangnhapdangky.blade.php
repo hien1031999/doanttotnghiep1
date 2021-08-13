@@ -56,8 +56,17 @@
 						<a href="#">Quên Mật Khẩu?</a>
 					</li>
 				</ul> -->
+				
 				<div class="aitssendbuttonw3ls">
 					<input type="submit" value="ĐĂNG NHẬP">
+					<p>Hoặc đăng nhập bằng</p>
+					<ul>
+						<li>
+							<br>
+							<a href="login-google"><img width="10%" alt = "Đăng nhập bằng tài khoản Google" src="{{asset('assetsUser/images/gg.png')}}"></a>
+							<a href="login-facebook"><img width="10%" alt = "Đăng nhập bằng tài khoản Facebook" src="{{asset('assetsUser/images/fb.png')}}"></a>
+						</li>
+					</ul>
 					<p> Đăng Ký Tài Khoản Mới <span>→</span> <a class="w3_play_icon1" href="#small-dialog1"> Click Vào Đây</a></p>
 					<div class="clear"></div>
 				</div>

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\LoaiSP;
 use App\Models\GioHang;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         view()->composer('user.layout.header',function($view){
             $loai_sp = LoaiSP::all();
             $view->with('loai_sp',$loai_sp);

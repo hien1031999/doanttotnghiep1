@@ -12,7 +12,15 @@ class KhachHang extends Model
 
     protected $table = 'khach_hang';
     protected $fillable = [
-        'mat_khau',
+        'email',
+        'password',
+        'vai_tro_id',
+        'google_id',
+        'ten',
+        'sdt',
+        'dia_chi',
+        'gioi_tinh',
+        'hinh_dai_dien',
         'bi_khoa'
     ];
 

@@ -108,6 +108,14 @@ Route::group(['namespace' => 'User'], function() {
     Route::post('/dangnhap','DangNhapDangKyController@kiemTraDangNhap')->name('dangnhap');
     Route::get('/dangxuat','DangNhapDangKyController@dangxuat')->name('dangxuat');
     Route::post('/dangky','DangNhapDangKyController@Dangky')->name('dangky');
+
+    //Đăng nhập bằng gg
+    Route::get('/login-google','DangNhapDangKyController@login_google')->name('login_google');
+    Route::get('/google/callback','DangNhapDangKyController@callback_google')->name('callback_google');
+
+    //Đăng nhập bằng FB
+    Route::get('/login-facebook','DangNhapDangKyController@login_facebook')->name('login_facebook');
+    Route::get('/facebook/callback','DangNhapDangKyController@callback_facebook')->name('callback_facebook');
    
    //người dùng
     Route::get('/nguoidung/{id}','khachhangController@nguoidung')->name('nguoidung');

@@ -13,7 +13,7 @@
                         <span class="mr_lr"> <i class="fa fa-angle-right"></i> </span>
                     </li>
                     
-                    <li><strong><span >Người dùng</span></strong><li>
+                    <li><strong><span >Thông tin tài khoản</span></strong><li>
                     
                 </ul>
             </div>
@@ -105,11 +105,11 @@
                                
                                     <div class="box-variant clearfix ">
                                         
-                                        <input type="hidden" name="variantId" value="15530094" />
+                                        <input type="hidden" name="variantId" />
                                         
                                     </div>
                                     <div class="form-group form_button_details ">                           
-                                        <button type="submit" class="btn btn-lg button_cart_buy_enable add_to_cart" onclick="edit_khachhang({{ $user->id }})">
+                                        <button type="submit" class="btn btn-lg button_cart_buy_enable add_to_cart" onclick="edit_khachhang({{$user->id }})">
                                             <i class="fa fa-shopping-basket hidden"></i>&nbsp;&nbsp;<span style="font-size: 18px; font-weight: bold;">Cập nhật Thông Tin</span>
                                         </button>									
                                    
@@ -200,7 +200,7 @@
 							
 						</div>
                         <div class="form-sub-w3ls">
-							<input placeholder="Số Điện Thoại"type="text" required="" name="phone" id="phone">
+							<input placeholder="Số Điện Thoại" type="tel" required="" name="phone" id="phone" maxlength="10">
 						
 						</div>
 						<div class="form-sub-w3ls">
