@@ -23,7 +23,7 @@
                     <p>Chào bạn: <strong style="color:#000; text-decoration: underline">{{$shipping_array['ten']}}</strong></p>
                 </div>
                 <div class="col-md-12">
-                    <p style="color: #000;font-size: 17px;">Bạn hoặc một ai đó đã đăng ký mua hàng tại shop với thông tin như sau: </p>
+                    <p style="color: #000;font-size: 17px;">Bạn đã đăng ký mua hàng tại shop với thông tin như sau: </p>
                     <h4 style="color: #000; text-transform: uppercase">Thông tin đơn hàng</h4>
                     <p style="color: #000;">- Mã đơn hàng: <strong style="text-transform: uppercase; color: #000;">{{$shipping_array['id']}}</strong></p>
                     <h4 style="color:#000; text-transform: uppercase;">Thông tin người nhận</h4>
@@ -46,7 +46,6 @@
                         <span style="color:#000">{{$shipping_array['paymentMethod']}}</span>
                     </p>
 
-                    <p style="color:#000">*Nếu thông tin người nhận hàng không có, chúng tôi sẽ liên hệ với người đặt hàng để trao đổi thông tin về đơn hàng đã đặt.</p>
                     <h4 style="color: #000; text-transform: uppercase">Sản phẩm đã đặt: </h4>
                     <table class="table table-striped" style="border: 1px">
                         <thead>

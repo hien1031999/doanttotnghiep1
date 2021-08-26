@@ -117,12 +117,24 @@
 
                                         <div class="product-box">
                                             <div class="product-thumbnail">
-                                                @if($sps->giam_gia>0)
-                                                    <span class="sale_count"><span class="bf_">-
-                                                {{$sps->giam_gia}}%
-                                                    </span></span>
+                                                @if($sps->so_luong==0)
+                                                    <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                                @else
+                                                    @if($sps->giam_gia>0)
+                                                        <span class="sale_count"><span class="bf_">-
+                                                            {{$sps->giam_gia}}%
+                                                        </span></span>
+                                                    @endif
+                                                    
+                                                    
+                                                    @if($sps->new==0)
+                                                        <img style="width:90px;" src="assetsUser/images/new.jpg"> </img>
+                                                    @endif
+                                                @endif  
+                                                    
+                                                @if($sps->so_luong>0 && $sps->new!=0)
+                                                    <img style="padding-bottom: 90px"></img>
                                                 @endif
-    
                                                 <a href="{{route('chitietsanpham',$sps->id)}}" class="image_link display_flex" data-images="anh_sp/{{$sps->san_pham->hinh_anh}}" title="{{$sps->ten_sp}}">
                                                     <img style="width: 500px; height: 500px;" class="img-responsive lazyload" src="anh_sp/{{$sps->san_pham->hinh_anh}}" data-src="anh_sp/{{$sps->san_pham->hinh_anh}}" alt="{{$sps->ten_sp}}"/>
 
@@ -222,12 +234,24 @@
 
                                                 <div class="product-box">
                                                     <div class="product-thumbnail">
-                                                        @if($spm->giam_gia>0)
-                                                        <span class="sale_count"><span class="bf_">-
-                                                        {{$spm->giam_gia}}%
-                                                        </span></span>
+                                                        @if($spm->so_luong==0)
+                                                        <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                                        @else
+                                                            @if($spm->giam_gia>0)
+                                                                <span class="sale_count"><span class="bf_">-
+                                                                    {{$spm->giam_gia}}%
+                                                                </span></span>
+                                                            @endif
+                                                            
+                                                            
+                                                            @if($spm->new==0)
+                                                                <img style="width:90px;" src="assetsUser/images/new.jpg"> </img>
+                                                            @endif
+                                                        @endif  
+                                                            
+                                                        @if($spm->so_luong>0 && $spm->new!=0)
+                                                            <img style="padding-bottom: 90px"></img>
                                                         @endif
-            
                                                         <a href="{{route('chitietsanpham',$spm->id)}}" class="image_link display_flex" data-images="anh_sp/{{$spm->san_pham->hinh_anh}}" title="{{$spm->ten_sp}}">
                 
                 
@@ -328,11 +352,25 @@
 
                                                     <div class="product-box">
                                                         <div class="product-thumbnail">
-                                                            @if($sp->giam_gia>0)
-                                                                <span class="sale_count"><span class="bf_">-
-                                                                    {{$sp->giam_gia}}%
-                                                                </span></span>
-                                                            @endif
+                                                            @if($sp->so_luong==0)
+                                                            <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                                            @else
+                                                                @if($sp->giam_gia>0)
+                                                                    <span class="sale_count"><span class="bf_">-
+                                                                        {{$sp->giam_gia}}%
+                                                                    </span></span>
+                                                                @endif
+                                                                
+                                                                
+                                                                @if($sp->new==0)
+                                                                    <img style="width:90px;" src="assetsUser/images/new.jpg"> </img>
+                                                                @endif
+                                                            @endif  
+                                                                
+                                                            @if($sp->so_luong>0 && $sp->new!=0)
+                                                                <img style="padding-bottom: 90px"></img>
+                                                            @endif    
+                                                            
 
                                                             <a href="{{route('chitietsanpham',$sp->id)}}" class="image_link display_flex" data-images="anh_sp/{{$sp->san_pham->hinh_anh}}" title="{{$sp->ten_sp}}">
                                                                 <img style="width: 500px; height: 500px;" class="img-responsive lazyload" src="anh_sp/{{$sp->san_pham->hinh_anh}}" data-src="anh_sp/{{$sp->san_pham->hinh_anh}}" alt="{{$sp->ten_sp}}"/>
