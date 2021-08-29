@@ -11,6 +11,9 @@
     <script src='assetsUser/js/script2.js'></script>
     <script src='assetsUser/js/script3.js'></script>
 
+
+    
+
 </head>
 
 @if(count($errors)>0)
@@ -103,7 +106,7 @@
 
                                             <div class="section__content">
                                                 <div class="fieldset">
-                                                    <div class="field " data-bind-class="{'field--show-floating-label': email}">
+                                                    <!-- <div class="field " data-bind-class="{'field--show-floating-label': email}">
                                                         <div class="field__input-wrapper">
                                                             <label for="email" class="field__label">
                                                                 Email<span style="color: red">*</span><br>
@@ -114,14 +117,14 @@
                                                             
                                                         </div>
 
-                                                    </div>
+                                                    </div> -->
 
 
 
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.name}">
                                                         <div class="field__input-wrapper">
                                                             <label for="billingName" class="field__label">Họ và tên người nhận hàng<span style="color: red">*</label>
-                                                            <input name="hoten" id="billingName" type="text" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->ten}}" @endif>
+                                                            <input name="hoten" id="hoten" type="text" class="field__input" required="" @if(Auth::check()) value="{{Auth::user()->ten}}" @endif>
                                                         </div>
 
                                                     </div>
@@ -131,18 +134,18 @@
                                                             <label for="billingGender" class="field__label">Giới tính<span style="color: red">*</label>
                                                             @if(Auth::check())
                                                                 @if(Auth::user()->gioi_tinh=="Nam")
-                                                                    <input type="radio" name="gioitinh" value="Nam" id="nam" checked required=""> Nam
-                                                                    <input type="radio" name="gioitinh" value="Nữ" id="nữ" required=""> Nữ
+                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" checked required=""> Nam
+                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh" required=""> Nữ
                                                                 @elseif(Auth::user()->gioi_tinh=="Nữ")
-                                                                    <input type="radio" name="gioitinh" value="Nam" id="nam" required=""> Nam
-                                                                    <input type="radio" name="gioitinh" value="Nữ" id="nữ"  checkedrequired=""> Nữ
+                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" required=""> Nam
+                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"  checkedrequired=""> Nữ
                                                                 @else
-                                                                    <input type="radio" name="gioitinh" value="Nam" id="nam" required=""> Nam
-                                                                    <input type="radio" name="gioitinh" value="Nữ" id="nữ"> Nữ
+                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" required=""> Nam
+                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"> Nữ
                                                                 @endif
                                                             @else
-                                                                <input type="radio" name="gioitinh" value="Nam" id="nam" required=""> Nam
-                                                                <input type="radio" name="gioitinh" value="Nữ" id="nữ"required=""> Nữ
+                                                                <input type="radio" name="gioitinh" value="Nam" id="gioitinh" required=""> Nam
+                                                                <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"required=""> Nữ
                                                             @endif
 
                                                         </div>
@@ -156,7 +159,7 @@
                                                             </label>
                                                                 <span style="color:red;"></span>
                                                                 <span style="color: red; font-size: 15px"></span>
-                                                            <input name="phone" id="billingPhone" type="tel" class="field__input" required="" maxlength="10" @if(Auth::check()) value="{{Auth::user()->sdt}}" @endif>
+                                                            <input name="sdt" id="sdt" type="tel" class="field__input" required="" maxlength="10" @if(Auth::check()) value="{{Auth::user()->sdt}}" @endif>
                                                         </div>
 
                                                     </div>
@@ -170,7 +173,7 @@
                                                                 <span style="color: red"></span ><br>
                                                                 <span style="color: red; font-size: 15px"></span>
                                                             </label>
-                                                            <textarea name="diachi" id="billingAddress" type="text" class="field__input" required=""></textarea>
+                                                            <textarea name="diachi" id="diachi" type="text" class="field__input" required=""></textarea>
                                                         </div>
 
                                                     </div>
@@ -182,7 +185,7 @@
                                                             <label for="note" class="field__label">
                                                                 Ghi chú (tùy chọn)
                                                             </label>
-                                                            <textarea name="ghichu" id="note" type="text" class="field__input" ></textarea>
+                                                            <textarea name="ghichu" id="ghichu" type="text" class="field__input" ></textarea>
                                                         </div>
 
                                                     </div>
@@ -258,6 +261,18 @@
 
                                                 </div>
                                             </div>
+                                            
+                                            
+                                        </div>
+                                        <br>
+                                        <span style="font-size:19px;font-weight:bold;">Hoặc thanh toán online với</span><br>
+                                        <div class="col-md-12">
+                                            <!-- @php
+                                            $vnd_to_usd =  Session('cart')->tongTien/22790;
+                                            @endphp
+                                            <div style="padding-top: 10px;" id="paypal-button"></div>
+                                            <input type="hidden" id="vndtousd" value="{{round($vnd_to_usd,2)}}">     -->
+                                            <div id="paypal-button-container"></div>
                                         </div>
                                     </section>
                                 </div>
@@ -419,6 +434,7 @@
                                                                 </td>
                                                             </tr>
                                                         </tfoot>
+
                                                 </table>
                                             </div>
                                             <div class="order-summary__nav field__input-btn-wrapper hide-on-mobile layout-flex--row-reverse">
@@ -461,5 +477,121 @@
 	</div>
 
 @include('sweetalert::alert')
+
+{{-- Demo paypal --}}
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AR2AcmUID6cjIY2ymK6wWQe2yWSY--6BQu3cWkzt2HyGgRo_KcjPtNVA03Dm_LTr2Zm9QpsMYp-nTPom">
+        // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+    </script>
+    <script>
+        paypal.Buttons({
+            // Chỉnh css của nút pay pal
+            style: {
+                layout: 'horizontal',
+                color: 'gold',
+                shape: 'pill',
+                label: 'paypal',
+            },
+
+
+            // Hàm khởi tạo thanh toán của paypal
+            createOrder: function(data, actions) {
+                
+                    // This function sets up the details of the transaction, including the amount and line item details.
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                currency_code: 'USD',
+                                value: "{{ round(Session::get('cart')->tongTien / 22790, 2) }}", // Lấy tổng thành tiền của hóa đơn để thanh toán thông qua session và chia cho 23.000 VNĐ để chuyên.
+
+                            }
+                        }]
+                    });
+                
+
+            },
+
+            //Hàm chạy sau khi chấp nhận thành toán của pay pal
+            onApprove: function(data, actions) {
+
+                // Authorize the transaction
+                actions.order.authorize().then(function(authorization) {
+
+                    // Get the authorization id
+                    var authorizationID = authorization.purchase_units[0]
+                        .payments.authorizations[0].id
+
+                    // Call your server to validate and capture the transaction
+                    return fetch('/paypal-transaction-complete', {
+                        method: 'post',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            orderID: data.orderID,
+                            authorizationID: authorizationID
+                        })
+
+                    });
+                });
+
+
+
+
+                // This function captures the funds from the transaction.
+                // Hàm xử lý kết quả sau khi thanh toán thành công
+                return actions.order.capture().then(function(details) {
+
+                    //Biến trạng thái của thanh toán paypal.
+
+                    var paypal_ten = $('#hoten').val();
+                    var paypal_sdt = $('#sdt').val();
+                    var paypal_gioitinh = $('#gioitinh').val();
+                    // var paypal_email = $('#email').val();
+                    var paypal_diachi = $('#diachi').val();
+                    var paypal_ghichu = $('#ghichu').val();
+
+                    //Tạo form cho phương thức get sau khi thanh toán thành công.
+                    var formReturnHome = document.createElement('form');
+                    formReturnHome.method = 'GET';
+                    formReturnHome.action = "{{ route('dathangpaythanhcong') }}";
+                    document.body.appendChild(formReturnHome);
+
+                    //PHương thức ajax gửi form mua hàng sau khi khách hàng chấp thuận thanh toán.
+                    $.ajax({
+                        url: "/dat-hang-paypal",
+                        method: "POST", 
+                        data: {
+                            hoten: paypal_ten,
+                            sdt: paypal_sdt,
+                            gioitinh: paypal_gioitinh,
+                            diachi: paypal_diachi,
+                            // email: paypal_email,
+                            ghichu: paypal_ghichu,
+                            _token: $("input[name='_token']").val(),
+                            
+                        },
+                        success: function(data) {
+                            //Hiện confirm box thông báo đã thành toán thành công và chuyển sang trang chủ sau khi nhấp 'OK'.
+                            formReturnHome.submit();
+                        },
+                        errors: function(data) {
+                            alertify.error("Lỗi Tải Trang thanh toans");
+                        }
+                    });
+
+
+
+
+
+                });
+
+            }
+
+
+
+        }).render('#paypal-button-container');
+        //This function displays Smart Payment Buttons on your web page.
+    </script>
 </body>
 </html>

@@ -9,7 +9,6 @@ use App\Models\HoaDon;
 use App\Models\ChiTietHoaDon;
 use App\Models\ChiTietSP;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\User\datetime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -25,12 +24,12 @@ class DatHangController extends Controller
 
         $validator = Validator::make($req->all(), [
             'email'=>'unique:khach_hang,email',
-            'phone'=>'min:10',
+            'sdt'=>'min:10',
             'diachi'=>'min:15',
         ],
         [
             'email.unique'=>'Email đã tồn tại, hãy ĐĂNG NHẬP để đặt hàng hoặc nhập 1 Email khác!',
-            'phone.min'=>'Số điện thoại không đúng định dạng!',
+            'sdt.min'=>'Số điện thoại không đúng định dạng!',
             'diachi.min'=>'Địa chỉ nhận hàng phải rõ ràng!',
         ]);
         if($validator->fails()) {
@@ -43,12 +42,151 @@ class DatHangController extends Controller
         //Đặt hàng khi đã đăng nhập
         if (Auth::check()) {     
             $hoadon = new HoaDon;
+            $mahd = now();
+            $hoadon->ma_hd = 'HD'.$mahd.'';
             $hoadon->khach_hang_id = Auth::user()->id;
-            $hoadon->ngay_dat = date('Y-m-d');
+            $hoadon->ngay_dat = now();
             $hoadon->tong_tien = $giohang->tongTien;
             $hoadon->dia_chi_nhan = $req->diachi;
             $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
             $hoadon->ghi_chu = $req->ghichu;
+            $hoadon->tinh_trang = 'Đang duyệt';
+            $hoadon->save();
+            foreach($giohang->items as $key => $value) {
+
+                //Update số lượng khi đặt hàng
+                $updateSL = ChiTietSP::find($key);
+                $updateSL->so_luong -= $value['so_luong'];
+                $updateSL->save();
+
+                $chitiethoadon = new ChiTietHoaDon;
+                $chitiethoadon->hoa_don_id = $hoadon->id;
+                $chitiethoadon->san_pham_id = $key;
+                $chitiethoadon->so_luong = $value['so_luong'];
+                $chitiethoadon->don_gia = ($value['gia']/$value['so_luong']);
+                $chitiethoadon->thanh_tien = ($value['gia']/$value['so_luong'])*$value['so_luong'];
+                $chitiethoadon->save();
+            }
+
+            $now = date('Y-m-d');
+            $title_email = "Đơn hàng xác nhận ngày".' '.$now;
+            if(Auth::check()) {
+                $khachhang = User::find(Auth::user()->id);
+            }
+            $emailKH = $khachhang->email;
+
+            if(Session::get('cart')==true) {
+                foreach($giohang->items as $key => $value) {
+                    $cart_array[] = array(
+                        'ten_sp' =>$value['item']['ten_sp'],
+                        'gia' => $value['gia'],
+                        'so_luong' => $value['so_luong']
+                    );
+                }
+            }
+
+            $shipping_array = array(
+                'id'            =>$hoadon->id,
+                'ten'           => $req->hoten,
+                'email'         => $req->$emailKH,
+                'sdt'           => $req->sdt,
+                'dia_chi'       => $req->diachi,
+                'paymentMethod' => $req->paymentMethod,
+                'ghi_chu'       => $req->ghichu
+            );
+
+            Mail::send('user.page.mail.mail-order',['cart_array' => $cart_array, 'shipping_array' => $shipping_array]
+            , function($message) use ($title_email,$emailKH) {
+                $message->to($emailKH)->subject($title_email);
+                $message->from($emailKH,$title_email);
+            });
+            
+            Session::forget('cart');
+            alert()->success('Đặt hàng thành công!','Cảm ơn quý khách đã mua sản phẩm của chúng tôi ♥');
+            return redirect()->route('trangchu');
+
+            
+        }
+
+        //Đặt hàng khi chưa đăng nhập
+        else
+        {
+            $User = new User;
+            $User->vai_tro_id = 1;
+            $User->email = $req->email;
+            $User->ten = $req->hoten;
+            $User->sdt = $req->sdt;
+            $User->gioi_tinh = $req->gioitinh;
+            $User->save();
+
+            $hoadon = new HoaDon;
+            $mahd = now();
+            $hoadon->ma_hd = 'HD'.$mahd.'';
+            $hoadon->khach_hang_id = $User->id;
+            $hoadon->ngay_dat = now();
+            $hoadon->tong_tien = $giohang->tongTien;
+            $hoadon->dia_chi_nhan = $req->diachi;
+            $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
+            $hoadon->ghi_chu = $req->ghichu;
+            $hoadon->tinh_trang = 'Đang duyệt';
+            $hoadon->save();
+
+            foreach($giohang->items as $key => $value) {
+                //Update số lượng khi đặt hàng
+                $updateSL = ChiTietSP::find($key);
+                $updateSL->so_luong -= $value['so_luong'];
+                $updateSL->save();
+
+                $chitiethoadon = new ChiTietHoaDon;
+                $chitiethoadon->hoa_don_id = $hoadon->id;
+                $chitiethoadon->san_pham_id = $key;
+                $chitiethoadon->so_luong = $value['so_luong'];
+                $chitiethoadon->don_gia = ($value['gia']/$value['so_luong']);
+                $chitiethoadon->thanh_tien = ($value['gia']/$value['so_luong'])*$value['so_luong'];
+                $chitiethoadon->save();      
+            }
+            
+
+            Session::forget('cart');
+            alert()->success('Đặt hàng thành công!','Cảm ơn bạn đã mua sản phẩm của chúng tôi ♥');
+            return redirect()->route('trangchu');
+
+        }
+
+
+    }
+
+    public function datHangPayPal(Request $req) {
+
+        $validator = Validator::make($req->all(), [
+            'email'=>'unique:khach_hang,email',
+            'sdt'=>'min:10',
+            'diachi'=>'min:15',
+        ],
+        [
+            'email.unique'=>'Email đã tồn tại, hãy ĐĂNG NHẬP để đặt hàng hoặc nhập 1 Email khác!',
+            'sdt.min'=>'Số điện thoại không đúng định dạng!',
+            'diachi.min'=>'Địa chỉ nhận hàng phải rõ ràng!',
+        ]);
+        if($validator->fails()) {
+            return back()->with('toast_error',$validator->messages()->all()[0])->withInput();
+        }
+
+        //Lấy giỏ hàng
+        $giohang = Session::get('cart');
+
+        //Đặt hàng khi đã đăng nhập
+        if (Auth::check()) {     
+            $hoadon = new HoaDon;
+            $mahd = now();
+            $hoadon->ma_hd = 'HD'.$mahd.'';
+            $hoadon->khach_hang_id = Auth::user()->id;
+            $hoadon->ngay_dat = now();
+            $hoadon->tong_tien = $giohang->tongTien;
+            $hoadon->dia_chi_nhan = $req->diachi;
+            $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
+            $hoadon->ghi_chu = $req->ghichu;
+            $hoadon->tinh_trang = 'Đang duyệt';
             $hoadon->save();
 
             foreach($giohang->items as $key => $value) {
@@ -88,7 +226,7 @@ class DatHangController extends Controller
                 'id'            =>$hoadon->id,
                 'ten'           => $req->hoten,
                 'email'         => $req->email2,
-                'sdt'           => $req->phone,
+                'sdt'           => $req->sdt,
                 'dia_chi'       => $req->diachi,
                 'paymentMethod' => $req->paymentMethod,
                 'ghi_chu'       => $req->ghichu
@@ -101,7 +239,7 @@ class DatHangController extends Controller
             });
             
             Session::forget('cart');
-            alert()->success('Đặt hàng thành công!','Cảm ơn quý khách đã mua sản phẩm của chúng tôi');
+            alert()->success('Đặt hàng thành công!','Cảm ơn quý khách đã mua sản phẩm của chúng tôi ♥');
             return redirect()->route('trangchu');
 
             
@@ -111,21 +249,23 @@ class DatHangController extends Controller
         else
         {
             $User = new User;
-            $User->email = $req->email;
-            $User->password = Hash::make('0123456789');
             $User->vai_tro_id = 1;
+            // $User->email = $req->email;
             $User->ten = $req->hoten;
-            $User->sdt = $req->phone;
+            $User->sdt = $req->sdt;
             $User->gioi_tinh = $req->gioitinh;
             $User->save();
 
             $hoadon = new HoaDon;
+            $mahd = now();
+            $hoadon->ma_hd = 'HD'.$mahd.'';
             $hoadon->khach_hang_id = $User->id;
             $hoadon->ngay_dat = now();
             $hoadon->tong_tien = $giohang->tongTien;
             $hoadon->dia_chi_nhan = $req->diachi;
-            $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
+            $hoadon->hinh_thuc_thanh_toan = 'PayPal';
             $hoadon->ghi_chu = $req->ghichu;
+            $hoadon->tinh_trang = 'Đang duyệt';
             $hoadon->save();
 
             foreach($giohang->items as $key => $value) {
@@ -142,42 +282,21 @@ class DatHangController extends Controller
                 $chitiethoadon->thanh_tien = ($value['gia']/$value['so_luong'])*$value['so_luong'];
                 $chitiethoadon->save();      
             }
-            $now = date('Y-m-d');
-            $title_email = "Đơn hàng xác nhận ngày".' '.$now;
-            $emailKH = $req->email;
-
-            if(Session::get('cart')==true) {
-                foreach($giohang->items as $key => $value) {
-                    $cart_array[] = array(
-                        'ten_sp' =>$value['item']['ten_sp'],
-                        'gia' => $value['gia'],
-                        'so_luong' => $value['so_luong']
-                    );
-                }
-            }
-
-            $shipping_array = array(
-                'id'            =>$hoadon->id,
-                'ten'           => $req->hoten,
-                'email'         => $req->email,
-                'sdt'           => $req->phone,
-                'dia_chi'       => $req->diachi,
-                'paymentMethod' => $req->paymentMethod,
-                'ghi_chu'       => $req->ghichu
-            );
-
-            Mail::send('user.page.mail.mail-order',['cart_array' => $cart_array, 'shipping_array' => $shipping_array]
-            , function($message) use ($title_email,$emailKH) {
-                $message->to($emailKH)->subject($title_email);
-                $message->from($emailKH,$title_email);
-            });
+            
 
             Session::forget('cart');
-            alert()->success('Đặt hàng thành công!','Chúng tôi cảm ơn và tự động tạo tài khoản cho bạn với email bạn đã nhập và mật khẩu 0123456789');
-            return redirect()->route('trangchu');
+            return response()->json(['success'=>'Quý khách đã thành toán pay pal thành công!']);
+
 
         }
 
+        
 
+    }
+
+    public function datHangThanhCong() {
+        Session::forget('cart');
+        alert()->success('Đặt hàng thành công!','Cảm ơn quý khách đã mua sản phẩm của chúng tôi ♥');
+        return redirect()->route('trangchu');
     }
 }

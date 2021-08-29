@@ -153,6 +153,8 @@ Route::group(['namespace' => 'User'], function() {
     //Đặt hàng
     Route::get('/dathang', 'DatHangController@index')->name('dathang');
     Route::post('/dat-hang','DatHangController@datHang')->name('dat-hang');
+    Route::post('/dat-hang-paypal','DatHangController@datHangPayPal')->name('dat-hang-pay');
+    Route::get('/dathangpaythanhcong', 'DatHangController@datHangThanhCong')->name('dathangpaythanhcong');
 
     //Tìm kiếm
     Route::get('/search', 'TrangChuController@search')->name('search');
