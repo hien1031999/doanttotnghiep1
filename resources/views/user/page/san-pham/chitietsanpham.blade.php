@@ -341,9 +341,8 @@
                                 <div id="tab-3" class="tab-content">
                                     <div class="rte">
                                     <div id="fb-root"></div>
-                                        
-                                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=958736781539672&autoLogAppEvents=1" nonce="KDCixEhi"></script>
-                                        <div class="fb-comments" data-href="{{$url}}" data-width="800" data-numposts="7"></div>
+                                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=958736781539672&autoLogAppEvents=1" nonce="3rr7Oget"></script>
+                                        <div class="fb-comments" data-href="{{$url}}" data-width="650" data-numposts="7"></div>
                                     </div>	
                                 </div>
                                 

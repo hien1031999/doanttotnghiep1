@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//Gr admin
 Route::group(['middleware' => 'guest', 'prefix' => 'Admin/login', 'namespace' => 'Admin\Login_Logout'], function() {
     Route::get('', 'LoginController@login')->name('login');
     Route::post('', 'LoginController@doLogin')->name('do-login');
@@ -99,6 +100,7 @@ Route::group(['middleware' => 'auth:admin'], function() {
         });
     });
 });
+
 
 
 //Gr User

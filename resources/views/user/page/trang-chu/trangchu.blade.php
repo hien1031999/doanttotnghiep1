@@ -9,7 +9,7 @@
             
             <div class="container">
                 
-                    <div class="slider-layout-1 col-md-9 col-sm-12 col-xs-12">
+                    <div style="width:100%" class="slider-layout-1 col-md-12 col-sm-12 col-xs-12">
                         <div class="owl-carousel" data-nav="true" data-lg-items="1" data-md-items="1" data-height="false" data-xs-items="1" data-sm-items="1" data-margin="0">
     
     
@@ -118,7 +118,7 @@
                                         <div class="product-box">
                                             <div class="product-thumbnail">
                                                 @if($sps->so_luong==0)
-                                                    <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                                    <img style="width:160px;" src="assetsUser/images/hethang.png"> </img>
                                                 @else
                                                     @if($sps->giam_gia>0)
                                                         <span class="sale_count"><span class="bf_">-
@@ -235,7 +235,7 @@
                                                 <div class="product-box">
                                                     <div class="product-thumbnail">
                                                         @if($spm->so_luong==0)
-                                                        <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                                        <img style="width:160px;" src="assetsUser/images/hethang.png"> </img>
                                                         @else
                                                             @if($spm->giam_gia>0)
                                                                 <span class="sale_count"><span class="bf_">-
@@ -353,7 +353,7 @@
                                                     <div class="product-box">
                                                         <div class="product-thumbnail">
                                                             @if($sp->so_luong==0)
-                                                            <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                                            <img style="width:160px;" src="assetsUser/images/hethang.png"> </img>
                                                             @else
                                                                 @if($sp->giam_gia>0)
                                                                     <span class="sale_count"><span class="bf_">-

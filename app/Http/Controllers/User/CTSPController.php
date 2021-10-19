@@ -19,7 +19,7 @@ class CTSPController extends Controller
 
         $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang',0)->paginate(6);
 
-        $sanphamtuongtu = ChiTietSP::where('loai_sp_id',$chitietsanpham->loai_sp_id)->where('tinh_trang',0)->get();
+        $sanphamtuongtu = ChiTietSP::where('loai_sp_id',$chitietsanpham->loai_sp_id)->where('tinh_trang',0)->paginate(6);
 
         $rating = DanhGia::where('chi_tiet_sp_id',$chitietsanpham->id)->avg('diem');
         $rating = round($rating);

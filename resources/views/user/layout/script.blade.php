@@ -647,8 +647,8 @@
                     responsiveClass:true,
                     dots:dot,
                     nav:nav,
-                    autoplay:false,
-                    autoplayTimeout:1000,
+                    autoplay:true,
+                    autoplayTimeout:5000,
                     lazyLoad: true,
                     autoplayHoverPause:true,
                     responsive:{

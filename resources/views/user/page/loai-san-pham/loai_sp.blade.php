@@ -70,7 +70,7 @@
                         <div class="product-box">															
                             <div class="product-thumbnail">
                                 @if($sp->so_luong==0)
-                                    <img style="width:90px;" src="assetsUser/images/hethang.png"> </img>
+                                    <img style="width:160px;" src="assetsUser/images/hethang.png"> </img>
                                 @else
                                     @if($sp->giam_gia>0)
                                         <span class="sale_count"><span class="bf_">-

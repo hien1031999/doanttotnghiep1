@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Session;
 
 class GioHang extends Model
 {
-
-	use HasFactory;
-    protected $table = "gio_hang";
-
 	public $items = null;
 	public $hinhanh = null;
 	public $tongSL = 0;

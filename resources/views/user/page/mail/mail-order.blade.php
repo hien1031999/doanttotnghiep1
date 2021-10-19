@@ -64,13 +64,13 @@
                             
                             @foreach($cart_array as $cart)
                             @php
-                            $sub_total = $cart['so_luong']*$cart['gia'];
-                            $total+=$sub_total;
+                            $sub_total = $cart['gia'];
+                            $total = Session::get('cart')->tongTien;
                             @endphp
 
                             <tr style="color:#000;">
                                 <td>{{$cart['ten_sp']}}</td>
-                                <td>{{number_format($cart['gia'],0,",",".")}} đ </td> 
+                                <td>{{number_format(($cart['gia']/$cart['so_luong']),0,",",".")}} đ </td> 
                                 <td align="center">{{$cart['so_luong']}} </td>
                                 <td>{{number_format($sub_total,0,",",".")}} đ </td></td>
                             </tr>
