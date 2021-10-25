@@ -5,15 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slide;
-use App\Models\SupSlide;
 use App\Models\ChiTietSP;
-use App\Models\LoaiSP;
-use App\Models\SanPham;
 class TrangChuController extends Controller
 {
     public function index() {
         $slide = Slide::all();
-        $sup_slide = SupSlide::paginate(2);
+
 
 
 
@@ -22,7 +19,7 @@ class TrangChuController extends Controller
         $sanphammoi = ChiTietSP::where('new',0)->where('tinh_trang','0')->get();
         $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang',0)->get();
         
-        return view('user.page.trang-chu.trangchu',compact('slide','sup_slide','sanpham','sanphamsale','sanphammoi'));
+        return view('user.page.trang-chu.trangchu',compact('slide','sanpham','sanphamsale','sanphammoi'));
     }
 
     public function search(Request $req) {

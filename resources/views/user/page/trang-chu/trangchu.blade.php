@@ -26,17 +26,7 @@
     
                         </div>
                     </div>
-<!-- 
-                    @foreach($sup_slide as $ssl)
-                    <div class="banner-top-layout-1 col-md-3 col-sm-12 col-xs-12 clearfix spcustom_html">
-    
-                        <div class="col-md-12 col-xs-4">
-                            <a class="banner banner-{{$ssl->id}}" href="{{$ssl->link}}">
-                                <img class="img-responsive lazyload" src="assetsUser/images/{{$ssl->image}}" data-src="assetsUser/images/{{$ssl->image}}" alt="banner {{$ssl->id}}"></a>
-                        </div>
-    
-                    </div>
-                    @endforeach  -->
+
                     
                 
             </div>
