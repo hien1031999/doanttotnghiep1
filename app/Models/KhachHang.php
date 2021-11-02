@@ -23,7 +23,9 @@ class KhachHang extends Model
         'hinh_dai_dien',
         'bi_khoa'
     ];
-
+    public function hoadon() {
+        return $this->hasMany(HoaDon::class,'khach_hang_id','id');
+    }
     protected $hidden = ['mat_khau'];
 
     public function biKhoaSortable($query, $direction) {

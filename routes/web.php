@@ -14,18 +14,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+<<<<<<< Updated upstream
 //Gr admin
 Route::group(['middleware' => 'guest', 'prefix' => 'Admin/login', 'namespace' => 'Admin\Login_Logout'], function() {
+=======
+Route::group(['middleware' => 'guest', 'prefix' => 'admin/login', 'namespace' => 'admin\Login_Logout'], function() {
+>>>>>>> Stashed changes
     Route::get('', 'LoginController@login')->name('login');
     Route::post('', 'LoginController@doLogin')->name('do-login');
 });
 
 Route::group(['middleware' => 'auth:admin'], function() {
-    Route::group(['namespace' => 'Admin\Login_Logout'], function() {
+    Route::group(['namespace' => 'admin\Login_Logout'], function() {
         Route::get('logout', 'LogoutController@logout')->name('logout');
     });
 
-    Route::group(['namespace' => 'Admin'], function() {
+    Route::group(['namespace' => 'admin'], function() {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
         Route::prefix('chi-tiet-nhan-vien/{id}')->group(function() {
@@ -37,7 +41,7 @@ Route::group(['middleware' => 'auth:admin'], function() {
             });
         });
 
-        Route::prefix('Admin/nhan-vien')->group(function() {
+        Route::prefix('admin/nhan-vien')->group(function() {
             Route::name('nhan-vien.')->group(function() {
                 Route::get('', 'QuanTriVienController@index')->name('list');
                 Route::get('them-moi', 'QuanTriVienController@create')->name('create');
@@ -50,7 +54,7 @@ Route::group(['middleware' => 'auth:admin'], function() {
             });
         });
 
-        Route::prefix('Admin/khach-hang')->group(function() {
+        Route::prefix('admin/khach-hang')->group(function() {
             Route::name('khach-hang.')->group(function() {
                 Route::get('', 'KhachHangController@index')->name('list');
                 Route::delete('xoa', 'KhachHangController@destroy')->name('delete');
@@ -59,13 +63,13 @@ Route::group(['middleware' => 'auth:admin'], function() {
             });
         });
 
-        Route::prefix('Admin/vai-tro')->group(function() {
+        Route::prefix('admin/vai-tro')->group(function() {
             Route::name('vai-tro.')->group(function() {
                 Route::get('', 'VaiTroController@index')->name('list');
             });
         });
 
-        Route::prefix('Admin/nha-san-xuat')->group(function() {
+        Route::prefix('admin/nha-san-xuat')->group(function() {
             Route::name('nha-san-xuat.')->group(function() {
                 Route::get('', 'NhaSanXuatController@index')->name('list');
                 Route::get('them-moi', 'NhaSanXuatController@create')->name('create');
@@ -76,7 +80,7 @@ Route::group(['middleware' => 'auth:admin'], function() {
             });
         });
 
-        Route::prefix('Admin/loai-san-pham')->group(function() {
+        Route::prefix('admin/loai-san-pham')->group(function() {
             Route::name('loai-san-pham.')->group(function() {
                 Route::get('', 'LoaiSPController@index')->name('list');
                 Route::get('them-moi', 'LoaiSPController@create')->name('create');
@@ -87,7 +91,7 @@ Route::group(['middleware' => 'auth:admin'], function() {
             });
         });
 
-        Route::prefix('Admin/san-pham')->group(function() {
+        Route::prefix('admin/san-pham')->group(function() {
             Route::name('san-pham.')->group(function() {
                 Route::get('', 'SanPhamController@index')->name('list');
                 Route::get('them-moi', 'SanPhamController@create')->name('create');
@@ -95,9 +99,28 @@ Route::group(['middleware' => 'auth:admin'], function() {
                 Route::delete('xoa', 'SanPhamController@destroy')->name('delete');
                 Route::get('cap-nhat/{id}', 'SanPhamController@edit')->name('edit');
                 Route::post('cap-nhat/{id}', 'SanPhamController@update')->name('update');
-                Route::get('chi-tiet-san-pham', 'SanPhamController@show')->name('detail');
+                Route::get('chi-tiet-san-pham/{id}', 'SanPhamController@show')->name('detail');
+                Route::get('thong-ke', 'SanPhamController@statistic')->name('statistic');
+                Route::get('xuat-excel', 'SanPhamController@excel')->name('excel');
             });
         });
+
+
+        Route::prefix('admin/Hoa-don')->group(function() {
+            Route::name('Hoa-don.')->group(function() {
+                Route::get('', 'HoadonController@index')->name('list');
+                Route::get('cap-nhat/{id}', 'HoadonController@edit')->name('edit');
+                Route::post('cap-nhat/{id}', 'HoadonController@update')->name('update');
+                Route::get('inhoadon/{id}', 'HoadonController@inhoadon')->name('inhoadon'); 
+                Route::delete('xoa', 'HoadonController@destroy')->name('delete');           
+                Route::get('thong-ke', 'HoadonController@statistic')->name('statistic');
+                Route::get('xuat-excel', 'HoadonController@excel')->name('excel');
+            });
+        });
+
+        //oder code
+        
+       
     });
 });
 

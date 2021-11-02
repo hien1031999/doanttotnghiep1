@@ -11,6 +11,7 @@ use App\Models\NhaSanXuat;
 use App\Http\Requests\SanPham\StoreRequest;
 use App\Http\Requests\SanPham\UpdateRequest;
 use App\Helpers\UploadFile as Upload;
+use App\Exports\ProductExport;
 
 class SanPhamController extends Controller
 {
@@ -30,14 +31,32 @@ class SanPhamController extends Controller
             $products->where('ma_sp', 'like', "%{$keyword}%");
         }
 
-        $products = $products->orderBy('ma_sp')
+        $products = $products->with('chi_tiet_sp')
+                             ->orderBy('ma_sp')
                              ->paginate($this->limit);
 
         return view("admin.{$this->viewFolder}.list", compact('pageInfo', 'products', 'keyword'));
     }
 
-    public function show(Request $req) {
-        // when click button detail -> show detail product
+    public function show($id) {
+        $product = SanPham::find($id);
+
+        if (!empty($product)) {
+            $product_detail = ChiTietSP::where('san_pham_id', $product->id)
+                                       ->with(['loai_sp', 'nha_san_xuat'])
+                                       ->first();
+            return response()->json([
+                'title'     => 'Chi tiết sản phẩm',
+                'status'    => 'success',
+                'data'      => $product_detail
+            ]);
+        }
+
+        return response()->json([
+            'title'     => 'Chi tiết sản phẩm',
+            'status'    => 'error',
+            'msg'       => $this->msgNotFound
+        ]);
     }
 
     public function create() {
@@ -75,8 +94,6 @@ class SanPhamController extends Controller
             'kich_thuoc'    => $req->kich_thuoc,
             'tai_trong'     => $req->tai_trong,
             'ngan_lap'      => $req->ngan_lap,
-            'link_youtube'  => $req->link_youtube,
-            'new'           => $req->new,
             'tinh_trang'    => $req->tinh_trang
         ]);
 
@@ -150,8 +167,6 @@ class SanPhamController extends Controller
                     'kich_thuoc'    => $valid['kich_thuoc'],
                     'tai_trong'     => $valid['tai_trong'],
                     'ngan_lap'      => $valid['ngan_lap'],
-                    'link_youtube'  => $valid['link_youtube'],
-                    'new'           => $valid['new'],
                     'tinh_trang'    => $valid['tinh_trang']
                 ]);
 
@@ -215,5 +230,28 @@ class SanPhamController extends Controller
             'status'    => 'error',
             'msg'       => $this->msgDeleteErr
         ]);
+    }
+
+    public function statistic(Request $req) {
+        $pageInfo = [
+            'page'  => 'Thống kê sản phẩm'
+        ];
+
+        $search = [
+            'from'  => $req->fromDate,
+            'to'    => $req->toDate
+        ];
+
+        $products = SanPham::getProductByDate($req)
+                           ->paginate($this->limit);
+
+        return view("admin.{$this->viewFolder}.statistic", compact('pageInfo', 'products', 'search'));
+    }
+
+    public function excel(Request $req) {
+        $products = SanPham::getProductByDate($req)
+                           ->get();
+
+        return new ProductExport($products);
     }
 }

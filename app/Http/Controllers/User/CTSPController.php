@@ -14,7 +14,7 @@ class CTSPController extends Controller
     public function index(Request $req,$type) {
         $url = $req->url();
         $chitietsanpham = ChiTietSP::where('id',$req->id)->first();
-
+          
         $loai_sp = LoaiSP::where('id',$type)->first();
 
         $sanphamsale = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang',0)->paginate(6);

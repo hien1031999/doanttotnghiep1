@@ -52,7 +52,9 @@ class KhachHangController extends Controller
 
         $customers = $customers->orderBy('ten')
                                ->paginate($this->limit);
-
+                            //    echo "<pre>";
+                            //    print_r($customers);
+                            //    exit;
         return view("admin.{$this->viewFolder}.list", compact('pageInfo', 'customers', 'inputSearch', 'isSearch'));
     }
 

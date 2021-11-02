@@ -15,9 +15,11 @@ class CreateDanhGiaTable extends Migration
     {
         Schema::create('danh_gia', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chi_tiet_sp_id');
-            $table->integer('diem');
+            $table->foreignId('san_pham_id');
+            $table->integer('diem')->default(0);
+            $table->string('nhan_xet')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
