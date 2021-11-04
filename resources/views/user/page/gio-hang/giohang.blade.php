@@ -132,11 +132,11 @@
                                 </span>
                             </div>
 
-                            <form action="{{route('xoa-het')}}" method="GET">
-                                        <button type="submit" title="Cho vào giỏ hàng">
-                                            <span style="font-size: 16px; font-weight: bold;"  >Xóa hết</span>
+                            
+                                        <button onclick="xoahet()" title="Xóa hết sản phẩm" style="background-color: red; border-radius:10px; display: block; margin-top: 0em; margin-block-end: 1em;">
+                                            <span style="font-size: 16px; font-weight: bold;  color: white; ">Xóa hết</span>
                                         </button>
-                            </form>
+                            
 
 
                             
@@ -163,7 +163,27 @@
 
 @endsection
 
-
+<script>
+    function xoahet(){
+        Swal.fire({
+        title: 'Bạn có chắc xóa hết sản phẩm trong giỏ hàng ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Tôi đồng ý!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/xoa-het",
+                method: "GET", 
+                type: "DELETE"
+            });
+            location.reload();
+        }
+        })
+    }
+</script>
     <script type='text/javascript'>
         function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("footer")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }loadCSS("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
         function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("footer")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }loadCSS("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");

@@ -25,7 +25,7 @@ class DatHangController extends Controller
         $validator = Validator::make($req->all(), [
             'email'=>'unique:khach_hang,email',
             'sdt'=>'min:10',
-            'diachi'=>'min:15',
+            'diachi'=>'min:12',
         ],
         [
             'email.unique'=>'Email đã tồn tại, hãy ĐĂNG NHẬP để đặt hàng hoặc nhập 1 Email khác!',
@@ -157,21 +157,6 @@ class DatHangController extends Controller
     }
 
     public function datHangPayPal(Request $req) {
-
-        $validator = Validator::make($req->all(), [
-            'email'=>'unique:khach_hang,email',
-            'sdt'=>'min:10',
-            'diachi'=>'min:15',
-        ],
-        [
-            'email.unique'=>'Email đã tồn tại, hãy ĐĂNG NHẬP để đặt hàng hoặc nhập 1 Email khác!',
-            'sdt.min'=>'Số điện thoại không đúng định dạng!',
-            'diachi.min'=>'Địa chỉ nhận hàng phải rõ ràng!',
-        ]);
-        if($validator->fails()) {
-            return back()->with('toast_error',$validator->messages()->all()[0])->withInput();
-        }
-
         //Lấy giỏ hàng
         $giohang = Session::get('cart');
 
@@ -184,7 +169,7 @@ class DatHangController extends Controller
             $hoadon->ngay_dat = now();
             $hoadon->tong_tien = $giohang->tongTien;
             $hoadon->dia_chi_nhan = $req->diachi;
-            $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
+            $hoadon->hinh_thuc_thanh_toan = "PayPal";
             $hoadon->ghi_chu = $req->ghichu;
             $hoadon->tinh_trang = 'Đang duyệt';
             $hoadon->save();

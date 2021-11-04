@@ -438,7 +438,7 @@
                                                 </table>
                                             </div>
                                             <div class="order-summary__nav field__input-btn-wrapper hide-on-mobile layout-flex--row-reverse">
-                                                <button type="submit" class="btn btn-checkout spinner" data-bind-class="{'spinner--active': isSubmitingCheckout}" data-bind-disabled="isSubmitingCheckout || isLoadingReductionCode">
+                                                <button type="submit" class="btn btn-checkout spinner" >
                                                     <span class="spinner-label">ĐẶT HÀNG</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="spinner-loader">
                                                         <use href="#spinner"></use>
@@ -477,7 +477,7 @@
 	</div>
 
 @include('sweetalert::alert')
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {{-- Demo paypal --}}
     <script
         src="https://www.paypal.com/sdk/js?client-id=AR2AcmUID6cjIY2ymK6wWQe2yWSY--6BQu3cWkzt2HyGgRo_KcjPtNVA03Dm_LTr2Zm9QpsMYp-nTPom">
@@ -496,19 +496,57 @@
 
             // Hàm khởi tạo thanh toán của paypal
             createOrder: function(data, actions) {
-                
-                    // This function sets up the details of the transaction, including the amount and line item details.
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                currency_code: 'USD',
-                                value: "{{ round(Session::get('cart')->tongTien / 22790, 2) }}", // Lấy tổng thành tiền của hóa đơn để thanh toán thông qua session và chia cho 23.000 VNĐ để chuyên.
+                    var paypal_ten = $('#hoten').val();
+                    var paypal_sdt = $('#sdt').val();
+                    var paypal_diachi = $('#diachi').val();
 
-                            }
-                        }]
-                    });
-                
+                    if (paypal_ten.length < 1) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!!!',
+                        text: 'Vui lòng nhập Họ tên!',
+                        })
+                    return false;
+                    } else if (paypal_sdt.length < 1) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!!!',
+                        text: 'Vui lòng nhập Số điện thoại!',
+                        })
+                        return false;
+                    } else if (paypal_sdt.length > 10 && paypal_sdt.length < 10) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!!!',
+                        text: 'Số điện thoại không đúng định dạng!',
+                        })
+                        return false;
+                    } else if (paypal_diachi.length < 1) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!!!',
+                        text: 'Vui lòng nhập Địa chỉ nhận hàng!',
+                        })
+                        return false;
+                    } else if (paypal_diachi.length < 12) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!!!',
+                        text: 'Vui lòng nhập địa chỉ nhận hàng rõ ràng hơn!',
+                        })
+                        return false;
+                    } else {
+                        // This function sets up the details of the transaction, including the amount and line item details.
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    currency_code: 'USD',
+                                    value: "{{ round(Session::get('cart')->tongTien / 22790, 2) }}", // Lấy tổng thành tiền của hóa đơn để thanh toán thông qua session và chia cho 23.000 VNĐ để chuyên.
 
+                                }
+                            }]
+                        });
+                    }
             },
 
             //Hàm chạy sau khi chấp nhận thành toán của pay pal
@@ -550,13 +588,12 @@
                     // var paypal_email = $('#email').val();
                     var paypal_diachi = $('#diachi').val();
                     var paypal_ghichu = $('#ghichu').val();
-
                     //Tạo form cho phương thức get sau khi thanh toán thành công.
                     var formReturnHome = document.createElement('form');
                     formReturnHome.method = 'GET';
                     formReturnHome.action = "{{ route('dathangpaythanhcong') }}";
                     document.body.appendChild(formReturnHome);
-
+                    
                     //PHương thức ajax gửi form mua hàng sau khi khách hàng chấp thuận thanh toán.
                     $.ajax({
                         url: "/dat-hang-paypal",
@@ -576,7 +613,7 @@
                             formReturnHome.submit();
                         },
                         errors: function(data) {
-                            alertify.error("Lỗi Tải Trang thanh toans");
+                            alertify.error("Lỗi Tải Trang thanh toán!");
                         }
                     });
 
@@ -586,12 +623,14 @@
 
                 });
 
-            }
+
+        }
 
 
 
         }).render('#paypal-button-container');
         //This function displays Smart Payment Buttons on your web page.
     </script>
+    
 </body>
 </html>
