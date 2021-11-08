@@ -57,7 +57,7 @@
     
             <input type="hidden" name="_method" value="patch"> -->
 
-            <form action="{{route('dat-hang')}}" method="post" class="beta-form-checkout">
+            <form class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="wrap">
                     <main class="main">
@@ -267,11 +267,6 @@
                                         <br>
                                         <span style="font-size:19px;font-weight:bold;">Hoặc thanh toán online với</span><br>
                                         <div class="col-md-12">
-                                            <!-- @php
-                                            $vnd_to_usd =  Session('cart')->tongTien/22790;
-                                            @endphp
-                                            <div style="padding-top: 10px;" id="paypal-button"></div>
-                                            <input type="hidden" id="vndtousd" value="{{round($vnd_to_usd,2)}}">     -->
                                             <div id="paypal-button-container"></div>
                                         </div>
                                     </section>
@@ -438,7 +433,7 @@
                                                 </table>
                                             </div>
                                             <div class="order-summary__nav field__input-btn-wrapper hide-on-mobile layout-flex--row-reverse">
-                                                <button type="submit" class="btn btn-checkout spinner" >
+                                                <button onclick="datHangCOD()" class="btn btn-checkout spinner" >
                                                     <span class="spinner-label">ĐẶT HÀNG</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="spinner-loader">
                                                         <use href="#spinner"></use>
@@ -452,6 +447,7 @@
                                                 </a>
 
                                             </div>
+                                            <span style="font-size:16px; color: red">(Chú ý: Vui lòng kiểm tra thông tin kỹ lưỡng trước khi ĐẶT HÀNG !)</span>
 
                                             <!-- <div id="common-alert-sidebar" data-tg-refresh="refreshError">
                                                 <div class="alert alert--danger hide-on-mobile hide" data-bind-show="!isSubmitingCheckout &amp;&amp; isSubmitingCheckoutError" data-bind="submitingCheckoutErrorMessage">Có lỗi xảy ra khi xử lý. Vui lòng thử lại</div>
@@ -476,9 +472,84 @@
 		</svg>
 	</div>
 
-@include('sweetalert::alert')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{-- Demo paypal --}}
+
+<!-- Đặt hàng cod -->
+<script>
+    function datHangCOD(){
+        var ten = $('#hoten').val();
+        var sdt = $('#sdt').val();
+        var gioitinh = $('#gioitinh').val();
+        var diachi = $('#diachi').val();
+        var ghichu = $('#ghichu').val();
+        var formReturnHome = document.createElement('form');
+        formReturnHome.method = 'GET';
+        formReturnHome.action = "{{ route('dathangpaythanhcong') }}";
+        document.body.appendChild(formReturnHome);
+
+        if (ten.length < 1) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Lỗi!!!',
+            text: 'Vui lòng nhập Họ tên!',
+            })
+            return false;
+        } else if (sdt.length < 1) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Lỗi!!!',
+            text: 'Vui lòng nhập Số điện thoại!',
+            })
+            return false;
+        } else if (sdt.length > 10 && paypal_sdt.length < 10) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Lỗi!!!',
+            text: 'Số điện thoại không đúng định dạng!',
+            })
+            return false;
+        } else if (diachi.length < 1) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Lỗi!!!',
+            text: 'Vui lòng nhập Địa chỉ nhận hàng!',
+            })
+            return false;
+        } else if (diachi.length < 12) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Lỗi!!!',
+            text: 'Vui lòng nhập địa chỉ nhận hàng rõ ràng hơn!',
+            })
+            return false;
+        } 
+        
+        // ajax đặt hàng
+        $.ajax({
+            url: "/dat-hang",
+            method: "POST", 
+            data: {
+                hoten: ten,
+                sdt: sdt,
+                gioitinh: gioitinh,
+                diachi: diachi,
+                ghichu: ghichu,
+                _token: $("input[name='_token']").val(),    
+            },
+            success: function(data) {
+                //Hiện confirm box thông báo đã thành toán thành công và chuyển sang trang chủ sau khi nhấp 'OK'.
+                formReturnHome.submit();
+            },
+            errors: function(data) {
+                alert("Lỗi Tải Trang thanh toán!");
+            }
+                    
+        });
+            
+    }
+
+</script>
+<!-- {{-- Demo paypal --}} -->
     <script
         src="https://www.paypal.com/sdk/js?client-id=AR2AcmUID6cjIY2ymK6wWQe2yWSY--6BQu3cWkzt2HyGgRo_KcjPtNVA03Dm_LTr2Zm9QpsMYp-nTPom">
         // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
@@ -626,11 +697,10 @@
 
         }
 
-
-
         }).render('#paypal-button-container');
         //This function displays Smart Payment Buttons on your web page.
     </script>
+    
     
 </body>
 </html>

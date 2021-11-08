@@ -43,7 +43,6 @@ class GioHangController extends Controller
         $cart->xoaHet();
         Session::forget('cart');
         toast('Xóa giỏ hàng thành công!','success');
-        return redirect('giohang');
     }
 
     public function index(Request $req)

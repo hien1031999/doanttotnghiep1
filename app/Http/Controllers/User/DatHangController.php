@@ -17,24 +17,16 @@ use Mail;
 class DatHangController extends Controller
 {
     public function index(){
-        return view('user.page.dat-hang.dathang');
+        if(Session::get('cart')==null)
+        {   
+            alert()->error('Lỗi!','Hãy thêm sản phẩm vào giỏ hàng trước!');
+            return redirect()->route('trangchu');
+        } else {
+            return view('user.page.dat-hang.dathang');
+        }
     }
 
     public function datHang(Request $req) {
-
-        $validator = Validator::make($req->all(), [
-            'email'=>'unique:khach_hang,email',
-            'sdt'=>'min:10',
-            'diachi'=>'min:12',
-        ],
-        [
-            'email.unique'=>'Email đã tồn tại, hãy ĐĂNG NHẬP để đặt hàng hoặc nhập 1 Email khác!',
-            'sdt.min'=>'Số điện thoại không đúng định dạng!',
-            'diachi.min'=>'Địa chỉ nhận hàng phải rõ ràng!',
-        ]);
-        if($validator->fails()) {
-            return back()->with('toast_error',$validator->messages()->all()[0])->withInput();
-        }
 
         //Lấy giỏ hàng
         $giohang = Session::get('cart');
@@ -101,11 +93,6 @@ class DatHangController extends Controller
                 $message->from($emailKH,$title_email);
             });
             
-            Session::forget('cart');
-            alert()->success('Đặt hàng thành công!','Cảm ơn quý khách đã mua sản phẩm của chúng tôi ♥');
-            return redirect()->route('trangchu');
-
-            
         }
 
         //Đặt hàng khi chưa đăng nhập
@@ -145,11 +132,6 @@ class DatHangController extends Controller
                 $chitiethoadon->thanh_tien = ($value['gia']/$value['so_luong'])*$value['so_luong'];
                 $chitiethoadon->save();      
             }
-            
-
-            Session::forget('cart');
-            alert()->success('Đặt hàng thành công!','Cảm ơn bạn đã mua sản phẩm của chúng tôi ♥');
-            return redirect()->route('trangchu');
 
         }
 
@@ -223,11 +205,6 @@ class DatHangController extends Controller
                 $message->from($emailKH,$title_email);
             });
             
-            Session::forget('cart');
-            alert()->success('Đặt hàng thành công!','Cảm ơn quý khách đã mua sản phẩm của chúng tôi ♥');
-            return redirect()->route('trangchu');
-
-            
         }
 
         //Đặt hàng khi chưa đăng nhập
@@ -268,11 +245,6 @@ class DatHangController extends Controller
                 $chitiethoadon->save();      
             }
             
-
-            Session::forget('cart');
-            return response()->json(['success'=>'Quý khách đã thành toán pay pal thành công!']);
-
-
         }
 
         

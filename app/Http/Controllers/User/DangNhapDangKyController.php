@@ -14,7 +14,13 @@ class DangNhapDangKyController extends Controller
 {
     //
     public function index(){
-        return view('user.dangnhapdangky');
+        if(Auth::check()) {
+            alert()->error('Lỗi!','Bạn đã đăng nhập vào Website!');
+            return redirect()->route('trangchu');
+        } else {
+            return view('user.dangnhapdangky');
+        }
+        
     }
     public function __construct()
     {
