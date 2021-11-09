@@ -46,9 +46,9 @@
 				<br>
 			</div>
 				<span class="text-danger"></span>
-				<input type="email" name="email" placeholder="EMAIL" value="{{ old ('email')}}"> <br>
+				<input type="email" name="email" placeholder="EMAIL" value="{{ old ('email')}}" required=""> <br>
 				<span class="text-danger"></span>
-				<input type="password" name="password" placeholder="MẬT KHẨU" >
+				<input type="password" name="password" placeholder="MẬT KHẨU" required="">
 				<!-- <ul class="agileinfotickwthree">
 					<li>
 						<input type="checkbox" name="remember_me" value="remember_me">
@@ -58,7 +58,7 @@
 				</ul> -->
 				
 				<div class="aitssendbuttonw3ls">
-					<input type="submit" value="ĐĂNG NHẬP">
+					<input type="submit" value="ĐĂNG NHẬP" style="font-size: 20px">
 					<p>Hoặc đăng nhập bằng</p>
 					<ul>
 						<li>
@@ -78,39 +78,39 @@
 		<div class="contact-form1">
 			<div class="contact-w3-agileits">
 				<h3>ĐĂNG KÝ</h3>
-				<form action="{{ route('dangky') }}" method="post" id="form">
-					{{ csrf_field() }}
+				<form id="form">
+				<input type="hidden" name="_token" value="{{csrf_token()}}">
 						<div class="form-sub-w3ls">
 							<span class="text-danger"></span>
-							<input placeholder="Họ Tên"  type="text"  name="txtname" required="">
+							<input placeholder="Họ Tên"  type="text"  name="tendk" id="ten" required="">
 							<div class="icon-agile">
 								<i class="fa fa-user" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
 							<span class="text-danger"></span>
-							<input placeholder="Email" class="mail" type="email"  name="txtemail" required="">
+							<input placeholder="Email" class="mail" type="email"  name="emaildk" id="email" required="">
 							<div class="icon-agile">
 								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
 							<span class="text-danger"></span>
-							<input placeholder="Số điện thoại" class="number" type="text"  name="txtphone" maxlength="10" required="">
+							<input placeholder="Số điện thoại" class="number" type="text"  name="sdtdk" id="sdt" maxlength="10" >
 							<div class="icon-agile">
 								<i class="fa fa-user" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
 							<span class="text-danger"></span>
-							<input placeholder="Mật Khẩu"  type="password" name="txtpassword" maxlength="20" required="">
+							<input placeholder="Mật Khẩu"  type="password" name="passworddk" id="password" maxlength="20" required="">
 							<div class="icon-agile">
 								<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 							</div>
 						</div>
 						<div class="form-sub-w3ls">
 							<span class="text-danger"></span>
-							<input placeholder="Nhập Lại Mật Khẩu"  type="password" name="txtrepassword" required="">
+							<input placeholder="Nhập Lại Mật Khẩu"  type="password" name="repassworddk" id="repassword" required="">
 							<div class="icon-agile">
 								<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 							</div>
@@ -119,8 +119,8 @@
 						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="">
 							Tôi chấp nhận các Điều khoản & Điều kiện</label>
 					</div> -->
-					<div class="submit-w3l">
-						<input type="submit" value="Đăng Ký">
+					<div >
+						<button style="background: #fff; color: #537b35;" onclick="dangKy()"><span style="font-size: 30px">Đăng Ký</span></button>
 					</div>
 				</form>
 			</div>
@@ -152,7 +152,7 @@
 		});
 	</script> -->
 
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
 		$(document).ready(function() {
 		$('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
@@ -169,29 +169,98 @@
 																		
 		});
 
-		$(document).ready(function() {
-                $('form').parsley();
+	</script>
+	
+		
+	<script>
+		function dangKy(){
 
-                @if (session('status'))
-                    @if (session('status') == 'success')
-                        alertify.success("{!! session('message') !!}");
-                    @else
-                        alertify.error("{!! session('message') !!}");
-                    @endif
-                @endif
+			var ten = $('#ten').val();
+			var email = $('#email').val();
+			var sdt = $('#sdt').val();
+			var password = $('#password').val();
+			var repassword = $('#repassword').val();
+			var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-                $('#username').focus();
+			if (ten.length < 1) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Chưa nhập nhập Họ tên!',
+				})
+				return false;
+			} else if (email.length < 1) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Chưa nhập nhập Email !',
+				})
+				return false;
+			} else if (!filter.test(email)) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Email nhập không hợp lệ !',
+				})
+				return false;
+			} else if (sdt.length < 1) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Chưa nhập nhập Số điện thoại !',
+				})
+				return false;
+			} else if (sdt.length !== 10) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Số điện thoại không đúng định dạng !',
+				})
+				return false;
+			} else if (password.length < 1) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Chưa nhập nhập Mật khẩu !',
+				})
+				return false;
+			} else if (password.length < 6) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Mật khẩu ít nhất 6 kí tự !',
+				})
+				return false;
+			} else if (repassword.length < 1) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Chưa nhập nhập Nhập lại mật khẩu !',
+				})
+				return false;
+			} else if (password !== repassword) {
+				Swal.fire({
+				icon: 'error',
+				title: 'Lỗi!!!',
+				text: 'Mật khẩu không trùng khớp!',
+				})
+				return false;
+			}
 
-                $(".password").click(function() {
-                    $(this).toggleClass("fa-eye fa-eye-slash");
-                    var input = $($(this).attr("toggle"));
-                    if (input.attr("type") == "password") {
-                        input.attr("type", "text");
-                    } else {
-                        input.attr("type", "password");
-                    }
-                });
-            });
+				$.ajax({
+				url: "/dangky",
+				method: "POST", 
+				data: {
+					tendk: ten,
+					emaildk: email,
+					sdtdk: sdt,
+					passworddk: password,
+					_token: $("input[name='_token']").val(),
+				}
+						
+				});
+			
+		}
 	</script>
 @include('sweetalert::alert')
 </body>

@@ -29,27 +29,10 @@ class DangNhapDangKyController extends Controller
     public function dangky(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'txtemail'=>'required|email|unique:khach_hang,email',
-                'txtpassword'=>'required|min:6|',
-                'txtname'=>'required',
-                'txtphone'=>'required|min:10|',
-                'txtrepassword'=>'required|same:txtpassword'
+            'emaildk'=>'unique:khach_hang,email',
         ],
         [
-            'txtemail.required'=>'Vui lòng nhập email!',
-                'txtemail.email'=>'Không đúng định dạng email!',
-                'txtemail.unique'=>'Email đã tồn tại!',
-
-                'txtpassword.required'=>'Vui lòng nhập mật khẩu!',
-                'txtpassword.min'=>'Mật khẩu ít nhất 6 ký tự!',
-                
-                'txtname.required'=>'Vui lòng nhập họ tên!',
-
-                'txtphone.required'=>'Vui lòng nhập số điện thoại!',
-                'txtphone.min'=>'Số điện thoại không đúng định dạng!',
-
-                'txtrepassword.required'=>'Vui lòng nhập nhập lại mật khẩu!',
-                'txtrepassword.same'=>'Mật khẩu không trùng khớp!',
+            'emaildk.unique'=>'Email đăng ký đã tồn tại!',
         ]);
         if($validator->fails()) {
             return back()->with('toast_error',$validator->messages()->all()[0])->withInput();
@@ -57,10 +40,10 @@ class DangNhapDangKyController extends Controller
 
 
         $user = new User;
-        $user->ten = $request->txtname;
-        $user->email = $request->txtemail;
-        $user->sdt = $request->txtphone;
-        $user->password = Hash::make($request->txtpassword);
+        $user->ten = $request->tendk;
+        $user->email = $request->emaildk;
+        $user->sdt = $request->sdtdk;
+        $user->password = Hash::make($request->passworddk);
         $user->vai_tro_id = 1;
         $user->save();
         alert()->success('Đăng ký thành công!');

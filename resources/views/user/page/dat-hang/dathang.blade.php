@@ -684,7 +684,7 @@
                             formReturnHome.submit();
                         },
                         errors: function(data) {
-                            alertify.error("Lỗi Tải Trang thanh toán!");
+                            alert("Lỗi Tải Trang thanh toán!");
                         }
                     });
 
