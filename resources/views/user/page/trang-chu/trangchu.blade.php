@@ -559,7 +559,7 @@
     
     
   
-    <section class="awe-section-9">
+    <!-- <section class="awe-section-9">
         <h3 class="hidden">&nbsp;</h3>
         <section class="section_brand">
             <div class="container">
@@ -678,7 +678,7 @@
                 </div>
             </div>
         </section>
-    </section>
+    </section> -->
 
 
     @endsection

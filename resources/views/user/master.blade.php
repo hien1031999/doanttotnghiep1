@@ -3,8 +3,6 @@
 @include('user.layout.head')
 <body>
 
-    
-
     @include('user.layout.header')
     
     @yield('content')
@@ -15,6 +13,5 @@
     
     @include('sweetalert::alert')
     
-
 </body>
 </html>

@@ -34,12 +34,12 @@ class StoreRequest extends FormRequest
             'so_luong'      => 'bail|required|integer',
             'giam_gia'      => 'bail|nullable|numeric',
             'hinh_anh.*'    => 'bail|required|mimes:jpg,jpeg,png',
-            'chat_lieu'     => 'bail|required|regex:/^[a-zA-ZÀÁÃẢẠÂẤẦẨẪẬĂẮẰẲẴẶÈÉẸẺẼÊỀẾỂỄỆÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴÝỶỸĐàáãạảâấầẩẫậăắằẳẵặèéẹẻẽêềếểễệìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳýỵỷỹđ\s\+]{1,100}$/',
-            'so_ngan'       => 'bail|required|regex:/^[\wÀÁÃẢẠÂẤẦẨẪẬĂẮẰẲẴẶÈÉẸẺẼÊỀẾỂỄỆÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴÝỶỸĐàáãạảâấầẩẫậăắằẳẵặèéẹẻẽêềếểễệìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳýỵỷỹđ\s\-]{1,100}$/',
-            'khoi_luong'    => 'bail|required|regex:/^[\d.]{1,5}$/',
-            'kich_thuoc'    => 'bail|required|regex:/^[\dx\s]{1,20}$/',
-            'tai_trong'     => 'bail|required|regex:/^[\d]{1,3}$/',
-            'ngan_lap'      => 'bail|required|regex:/^[\d]{1,2}$/',
+            'chat_lieu'     => 'bail|required',
+            'so_ngan'       => 'bail|required',
+            'khoi_luong'    => 'bail|required',
+            'kich_thuoc'    => 'bail|required',
+            'tai_trong'     => 'bail|required',
+            'ngan_lap'      => 'bail|required',
             'tinh_trang'    => 'bail|required|boolean'
         ];
     }
@@ -56,10 +56,8 @@ class StoreRequest extends FormRequest
             'so_luong.required'     => 'Vui lòng nhập số lượng',
             'hinh_anh.*.required'   => 'Vui lòng chọn hình ảnh',
             'ma_sp.unique'          => 'Mã sản phẩm đã tồn tại',
-            'ma_sp.regex'           => 'Mã sản phẩm không đúng định dạng',
             'loai_sp_id.integer'    => 'Loại sản phẩm không đúng định dạng',
             'ten_sp.unique'         => 'Tên sản phẩm đã tồn tại',
-            'ten_sp.regex'          => 'Tên sản phẩm không đúng định dạng',
             'gia.numeric'           => 'Giá không đúng định dạng',
             'mo_ta.max'             => 'Mô tả không quá 191 ký tự',
             'mau_sac.max'           => 'Màu sắc không quá 50 ký tự',
@@ -73,12 +71,6 @@ class StoreRequest extends FormRequest
             'tai_trong.required'    => 'Vui lòng nhập tải trọng',
             'ngan_lap.required'     => 'Vui lòng nhập ngăn laptop',
             'tinh_trang.required'   => 'Vui lòng chọn tình trạng',
-            'chat_lieu.regex'       => 'Chất liệu không đúng định dạng',
-            'so_ngan.regex'         => 'Số ngăn không đúng định dạng',
-            'khoi_luong.regex'      => 'Khối lượng không đúng định dạng',
-            'kich_thuoc.regex'      => 'Kích thước không đúng định dạng',
-            'tai_trong.regex'       => 'Tải trọng không đúng định dạng',
-            'ngan_lap.regex'        => 'Ngăn laptop không đúng định dạng',
             'tinh_trang.boolean'    => 'Tình trạng không đúng định dạng'
         ];
     }

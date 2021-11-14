@@ -833,7 +833,8 @@
 
     </script>
 
-        
+
+<!-- js nút xem nhanh -->
     <script type='text/javascript'>
 
         $('.xemnhanh').click(function() {
@@ -894,8 +895,8 @@
                             <span id="product_quickview_hinhanh"></span>
                         </div>
                         <div class="col-md-7">
-                            <p style = "font-size: 18px">Giá: <span style="color: #ff8c04;font-size: 1.42857em;line-height: 24px;font-weight: 700;" id="product_quickview_gia"></span>
-                                    <span class="price product-price-old" id="product_quickview_giamgia">
+                            <p style = "font-size: 18px">Giá: <span style="color: #ff8c04;font-size: 1.42857em;line-height: 24px;font-weight: 700;" id="product_quickview_giamgia"></span>
+                                    <span class="price product-price-old" id="product_quickview_gia">
                             </p>
                             <p style = "font-size: 18px">Tình trạng: <span id="product_quickview_tinhtrang"></span></p>
                             <p style = "font-size: 18px">Thương hiệu: <span style="font-size: 18px; font-weight: bold;  color:green;" id="product_quickview_thuonghieu"></span></p>

@@ -29,8 +29,8 @@ class HoadonController extends Controller
 
         $inputSearch = [
             'ma_hd'   => $req-> ma_hd,
-            'ngay_dat'       => $req->ngay_dat,
-            'dia_chi_nhan'   => $req->dia_chi_nhan
+            'tong_tien'       => $req->tong_tien,
+           
         ];
 
         $isSearch = false;
