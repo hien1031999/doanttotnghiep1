@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="col-2 form-group">
-                            <label>Giảm giá</label>
+                            <label>Giảm giá(%)</label>
                             <input type="text" name="giam_gia" id="giam_gia" class="form-control" maxlength="5" placeholder="Nhập giảm giá" @isset($product_detail) value="{{ $product_detail->giam_gia }}" @endisset/>
                         </div>
 

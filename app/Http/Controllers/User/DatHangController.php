@@ -40,7 +40,7 @@ class DatHangController extends Controller
             $hoadon->ngay_dat = now();
             $hoadon->tong_tien = $giohang->tongTien;
             $hoadon->dia_chi_nhan = $req->diachi;
-            $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
+            $hoadon->hinh_thuc_thanh_toan = "COD";
             $hoadon->ghi_chu = $req->ghichu;
             $hoadon->tinh_trang = 'Đang duyệt';
             $hoadon->save();
@@ -78,12 +78,12 @@ class DatHangController extends Controller
             }
 
             $shipping_array = array(
-                'id'            =>$hoadon->id,
+                'id'            =>$hoadon->ma_hd,
                 'ten'           => $req->hoten,
-                'email'         => $req->$emailKH,
+                'email'         => $emailKH,
                 'sdt'           => $req->sdt,
                 'dia_chi'       => $req->diachi,
-                'paymentMethod' => $req->paymentMethod,
+                'paymentMethod' => "COD",
                 'ghi_chu'       => $req->ghichu
             );
 
@@ -113,7 +113,7 @@ class DatHangController extends Controller
             $hoadon->ngay_dat = now();
             $hoadon->tong_tien = $giohang->tongTien;
             $hoadon->dia_chi_nhan = $req->diachi;
-            $hoadon->hinh_thuc_thanh_toan = $req->paymentMethod;
+            $hoadon->hinh_thuc_thanh_toan = "COD";
             $hoadon->ghi_chu = $req->ghichu;
             $hoadon->tinh_trang = 'Đang duyệt';
             $hoadon->save();
@@ -190,12 +190,12 @@ class DatHangController extends Controller
             }
 
             $shipping_array = array(
-                'id'            =>$hoadon->id,
+                'id'            =>$hoadon->ma_hd,
                 'ten'           => $req->hoten,
-                'email'         => $req->email2,
+                'email'         => $emailKH,
                 'sdt'           => $req->sdt,
                 'dia_chi'       => $req->diachi,
-                'paymentMethod' => $req->paymentMethod,
+                'paymentMethod' => "PayPal",
                 'ghi_chu'       => $req->ghichu
             );
 

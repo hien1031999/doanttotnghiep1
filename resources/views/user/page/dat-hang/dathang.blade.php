@@ -131,21 +131,21 @@
 
                                                     <div class="field " data-bind-class="{'field--show-floating-label': billing.gender}">
                                                         <div class="field__input-wrapper">
-                                                            <label for="billingGender" class="field__label">Giới tính<span style="color: red">*</label>
+                                                            <label for="billingGender" class="field__label">Giới tính</label>
                                                             @if(Auth::check())
                                                                 @if(Auth::user()->gioi_tinh=="Nam")
-                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" checked required=""> Nam
-                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh" required=""> Nữ
+                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" checked > Nam
+                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh" > Nữ
                                                                 @elseif(Auth::user()->gioi_tinh=="Nữ")
-                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" required=""> Nam
-                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"  checkedrequired=""> Nữ
+                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" > Nam
+                                                                    <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"  checked> Nữ
                                                                 @else
-                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" required=""> Nam
+                                                                    <input type="radio" name="gioitinh" value="Nam" id="gioitinh" > Nam
                                                                     <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"> Nữ
                                                                 @endif
                                                             @else
-                                                                <input type="radio" name="gioitinh" value="Nam" id="gioitinh" required=""> Nam
-                                                                <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"required=""> Nữ
+                                                                <input type="radio" name="gioitinh" value="Nam" id="gioitinh" > Nam
+                                                                <input type="radio" name="gioitinh" value="Nữ" id="gioitinh"> Nữ
                                                             @endif
 
                                                         </div>
@@ -501,7 +501,7 @@
             text: 'Vui lòng nhập Số điện thoại!',
             })
             return false;
-        } else if (sdt.length > 10 && paypal_sdt.length < 10) {
+        } else if (sdt.length !== 10) {
             Swal.fire({
             icon: 'error',
             title: 'Lỗi!!!',
@@ -585,7 +585,7 @@
                         text: 'Vui lòng nhập Số điện thoại!',
                         })
                         return false;
-                    } else if (paypal_sdt.length > 10 && paypal_sdt.length < 10) {
+                    } else if (paypal_sdt.length !== 10) {
                         Swal.fire({
                         icon: 'error',
                         title: 'Lỗi!!!',

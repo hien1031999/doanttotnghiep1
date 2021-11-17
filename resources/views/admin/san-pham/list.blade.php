@@ -170,7 +170,7 @@
                 <dd class="col-sm-8">${data.data.gia.toLocaleString('vi')} VND</dd>
 
                 <dt class="col-sm-4 font-15">Giảm giá</dt>
-                <dd class="col-sm-8">${data.data.giam_gia * 100}%</dd>
+                <dd class="col-sm-8">${data.data.giam_gia}%</dd>
 
                 <dt class="col-sm-4 font-15">Khối lượng</dt>
                 <dd class="col-sm-8">${data.data.khoi_luong} kg</dd>

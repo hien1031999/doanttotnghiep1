@@ -219,8 +219,8 @@ button {
                 <td>{{$hoadon->ma_hd }}</td>             
                 <td>{{ $chitiethoadon->sanpham->chi_tiet_sp->ten_sp}}</td>
                 <td>{{ $chitiethoadon->so_luong }}</td>
-                <td>{{ $chitiethoadon->don_gia }}</td>
-                <td>{{ $chitiethoadon->thanh_tien }}</td>
+                <td>{{ number_format($chitiethoadon->don_gia,0,",",".")}} VNĐ</td>
+                <td>{{ number_format($chitiethoadon->thanh_tien,0,",",".") }} VNĐ</td>
                 <td>{{ $hoadon->dia_chi_nhan }}</td>
                 <td>{{$hoadon->ngay_dat }}</td>   
                 
