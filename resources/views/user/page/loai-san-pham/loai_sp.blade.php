@@ -207,7 +207,42 @@
     </div>
 </aside>
 
+<aside class="aside-item filter-price">
+    <div class="aside-title aside-title-fillter">
+        <div class="title_module"><h2><span style="font-weight: bold;" >Màu sắc</span></h2></div>
+    </div>
+    <div class="aside-content filter-group">
+        <ul name="sort-color" id="sort-color" >
 
+            <li><a href="{{Request::url()}}?color=black">Black</a></li>
+            <li><a href="{{Request::url()}}?color=white">White</a></li>   
+            <li><a href="{{Request::url()}}?color=red">Red</a></li>
+            <li><a href="{{Request::url()}}?color=navy">Navy</a></li>
+            <li><a href="{{Request::url()}}?color=graphite">Graphite</a></li>
+            <li><a href="{{Request::url()}}?color=pink">Pink</a></li>
+            <li><a href="{{Request::url()}}?color=blue">Blue</a></li>
+            <li><a href="{{Request::url()}}?color=green">Green</a></li>
+            <li><a href="{{Request::url()}}?color=yellow">Yellow</a></li>
+            
+                                            
+        </ul>
+    </div>
+</aside>
+
+<aside class="aside-item filter-price">
+    <div class="aside-title aside-title-fillter">
+        <div class="title_module"><h2><span style="font-weight: bold;" >Ngăn Laptop</span></h2></div>
+    </div>
+    <div class="aside-content filter-group">
+        <ul name="sort-nganlap" id="sort-nganlap" >
+
+            <li><a href="{{Request::url()}}?ngan=14">14 inch</a></li>
+            <li><a href="{{Request::url()}}?ngan=15,6">15,6 inch</a></li>   
+            <li><a href="{{Request::url()}}?ngan=17,3">17,3 inch</a></li>
+
+        </ul>
+    </div>
+</aside>
 
 
 

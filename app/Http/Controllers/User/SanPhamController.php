@@ -68,8 +68,58 @@ class SanPhamController extends Controller
 
         }
 
+        if(isset($_GET['color'])) {
+            $color = $_GET['color'];
+
+            if($color=='black') {
+                $sanpham = ChiTietSP::where('mau_sac','Black')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='white') {
+                $sanpham = ChiTietSP::where('mau_sac','White')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='red') {
+                $sanpham = ChiTietSP::where('mau_sac','Red')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='navy') {
+                $sanpham = ChiTietSP::where('mau_sac','Navy')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='graphite') {
+                $sanpham = ChiTietSP::where('mau_sac','Graphite')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='pink') {
+                $sanpham = ChiTietSP::where('mau_sac','Pink')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='blue') {
+                $sanpham = ChiTietSP::where('mau_sac','Blue')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='green') {
+                $sanpham = ChiTietSP::where('mau_sac','Green')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='yellow') {
+                $sanpham = ChiTietSP::where('mau_sac','Yellow')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+
+        }
+
+        if(isset($_GET['ngan'])) {
+            $nganlap = $_GET['ngan'];
+
+            if($nganlap=='14') {
+                $sanpham = ChiTietSP::where('ngan_lap','14')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='15,6') {
+                $sanpham = ChiTietSP::where('ngan_lap','15.6')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='17,3') {
+                $sanpham = ChiTietSP::where('ngan_lap','17.3')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            
+        }
+
         return view('user.page.san-pham.sanpham',compact('sanpham'));
     }
+
+
     public function new() {
         $sanpham = ChiTietSP::where('new',0)->where('tinh_trang','0')->get();     
 
@@ -126,9 +176,59 @@ class SanPhamController extends Controller
             }
 
         }
+
+        if(isset($_GET['color'])) {
+            $color = $_GET['color'];
+
+            if($color=='black') {
+                $sanpham = ChiTietSP::where('mau_sac','Black')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='white') {
+                $sanpham = ChiTietSP::where('mau_sac','White')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='red') {
+                $sanpham = ChiTietSP::where('mau_sac','Red')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='navy') {
+                $sanpham = ChiTietSP::where('mau_sac','Navy')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='graphite') {
+                $sanpham = ChiTietSP::where('mau_sac','Graphite')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='pink') {
+                $sanpham = ChiTietSP::where('mau_sac','Pink')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='blue') {
+                $sanpham = ChiTietSP::where('mau_sac','Blue')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='green') {
+                $sanpham = ChiTietSP::where('mau_sac','Green')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='yellow') {
+                $sanpham = ChiTietSP::where('mau_sac','Yellow')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+
+        }
+
+        if(isset($_GET['ngan'])) {
+            $nganlap = $_GET['ngan'];
+
+            if($nganlap=='14') {
+                $sanpham = ChiTietSP::where('ngan_lap','14')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='15,6') {
+                $sanpham = ChiTietSP::where('ngan_lap','15.6')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='17,3') {
+                $sanpham = ChiTietSP::where('ngan_lap','17.3')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            
+        }
   
         return view('user.page.san-pham.sanpham',compact('sanpham'));
     }
+
+
 
     public function sale() {
         $sanpham = ChiTietSP::where('giam_gia','<>',0)->where('tinh_trang','0')->get();
@@ -185,6 +285,54 @@ class SanPhamController extends Controller
                 $sanpham = ChiTietSP::where('gia','>',2000000)->where('giam_gia','<>',0)->where('tinh_trang','0')->get();
             }
 
+        }
+
+        if(isset($_GET['color'])) {
+            $color = $_GET['color'];
+
+            if($color=='black') {
+                $sanpham = ChiTietSP::where('mau_sac','Black')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='white') {
+                $sanpham = ChiTietSP::where('mau_sac','White')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='red') {
+                $sanpham = ChiTietSP::where('mau_sac','Red')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='navy') {
+                $sanpham = ChiTietSP::where('mau_sac','Navy')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='graphite') {
+                $sanpham = ChiTietSP::where('mau_sac','Graphite')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='pink') {
+                $sanpham = ChiTietSP::where('mau_sac','Pink')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='blue') {
+                $sanpham = ChiTietSP::where('mau_sac','Blue')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='green') {
+                $sanpham = ChiTietSP::where('mau_sac','Green')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='yellow') {
+                $sanpham = ChiTietSP::where('mau_sac','Yellow')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+
+        }
+
+        if(isset($_GET['ngan'])) {
+            $nganlap = $_GET['ngan'];
+
+            if($nganlap=='14') {
+                $sanpham = ChiTietSP::where('ngan_lap','14')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='15,6') {
+                $sanpham = ChiTietSP::where('ngan_lap','15.6')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='17,3') {
+                $sanpham = ChiTietSP::where('ngan_lap','17.3')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            
         }
 
         return view('user.page.san-pham.sanpham',compact('sanpham'));

@@ -67,6 +67,54 @@ class LoaiSPController extends Controller
             }
 
         }
+
+        if(isset($_GET['color'])) {
+            $color = $_GET['color'];
+
+            if($color=='black') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Black')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='white') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','White')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='red') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Red')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='navy') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Navy')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='graphite') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Graphite')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='pink') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Pink')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='blue') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Blue')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='green') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Green')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($color=='yellow') {
+                $sp_theoloai = ChiTietSP::where('mau_sac','Yellow')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+
+        }
+
+        if(isset($_GET['ngan'])) {
+            $nganlap = $_GET['ngan'];
+
+            if($nganlap=='14') {
+                $sp_theoloai = ChiTietSP::where('ngan_lap','14')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='15,6') {
+                $sp_theoloai = ChiTietSP::where('ngan_lap','15.6')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            elseif($nganlap=='17,3') {
+                $sp_theoloai = ChiTietSP::where('ngan_lap','17.3')->where('tinh_trang','0')->orderby('gia','ASC')->get();
+            }
+            
+        }
         
         return view('user.page.loai-san-pham.loai_sp',compact('sp_theoloai','loaisp'));
     }

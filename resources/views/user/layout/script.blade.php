@@ -25,6 +25,30 @@
             });
         });
 
+        $(document).ready(function() {
+            $('#sort-color').on('change',function() {
+
+                var url = $(this).val();
+
+                if(url) {
+                    window.location = url;
+                }
+                return false;
+            });
+        });
+
+        $(document).ready(function() {
+            $('#sort-nganlap').on('change',function() {
+
+                var url = $(this).val();
+
+                if(url) {
+                    window.location = url;
+                }
+                return false;
+            });
+        });
+
         
         $(document).ready(function ($) {
             awe_backtotop();
